@@ -24,7 +24,8 @@ class UserSeeder extends Seeder
                 "password" => Hash::make("admin"),
                 "email" => "admin@wonderman.com",
                 "created" => date("Y-m-d", strtotime("last Sunday")),
-                "role_id" => 1
+                "role_id" => 1,
+                "avatar" => ""
             ],
             [
                 "first_name" => "Agatha",
@@ -33,7 +34,8 @@ class UserSeeder extends Seeder
                 "password" => Hash::make("user"),
                 "email" => "agatha_agatha@gmail.com",
                 "created" => date("Y-m-d", strtotime("yesterday")),
-                "role_id" => 2
+                "role_id" => 2,
+                "avatar" => ""
             ]
         ]);
     }
