@@ -12,6 +12,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction query()
+ * @property int $id
+ * @property int|null $user_id
+ * @property int|null $product_id
+ * @property string $date
+ * @property string $price
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
  * @mixin \Eloquent
  */
 class Transaction extends Model
