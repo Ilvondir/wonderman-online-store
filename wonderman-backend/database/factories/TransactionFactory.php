@@ -17,7 +17,8 @@ class TransactionFactory extends Factory
      */
     public function definition(): array
     {
-        $pid = fake()->numberBetween(1, 50);
+        
+        $pid = fake()->numberBetween(1, 35);
         return [
             "user_id" => fake()->numberBetween(1, 32),
             "product_id" => $pid,

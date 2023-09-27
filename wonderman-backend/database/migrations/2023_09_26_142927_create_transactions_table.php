@@ -24,12 +24,13 @@ return new class extends Migration {
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->dropForeign("transactions_user_id_foreign");
-            $table->dropForeign("transactions_product_id_foreign");
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['product_id']);
         });
+
         Schema::dropIfExists('transactions');
     }
 };
