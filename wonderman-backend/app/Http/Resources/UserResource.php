@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             "login" => $this->login,
             "avatar" => $this->avatar,
             "created" => $this->created,
-            "role" => new RoleResource($this->role)
+            "role" => new RoleResource($this->whenLoaded("role"))
         ];
     }
 }

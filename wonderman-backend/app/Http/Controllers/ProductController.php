@@ -8,6 +8,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
@@ -25,15 +26,19 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create(
-            $request->validated() +
-            [
+        $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
+        $url = Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
+
+        $product = Product::create([
+                "photo" => $url,
                 "added" => date("Y-m-d"),
-                "author_id" => user()->id,
-            ]
+                "author_id" => $request->user()->id,
+            ] +
+            $request->validated()
+
         );
 
-        return response(new ProductResource($product), Response::HTTP_CREATED);
+        return response(new ProductResource($product->load("author")), Response::HTTP_CREATED);
     }
 
     /**
@@ -41,7 +46,7 @@ class ProductController extends Controller
      */
     public function show(int $id)
     {
-        return response(new ProductResource(Product::find($id)), Response::HTTP_OK);
+        return response(new ProductResource(Product::find($id)->load("author")), Response::HTTP_OK);
     }
 
     /**
@@ -51,7 +56,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->update($request->validated());
-        return response(new ProductResource($product), Response::HTTP_ACCEPTED);
+        return response(new ProductResource($product->load("author")), Response::HTTP_ACCEPTED);
     }
 
     /**

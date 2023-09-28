@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post("/auth/register", [AuthController::class, "register"]);
+Route::post("auth/login", [AuthController::class, "login"]);
 
 Route::get("/products", [ProductController::class, "index"]);
 Route::get("/products/{id}", [ProductController::class, "show"]);
 
 Route::middleware("auth:sanctum")->group(function () {
+    Route::get("/auth/user", [AuthController::class, "user"]);
+    Route::delete("/auth/logout", [AuthController::class, "logout"]);
+
     Route::post("/products", [ProductController::class, "store"]);
     Route::put("/products/{id}", [ProductController::class, "update"]);
     Route::delete("/products/{id}", [ProductController::class, "destroy"]);
