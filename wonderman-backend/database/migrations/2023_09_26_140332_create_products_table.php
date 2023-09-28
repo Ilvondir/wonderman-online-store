@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text("description");
             $table->string("photo");
             $table->date("added");
-            $table->integer("tax");
+            $table->integer("tax")->default(18);
             $table->unsignedBigInteger("author_id")->nullable();
             $table->foreign("author_id")->references("id")->on("users")->onDelete("set null");
         });
