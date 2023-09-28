@@ -16,7 +16,7 @@ return new class extends Migration {
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger("role_id");
+            $table->unsignedBigInteger("role_id")->default(2);
             $table->foreign("role_id")->references("id")->on("roles");
         });
     }
@@ -27,7 +27,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign("users_role_id_foreign");
+            $table->dropForeign(["role_id"]);
         });
         Schema::dropIfExists('roles');
     }

@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
+ * @property-read \App\Models\Product|null $product
+ * @property-read \App\Models\User|null $user
  * @mixin \Eloquent
  */
 class Transaction extends Model

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 return new class extends Migration {
     /**
@@ -17,7 +18,7 @@ return new class extends Migration {
             $table->text("description");
             $table->string("photo");
             $table->date("added");
-            $table->integer("tax");
+            $table->integer("tax")->default(18);
             $table->unsignedBigInteger("author_id")->nullable();
             $table->foreign("author_id")->references("id")->on("users")->onDelete("set null");
         });
@@ -29,8 +30,9 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign("products_author_id_foreign");
+            $table->dropForeign(["author_id"]);
         });
+        Storage::deleteDirectory("public/img/products");
         Schema::dropIfExists('products');
     }
 };
