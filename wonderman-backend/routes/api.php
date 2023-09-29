@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::post("/auth/register", [AuthController::class, "register"]);
 Route::post("auth/login", [AuthController::class, "login"]);
 
-Route::get("/products", [ProductController::class, "index"]);
+//Route::get("/products", [ProductController::class, "index"]);
+Route::get("/category/{category}", [ProductController::class, "getProductsByCategory"]);
+Route::get("/products/bests", [ProductController::class, "getBestProducts"]);
 Route::get("/products/{id}", [ProductController::class, "show"]);
 
 Route::middleware("auth:sanctum")->group(function () {

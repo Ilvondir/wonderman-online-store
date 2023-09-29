@@ -13,12 +13,41 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function getProductsByCategory(string $category)
     {
-        return response(ProductResource::collection(Product::paginate(32)), Response::HTTP_OK);
+        $products = Product::query()
+            ->join("categories", "categories.id", "=", "products.category_id")
+            ->select([
+                "products.name AS name",
+                "price",
+                "products.description AS description",
+                "photo",
+                "added"
+            ])
+            ->orderByDesc("products.id")
+            ->where("categories.name", "=", $category)
+            ->paginate(32);
+
+        return response(ProductResource::collection($products), Response::HTTP_OK);
+    }
+
+    public function getBestProducts()
+    {
+        //SELECT products.name, COUNT(transactions.id) AS freq
+        //FROM products
+        //INNER JOIN transactions
+        //ON products.id = transactions.product_id
+        //GROUP BY transactions.product_id
+        //ORDER BY freq DESC;
+
+        $products = Product::query()
+            ->join("transactions", "transactions.product_id", "=", "products.id")
+            ->selectRaw("name, products.price AS price, description, added, photo, COUNT(transactions.id) AS freq")
+            ->groupBy("transactions.product_id")
+            ->orderByDesc("freq")
+            ->paginate(12);
+
+        return response(ProductResource::collection($products), Response::HTTP_OK);
     }
 
     /**
@@ -35,10 +64,9 @@ class ProductController extends Controller
                 "author_id" => $request->user()->id,
             ] +
             $request->validated()
-
         );
 
-        return response(new ProductResource($product->load("author")), Response::HTTP_CREATED);
+        return response(new ProductResource($product->load("category")), Response::HTTP_CREATED);
     }
 
     /**
@@ -46,7 +74,7 @@ class ProductController extends Controller
      */
     public function show(int $id)
     {
-        return response(new ProductResource(Product::find($id)->load("author")), Response::HTTP_OK);
+        return response(new ProductResource(Product::find($id)->load(["author", "category"])), Response::HTTP_OK);
     }
 
     /**
@@ -56,7 +84,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->update($request->validated());
-        return response(new ProductResource($product->load("author")), Response::HTTP_ACCEPTED);
+        return response(new ProductResource($product->load(["author", "category"])), Response::HTTP_ACCEPTED);
     }
 
     /**
