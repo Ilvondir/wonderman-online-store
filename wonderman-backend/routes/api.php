@@ -30,6 +30,7 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::post("/auth/admin", [UserController::class, "createAdmin"]);
     Route::delete("/auth/logout", [AuthController::class, "logout"]);
     Route::put("/auth/password", [UserController::class, "changePassword"]);
+    Route::put("/auth/profile", [UserController::class, "changeData"]);
 
     Route::post("/products", [ProductController::class, "store"]);
     Route::put("/products/{id}", [ProductController::class, "update"]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeDataRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
@@ -61,4 +62,13 @@ class UserController extends Controller
 
         return response(["error" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
     }
+
+    public function changeData(ChangeDataRequest $request)
+    {
+        $user = $request->user();
+        $user->update($request->validated());
+        return response($user, Response::HTTP_ACCEPTED);
+    }
+
+
 }
