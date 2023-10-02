@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeAvatarRequest;
 use App\Http\Requests\ChangeDataRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RegisterRequest;
@@ -53,6 +54,7 @@ class UserController extends Controller
 
     public function changePassword(ChangePasswordRequest $request)
     {
+        /** @var User $user */
         $user = $request->user();
 
         if (Hash::check($request->validated("old_password"), $user->password)) {
@@ -65,10 +67,40 @@ class UserController extends Controller
 
     public function changeData(ChangeDataRequest $request)
     {
+        /** @var User $user */
         $user = $request->user();
         $user->update($request->validated());
-        return response($user, Response::HTTP_ACCEPTED);
+        return response(new UserResource($user->load("role")), Response::HTTP_ACCEPTED);
     }
 
+    public function changeAvatar(ChangeAvatarRequest $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $file = $request->validated(["avatar"]);
 
+        $filename = strtolower(Str::random(15)) . "." . $file->extension();
+
+        $new_path = Storage::putFileAs("public/img/avatars", $file, $filename);
+        Storage::delete($user->avatar);
+        $user->update(["avatar" => $new_path]);
+
+        return response(new UserResource($user->load("role")), Response::HTTP_ACCEPTED);
+    }
+
+    public function removeAvatar(Request $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+        Storage::delete($user->avatar);
+
+        $generator = new Avatar();
+        $newname = strtolower(Str::random(15)) . ".png";
+        $avatar = $generator->create($user->first_name . " " . $user->last_name)->setBackground("#7f00ff")->toBase64();
+        $new_path = Storage::putFileAs("public/img/avatars", $avatar, $newname);
+
+        $user->update(["avatar" => $new_path]);
+
+        return response(new UserResource($user->load("role")), Response::HTTP_ACCEPTED);
+    }
 }

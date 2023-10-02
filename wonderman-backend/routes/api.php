@@ -31,6 +31,8 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::delete("/auth/logout", [AuthController::class, "logout"]);
     Route::put("/auth/password", [UserController::class, "changePassword"]);
     Route::put("/auth/profile", [UserController::class, "changeData"]);
+    Route::post("/auth/avatar/change", [UserController::class, "changeAvatar"]);
+    Route::put("/auth/avatar/remove", [UserController::class, "removeAvatar"]);
 
     Route::post("/products", [ProductController::class, "store"]);
     Route::put("/products/{id}", [ProductController::class, "update"]);

@@ -16,6 +16,14 @@ class ProductController extends Controller
 {
     public function getProductsByCategory(string $category)
     {
+
+        //SELECT products.name AS name, price, photo, added, products.description AS description
+        //FROM products
+        //INNER JOIN categories
+        //ON categories.id = products.category_id
+        //ORDER BY products.id DESC
+        //WHERE catgories.name = ...
+
         $products = Product::query()
             ->join("categories", "categories.id", "=", "products.category_id")
             ->select([
