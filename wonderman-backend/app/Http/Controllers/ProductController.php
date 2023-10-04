@@ -59,6 +59,14 @@ class ProductController extends Controller
         return response(ProductResource::collection($products), Response::HTTP_OK);
     }
 
+    public function getProductsForUser(Request $request)
+    {
+        $user = $request->user();
+        $products = Product::where("author_id", "=", $user->id)->get();
+
+        return response(ProductResource::collection($products), Response::HTTP_OK);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

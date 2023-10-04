@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TransactionResource;
+use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,6 +18,11 @@ class TransactionController extends Controller
 //    {
 //        return response(TransactionResource::collection(Transaction::all()->load("user")), Response::HTTP_OK);
 //    }
+
+    public function show(int $id)
+    {
+        return response(new TransactionResource(Transaction::find($id)->load("user")), Response::HTTP_OK);
+    }
 
     public function getTransactionsForUser(Request $request)
     {
@@ -40,24 +47,37 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, int $id)
     {
-        //
+        /** @var User $user */
+        $user = $request->user();
+
+        /** @var Product $product */
+        $product = Product::find($id);
+
+        $transaction = Transaction::create([
+            "user_id" => $user->id,
+            "product_id" => $id,
+            "created" => date("Y-m-d"),
+            "price" => round($product->price + ($product->price * ($product->tax / 100)), 2),
+            "payed" => 0,
+            "payment_date" => null
+        ]);
+
+        return response(new TransactionResource($transaction), Response::HTTP_CREATED);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function pay(Request $request, int $id)
     {
-        //
-    }
+        //TODO:Paying
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $transaction = Transaction::find($id);
+
+        $transaction->update([
+            "payed" => 1,
+            "payment_date" => date("Y-m-d")
+        ]);
+
+        return response(new TransactionResource($transaction->load("user")), Response::HTTP_ACCEPTED);
     }
 }

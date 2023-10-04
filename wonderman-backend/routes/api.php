@@ -40,5 +40,8 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::delete("/products/{id}", [ProductController::class, "destroy"]);
 
     Route::get("/user/transactions", [TransactionController::class, "getTransactionsForUser"]);
+    Route::post("/products/{id}", [TransactionController::class, "store"]);
+    Route::get("/transactions/{id}", [TransactionController::class, "show"]);
+    Route::post("/transactions/{id}", [TransactionController::class, "pay"]);
 });
 
