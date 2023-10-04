@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     {
         return [
             "name" => fake()->unique()->word(),
-            "price" => round(fake()->numberBetween(1, 500) / fake()->randomDigitNotZero(), 2),
+            "price" => round(fake()->numberBetween(1, 500) / fake()->numberBetween(2, 10), 2),
             "description" => fake()->text(350),
             "photo" => fake()->imageUrl(),
             "added" => fake()->dateTimeBetween("- 2 year", "now"),

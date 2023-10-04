@@ -18,7 +18,9 @@ class ProductResource extends JsonResource
     {
         return [
             "name" => $this->name,
-            "price" => $this->price + ($this->price * $this->tax / 100),
+            "netto" => round($this->price, 2),
+            "tax" => $this->tax,
+            "brutto" => round($this->price + ($this->price * $this->tax / 100), 2),
             "description" => $this->description,
             "photo" => $this->photo,
             "added" => $this->added,
