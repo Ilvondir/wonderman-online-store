@@ -80,4 +80,11 @@ class TransactionController extends Controller
 
         return response(new TransactionResource($transaction->load("user")), Response::HTTP_ACCEPTED);
     }
+
+    public function destroy(int $id)
+    {
+        Transaction::destroy($id);
+
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
 }
