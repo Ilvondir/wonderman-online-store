@@ -1,0 +1,11 @@
+@use "../../scss/commons";
+
+.footer {
+  background: $primary-color;
+  box-sizing: border-box;
+
+  a {
+    color: $background;
+  }
+}
+
