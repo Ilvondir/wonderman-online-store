@@ -1,17 +1,20 @@
 @import "scss/commons";
-@import "components/Footer/footer";
 
 @font-face {
   src: url("fonts/Manrope.ttf");
   font-family: "Manrope";
 }
 
+
 body {
-  background: $background;
+  background-color: $background;
 }
 
+@import "components/Footer/footer";
+@import "components/Header/header";
+
 .container {
-  width: 950px;
+  width: 100vw;
   margin: auto;
   box-sizing: border-box;
   font-family: "Manrope";
@@ -70,4 +73,3 @@ body {
     margin-bottom: #{$i}vmax;
   }
 }
-

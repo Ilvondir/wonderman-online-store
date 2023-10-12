@@ -1,10 +1,11 @@
 import React from 'react';
+import Wrapper from "../../../components/Wrapper/Wrapper";
 
 const NotFound = () => {
     return (
-        <div>
+        <Wrapper>
             404
-        </div>
+        </Wrapper>
     );
 };
 

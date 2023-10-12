@@ -3,6 +3,8 @@ import './App.css';
 import {Routes, BrowserRouter, Route, Navigate} from 'react-router-dom';
 import NotFound from "./pages/problems/404/NotFound";
 import Footer from './components/Footer/Footer';
+import Header from "./components/Header/Header";
+import Home from "./pages/home/Home";
 
 function App() {
     return (
@@ -10,13 +12,11 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path={"/"} element={<Navigate to={"/home"}/>}/>
-                    <Route path={"/home"}/>
+                    <Route path={"/home"} element={<Home/>}/>
 
                     <Route path={"*"} element={<NotFound/>}/>
                 </Routes>
             </BrowserRouter>
-
-            <Footer/>
         </>
     );
 }
