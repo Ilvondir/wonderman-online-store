@@ -10,6 +10,11 @@ body {
   background-color: $background;
 }
 
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 @import "components/Footer/footer";
 @import "components/Header/header";
 

@@ -6,14 +6,74 @@ body {
   background-color: #FBFEF9;
 }
 
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .footer {
-  background: #FFA500;
+  background: #555555;
+  box-sizing: border-box;
+  color: #FBFEF9;
+  width: 100%;
+  margin-bottom: 2vw;
+  padding: 2vw;
+  float: left;
+}
+.footer .footer-section {
+  width: 50%;
+  box-sizing: border-box;
+  float: left;
+  font-size: 1.2vw;
+}
+.footer .footer-section h1 {
+  text-align: right;
+}
+.footer .footer-section p {
+  text-align: right;
+}
+.footer .footer-section .footer-container {
+  width: 100%;
+  float: left;
+  font-size: 2vmax;
   box-sizing: border-box;
 }
-.footer a {
+.footer .footer-section .footer-container .half {
+  float: left;
+}
+.footer .footer-section .footer-container .half:nth-child(1) {
+  width: 20%;
+  text-align: right;
+  padding-right: 5%;
+  box-sizing: border-box;
+}
+.footer .footer-section .footer-container .half:nth-child(2) {
+  width: 80%;
+}
+.footer .footer-section .footer-container .half a {
   color: #FBFEF9;
 }
 
+@media screen and (orientation: portrait) {
+  .footer .footer-section {
+    width: 100%;
+    float: left;
+    font-size: 2vmax;
+    margin-bottom: 4vmax;
+  }
+  .footer .footer-section h1 {
+    text-align: left;
+  }
+  .footer .footer-section p {
+    text-align: justify;
+  }
+  .footer .footer-section .footer-container {
+    font-size: 3vmax;
+  }
+  .footer .footer-section:nth-child(2) {
+    margin-bottom: 0;
+  }
+}
 .header {
   width: 100%;
   background-color: #555555;
@@ -23,7 +83,7 @@ body {
 .header a {
   float: left;
   padding: 1.1vw;
-  color: white;
+  color: #FBFEF9;
   text-decoration: none;
   font-size: 1.5vmax;
   box-sizing: border-box;

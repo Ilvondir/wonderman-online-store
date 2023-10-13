@@ -1,8 +1,75 @@
 .footer {
-  background: $primary-color;
+  background: $secondary-color;
   box-sizing: border-box;
+  color: $background;
+  width: 100%;
+  margin-bottom: 2vw;
+  padding: 2vw;
+  float: left;
 
-  a {
-    color: $background;
+  .footer-section {
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+    font-size: 1.2vw;
+
+    h1 {
+      text-align: right;
+    }
+
+    p {
+      text-align: right;
+    }
+
+    .footer-container {
+      width: 100%;
+      float: left;
+      font-size: 2vmax;
+      box-sizing: border-box;
+
+      .half {
+        float: left;
+
+        &:nth-child(1) {
+          width: 20%;
+          text-align: right;
+          padding-right: 5%;
+          box-sizing: border-box;
+        }
+
+        &:nth-child(2) {
+          width: 80%;
+        }
+
+        a {
+          color: $background;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .footer .footer-section {
+    width: 100%;
+    float: left;
+    font-size: 2vmax;
+    margin-bottom: 4vmax;
+
+    h1 {
+      text-align: left;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    .footer-container {
+      font-size: 3vmax;
+    }
+
+    &:nth-child(2) {
+      margin-bottom: 0;
+    }
   }
 }
