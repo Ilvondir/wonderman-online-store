@@ -12,17 +12,24 @@ const Header = () => {
     return (
         <header>
             <div className="header margin-bottom-2">
-                <NavLink to={"/home"}><FontAwesomeIcon icon={faHome}/> Home</NavLink>
+                <NavLink to={"/home"}>
+                    <FontAwesomeIcon icon={faHome}/> Home
+                </NavLink>
 
                 {!user &&
-                    <NavLink to={"/login"}><FontAwesomeIcon icon={faSignIn}/> Login</NavLink>
+                    <NavLink to={"/login"}>
+                        <FontAwesomeIcon icon={faSignIn}/> Login
+                    </NavLink>
                 }
 
                 {user &&
                     <>
-                        <NavLink to={"/profile"}><FontAwesomeIcon icon={faUser}/> {user.first_name} {user.last_name}
+                        <NavLink to={"/profile"}>
+                            <FontAwesomeIcon icon={faUser}/> {user.first_name} {user.last_name}
                         </NavLink>
-                        <NavLink to={"/logout"}><FontAwesomeIcon icon={faSignOut}/> Logout</NavLink>
+                        <NavLink to={"/logout"}>
+                            <FontAwesomeIcon icon={faSignOut}/> Logout
+                        </NavLink>
                     </>
                 }
 
