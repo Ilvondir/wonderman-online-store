@@ -1,0 +1,85 @@
+@import "scss/commons";
+
+@font-face {
+  src: url("fonts/Manrope.ttf");
+  font-family: "Manrope";
+}
+
+//iframe#webpack-dev-server-client-overlay {
+//  display: none !important
+//}
+
+body {
+  background-color: $background;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@import "components/Footer/footer";
+@import "components/Header/header";
+@import "components/CategoryMenu/categoryMenu";
+@import "components/Wrapper/wrapper";
+
+.container {
+  width: 100vw;
+  margin: auto;
+  box-sizing: border-box;
+  font-family: "Manrope";
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.row {
+  width: 100%;
+}
+
+@for $i from 0 through 12 {
+  .col-#{$i} {
+    width: (100%/12)*$i;
+    float: left;
+    box-sizing: border-box;
+  }
+}
+
+@for $i from 0 through 5 {
+  .padding-#{$i} {
+    padding: #{$i}vmax;
+  }
+  .padding-right-#{$i} {
+    padding-right: #{$i}vmax;
+  }
+  .padding-top-#{$i} {
+    padding-top: #{$i}vmax;
+  }
+  .padding-bottom-#{$i} {
+    padding-bottom: #{$i}vmax;
+  }
+  .padding-left-#{$i} {
+    padding-left: #{$i}vmax;
+  }
+
+  .font-size-#{$i} {
+    font-size: #{$i}vmax;
+  }
+
+  .margin-#{$i} {
+    margin: #{$i}vmax;
+  }
+  .margin-left-#{$i} {
+    margin-left: #{$i}vmax;
+  }
+  .margin-right-#{$i} {
+    margin-right: #{$i}vmax;
+  }
+  .margin-top-#{$i} {
+    margin-top: #{$i}vmax;
+  }
+  .margin-bottom-#{$i} {
+    margin-bottom: #{$i}vmax;
+  }
+}

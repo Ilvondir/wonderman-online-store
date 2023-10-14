@@ -1,13 +1,558 @@
+@font-face {
+  src: url("fonts/Manrope.ttf");
+  font-family: "Manrope";
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #FBFEF9;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
+
+.footer {
+  background: #555555;
+  box-sizing: border-box;
+  color: #FBFEF9;
+  width: 100%;
+  padding: 2vw;
+  float: left;
+  overflow-wrap: break-word;
+}
+.footer .footer-section {
+  width: 50%;
+  box-sizing: border-box;
+  float: left;
+  font-size: 1.2vw;
+}
+.footer .footer-section h1 {
+  text-align: right;
+}
+.footer .footer-section p {
+  text-align: right;
+}
+.footer .footer-section .footer-container {
+  width: 100%;
+  float: left;
+  font-size: 2vmax;
+  box-sizing: border-box;
+}
+.footer .footer-section .footer-container .half {
+  float: left;
+}
+.footer .footer-section .footer-container .half:nth-child(1) {
+  width: 20%;
+  text-align: right;
+  padding-right: 5%;
+  box-sizing: border-box;
+}
+.footer .footer-section .footer-container .half:nth-child(2) {
+  width: 80%;
+}
+.footer .footer-section .footer-container .half a {
+  color: #FBFEF9;
+}
+
+@media screen and (orientation: portrait) {
+  .footer .footer-section {
+    width: 100%;
+    float: left;
+    font-size: 2.4vmax;
+    margin-bottom: 4vmax;
+  }
+  .footer .footer-section h1 {
+    text-align: left;
+  }
+  .footer .footer-section p {
+    text-align: justify;
+  }
+  .footer .footer-section .footer-container {
+    font-size: 3vmax;
+  }
+  .footer .footer-section:nth-child(2) {
+    margin-bottom: 0;
+  }
+}
+.header {
+  width: 100%;
+  background-color: #555555;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.header a {
+  float: left;
+  padding: 1.1vw;
+  color: #FBFEF9;
+  text-decoration: none;
+  font-size: 1.5vmax;
+  box-sizing: border-box;
+}
+.header a:hover {
+  background-color: #000;
+}
+.header .active {
+  background-color: #FFA500;
+}
+
+@media screen and (orientation: portrait) {
+  .header a {
+    float: left;
+    padding: 1.5vmax;
+    display: block;
+    font-size: 2.4vmax;
+    width: 100%;
+  }
+}
+nav {
+  padding-right: 5%;
+}
+nav .category-button {
+  width: 100%;
+  background-color: #555555;
+  color: #FBFEF9;
+  padding: 0.6vmax;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+nav .categories {
+  overflow: hidden;
+}
+nav .categories a {
+  text-decoration: none;
+  color: #000;
+}
+nav .categories a.active li {
+  background-color: #FFA500;
+  color: white;
+}
+nav .categories ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+nav .categories ul li {
+  padding: 0.3vmax 10%;
+}
+nav .categories ul li:hover {
+  background-color: #FFA500;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (orientation: portrait) {
+  nav {
+    padding: 0;
+    font-size: 2.4vmax;
+  }
+  nav .category-button {
+    width: 100%;
+    background-color: #555555;
+    color: #FBFEF9;
+    padding: 0.6vmax;
+    cursor: pointer;
+  }
+  nav .categories ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav .categories ul li {
+    padding: 0.3vmax 2.5vmax;
+  }
+  nav .categories ul li:hover {
+    background-color: #FFA500;
+    color: white;
+    cursor: pointer;
+  }
+}
+.main {
+  width: 100%;
+  box-sizing: border-box;
+}
+.main .main-left {
+  width: 20%;
+  float: left;
+  padding: 1vmax;
+  box-sizing: border-box;
+}
+.main .main-right {
+  width: 80%;
+  float: left;
+  padding: 1vmax;
+  box-sizing: border-box;
+}
+
+@media screen and (orientation: portrait) {
+  .main .main-left {
+    width: 100%;
+    float: left;
+    padding: 0 5%;
+    box-sizing: border-box;
+  }
+  .main .main-right {
+    width: 100%;
+    float: left;
+    padding: 5%;
+    font-size: 2.4vmax;
+    box-sizing: border-box;
+  }
+}
+.container {
+  width: 100vw;
+  margin: auto;
+  box-sizing: border-box;
+  font-family: "Manrope";
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.row {
+  width: 100%;
+}
+
+.col-0 {
+  width: 0%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-1 {
+  width: 8.3333333333%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-2 {
+  width: 16.6666666667%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-3 {
+  width: 25%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-4 {
+  width: 33.3333333333%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-5 {
+  width: 41.6666666667%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-6 {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-7 {
+  width: 58.3333333333%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-8 {
+  width: 66.6666666667%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-9 {
+  width: 75%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-10 {
+  width: 83.3333333333%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-11 {
+  width: 91.6666666667%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-12 {
+  width: 100%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.padding-0 {
+  padding: 0vmax;
+}
+
+.padding-right-0 {
+  padding-right: 0vmax;
+}
+
+.padding-top-0 {
+  padding-top: 0vmax;
+}
+
+.padding-bottom-0 {
+  padding-bottom: 0vmax;
+}
+
+.padding-left-0 {
+  padding-left: 0vmax;
+}
+
+.font-size-0 {
+  font-size: 0vmax;
+}
+
+.margin-0 {
+  margin: 0vmax;
+}
+
+.margin-left-0 {
+  margin-left: 0vmax;
+}
+
+.margin-right-0 {
+  margin-right: 0vmax;
+}
+
+.margin-top-0 {
+  margin-top: 0vmax;
+}
+
+.margin-bottom-0 {
+  margin-bottom: 0vmax;
+}
+
+.padding-1 {
+  padding: 1vmax;
+}
+
+.padding-right-1 {
+  padding-right: 1vmax;
+}
+
+.padding-top-1 {
+  padding-top: 1vmax;
+}
+
+.padding-bottom-1 {
+  padding-bottom: 1vmax;
+}
+
+.padding-left-1 {
+  padding-left: 1vmax;
+}
+
+.font-size-1 {
+  font-size: 1vmax;
+}
+
+.margin-1 {
+  margin: 1vmax;
+}
+
+.margin-left-1 {
+  margin-left: 1vmax;
+}
+
+.margin-right-1 {
+  margin-right: 1vmax;
+}
+
+.margin-top-1 {
+  margin-top: 1vmax;
+}
+
+.margin-bottom-1 {
+  margin-bottom: 1vmax;
+}
+
+.padding-2 {
+  padding: 2vmax;
+}
+
+.padding-right-2 {
+  padding-right: 2vmax;
+}
+
+.padding-top-2 {
+  padding-top: 2vmax;
+}
+
+.padding-bottom-2 {
+  padding-bottom: 2vmax;
+}
+
+.padding-left-2 {
+  padding-left: 2vmax;
+}
+
+.font-size-2 {
+  font-size: 2vmax;
+}
+
+.margin-2 {
+  margin: 2vmax;
+}
+
+.margin-left-2 {
+  margin-left: 2vmax;
+}
+
+.margin-right-2 {
+  margin-right: 2vmax;
+}
+
+.margin-top-2 {
+  margin-top: 2vmax;
+}
+
+.margin-bottom-2 {
+  margin-bottom: 2vmax;
+}
+
+.padding-3 {
+  padding: 3vmax;
+}
+
+.padding-right-3 {
+  padding-right: 3vmax;
+}
+
+.padding-top-3 {
+  padding-top: 3vmax;
+}
+
+.padding-bottom-3 {
+  padding-bottom: 3vmax;
+}
+
+.padding-left-3 {
+  padding-left: 3vmax;
+}
+
+.font-size-3 {
+  font-size: 3vmax;
+}
+
+.margin-3 {
+  margin: 3vmax;
+}
+
+.margin-left-3 {
+  margin-left: 3vmax;
+}
+
+.margin-right-3 {
+  margin-right: 3vmax;
+}
+
+.margin-top-3 {
+  margin-top: 3vmax;
+}
+
+.margin-bottom-3 {
+  margin-bottom: 3vmax;
+}
+
+.padding-4 {
+  padding: 4vmax;
+}
+
+.padding-right-4 {
+  padding-right: 4vmax;
+}
+
+.padding-top-4 {
+  padding-top: 4vmax;
+}
+
+.padding-bottom-4 {
+  padding-bottom: 4vmax;
+}
+
+.padding-left-4 {
+  padding-left: 4vmax;
+}
+
+.font-size-4 {
+  font-size: 4vmax;
+}
+
+.margin-4 {
+  margin: 4vmax;
+}
+
+.margin-left-4 {
+  margin-left: 4vmax;
+}
+
+.margin-right-4 {
+  margin-right: 4vmax;
+}
+
+.margin-top-4 {
+  margin-top: 4vmax;
+}
+
+.margin-bottom-4 {
+  margin-bottom: 4vmax;
+}
+
+.padding-5 {
+  padding: 5vmax;
+}
+
+.padding-right-5 {
+  padding-right: 5vmax;
+}
+
+.padding-top-5 {
+  padding-top: 5vmax;
+}
+
+.padding-bottom-5 {
+  padding-bottom: 5vmax;
+}
+
+.padding-left-5 {
+  padding-left: 5vmax;
+}
+
+.font-size-5 {
+  font-size: 5vmax;
+}
+
+.margin-5 {
+  margin: 5vmax;
+}
+
+.margin-left-5 {
+  margin-left: 5vmax;
+}
+
+.margin-right-5 {
+  margin-right: 5vmax;
+}
+
+.margin-top-5 {
+  margin-top: 5vmax;
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5vmax;
+}
+
+/*# sourceMappingURL=index.css.map */
