@@ -5,6 +5,9 @@
   font-family: "Manrope";
 }
 
+iframe#webpack-dev-server-client-overlay {
+  display: none !important
+}
 
 body {
   background-color: $background;
@@ -17,6 +20,8 @@ body::-webkit-scrollbar {
 
 @import "components/Footer/footer";
 @import "components/Header/header";
+@import "components/CategoryMenu/categoryMenu";
+@import "components/Wrapper/wrapper";
 
 .container {
   width: 100vw;

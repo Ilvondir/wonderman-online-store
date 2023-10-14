@@ -1,0 +1,67 @@
+nav {
+  padding-right: 5%;
+
+  .category-button {
+    width: 100%;
+    background-color: $secondary-color;
+    color: $background;
+    padding: 0.6vmax;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .categories {
+    overflow: hidden;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 0.3vmax 10%;
+
+        &:hover {
+          background-color: $primary-color;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  nav {
+    padding: 0;
+    font-size: 2.4vmax;
+
+    .category-button {
+      width: 100%;
+      background-color: $secondary-color;
+      color: $background;
+      padding: 0.6vmax;
+      cursor: pointer;
+    }
+
+    .categories {
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 0.3vmax 2.5vmax;
+
+          &:hover {
+            background-color: $primary-color;
+            color: white;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+}

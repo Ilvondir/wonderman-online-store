@@ -1,0 +1,37 @@
+.main {
+  width: 100%;
+  box-sizing: border-box;
+
+  .main-left {
+    width: 20%;
+    float: left;
+    padding: 1vmax;
+    box-sizing: border-box;
+  }
+
+  .main-right {
+    width: 80%;
+    float: left;
+    padding: 1vmax;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .main {
+    .main-left {
+      width: 100%;
+      float: left;
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .main-right {
+      width: 100%;
+      float: left;
+      padding: 5%;
+      font-size: 2.4vmax;
+      box-sizing: border-box;
+    }
+  }
+}
