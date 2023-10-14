@@ -2,10 +2,6 @@
   src: url("fonts/Manrope.ttf");
   font-family: "Manrope";
 }
-iframe#webpack-dev-server-client-overlay {
-  display: none !important;
-}
-
 body {
   background-color: #FBFEF9;
 }
@@ -121,6 +117,14 @@ nav .category-button {
 }
 nav .categories {
   overflow: hidden;
+}
+nav .categories a {
+  text-decoration: none;
+  color: #000;
+}
+nav .categories a.active li {
+  background-color: #FFA500;
+  color: white;
 }
 nav .categories ul {
   list-style-type: none;

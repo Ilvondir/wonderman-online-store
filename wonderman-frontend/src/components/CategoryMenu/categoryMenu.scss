@@ -13,6 +13,16 @@ nav {
   .categories {
     overflow: hidden;
 
+    a {
+      text-decoration: none;
+      color: #000;
+
+      &.active li {
+        background-color: $primary-color;
+        color: white;
+      }
+    }
+
     ul {
       list-style-type: none;
       padding: 0;

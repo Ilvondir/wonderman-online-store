@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,7 @@ Route::post("/auth/register", [AuthController::class, "register"]);
 Route::post("auth/login", [AuthController::class, "login"]);
 
 //Route::get("/products", [ProductController::class, "index"]);
+Route::get("/categories", [CategoryController::class, "index"]);
 Route::get("/category/{category}", [ProductController::class, "getProductsByCategory"]);
 Route::get("/products/bests", [ProductController::class, "getBestProducts"]);
 Route::get("/products/{id}", [ProductController::class, "show"]);
