@@ -1,5 +1,5 @@
-import React, {SyntheticEvent, useEffect} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import React, {SyntheticEvent, useEffect, useState} from 'react';
+import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faUser, faSignOut, faSignIn} from "@fortawesome/free-solid-svg-icons";
@@ -10,15 +10,15 @@ import {headers} from "../../axios/commons";
 
 const Header = () => {
 
-    const user = useSelector((state: any) => state.user);
+    const [handleUser, setHandleUser] = useState(useSelector((state: any) => state.user));
     const dispatch = useDispatch();
 
     // useEffect(() => {
     //     axios.post("auth/login", {
-    //         login: "admin",
-    //         password: "admin"
+    //         login: "user",
+    //         password: "user"
     //     }, {}).then(response => {
-    //         dispatch(clearUser());
+    //         setHandleUser(response.data);
     //         dispatch(setUser(response.data));
     //     })
     // }, []);
@@ -27,7 +27,10 @@ const Header = () => {
         e.preventDefault();
 
         axios.delete("/auth/logout", {headers: headers()})
-            .then(() => dispatch(clearUser()));
+            .then(() => {
+                setHandleUser(null);
+                dispatch(clearUser())
+            });
     }
 
     return (
@@ -37,7 +40,7 @@ const Header = () => {
                     <FontAwesomeIcon icon={faHome}/> Home
                 </NavLink>
 
-                {!user &&
+                {!handleUser &&
                     <>
                         <NavLink to={"/register"}>
                             <FontAwesomeIcon icon={faUser}/> Register
@@ -50,16 +53,16 @@ const Header = () => {
                     </>
                 }
 
-                {user &&
+                {handleUser &&
                     <>
                         <NavLink to={"/profile"}>
 
                             <div className="menu-profile-section">
-                                <img src={user.avatar} alt="Avatar."/>
+                                <img src={handleUser.avatar} alt="Avatar."/>
                             </div>
 
                             <div className="menu-profile-section">
-                                {user.first_name} {user.last_name}
+                                {handleUser.first_name} {handleUser.last_name}
                             </div>
 
                         </NavLink>

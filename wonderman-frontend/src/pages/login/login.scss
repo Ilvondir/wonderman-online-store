@@ -1,0 +1,69 @@
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .form {
+    width: 40%;
+
+    fieldset {
+      width: 100%;
+      border-radius: 1vmax;
+      border: 0.2vmax solid $secondary-color;
+      box-sizing: border-box;
+      padding: 1vmax 2vmax;
+
+      form {
+
+        .form-group {
+          width: 100%;
+          margin: 1.4vmax 0;
+          box-sizing: border-box;
+
+          &:nth-child(1) {
+            margin-top: -1vmax;
+          }
+
+          label {
+            font-weight: 700;
+            font-size: 1.2vmax;
+          }
+
+          input {
+            width: 100%;
+            padding: 0.5vmax;
+            box-sizing: border-box;
+            border: 0.14vmax solid $secondary-color;
+            font-size: 1.3vmax;
+
+
+            &[type="submit"] {
+              color: white;
+              background-color: $primary-color;
+              width: 40%;
+              border-radius: 0.2vmax;
+              border: 0;
+              cursor: pointer;
+              padding: 0.6vmax 0;
+              margin-top: 1vmax;
+            }
+          }
+        }
+
+        .error {
+          font-weight: 700;
+          color: red;
+          font-style: italic;
+        }
+      }
+
+      legend {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        color: $primary-color;
+        font-size: 7vmax;
+      }
+    }
+  }
+}
