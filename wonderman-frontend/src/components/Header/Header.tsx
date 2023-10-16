@@ -1,13 +1,34 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+import React, {SyntheticEvent, useEffect} from 'react';
+import {Link, NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome, faUser, faSignOut, faSignIn, faAddressCard} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faUser, faSignOut, faSignIn} from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
+import {clearUser, setUser} from '../../store/actions/user';
+import {headers} from "../../axios/commons";
 
 
 const Header = () => {
 
     const user = useSelector((state: any) => state.user);
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     axios.post("auth/login", {
+    //         login: "admin",
+    //         password: "admin"
+    //     }, {}).then(response => {
+    //         dispatch(clearUser());
+    //         dispatch(setUser(response.data));
+    //     })
+    // }, []);
+
+    const logout = (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        axios.delete("/auth/logout", {headers: headers()})
+            .then(() => dispatch(clearUser()));
+    }
 
     return (
         <header>
@@ -32,14 +53,22 @@ const Header = () => {
                 {user &&
                     <>
                         <NavLink to={"/profile"}>
-                            <FontAwesomeIcon icon={faAddressCard}/> {user.first_name} {user.last_name}
+
+                            <div className="menu-profile-section">
+                                <img src={user.avatar} alt="Avatar."/>
+                            </div>
+
+                            <div className="menu-profile-section">
+                                {user.first_name} {user.last_name}
+                            </div>
+
                         </NavLink>
-                        <NavLink to={"/logout"}>
+
+                        <a onClick={(e) => logout(e)}>
                             <FontAwesomeIcon icon={faSignOut}/> Logout
-                        </NavLink>
+                        </a>
                     </>
                 }
-
 
             </div>
         </header>
