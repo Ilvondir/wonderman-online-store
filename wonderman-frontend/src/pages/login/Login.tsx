@@ -1,11 +1,11 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {SyntheticEvent, useEffect, useState} from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {headers} from "../../axios/commons";
 import {useNavigate} from 'react-router-dom';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../store/actions/user";
 
 const Login = () => {
@@ -13,8 +13,13 @@ const Login = () => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState([]);
+    const user = useSelector((state: any) => state.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (user) navigate("/profile");
+    }, []);
 
     const submit = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -38,7 +43,7 @@ const Login = () => {
 
     return (
         <Wrapper>
-            <div className="login-page">
+            <div className="form-page">
                 <div className="form">
 
                     <fieldset>
@@ -54,13 +59,13 @@ const Login = () => {
                             <div className="form-group">
                                 <label htmlFor="login" className="label">Enter your login:</label><br/>
                                 <input type="text" id="login" placeholder="Login"
-                                       onChange={(e) => setLogin(e.target.value)}/>
+                                       onChange={(e) => setLogin(e.target.value)} required/>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="password" className="label">Enter your password:</label><br/>
                                 <input type="password" id="password" placeholder="Password"
-                                       onChange={(e) => setPassword(e.target.value)}/>
+                                       onChange={(e) => setPassword(e.target.value)} required/>
                             </div>
 
                             <div className="form-group text-align-center">

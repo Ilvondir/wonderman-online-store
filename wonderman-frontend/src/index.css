@@ -270,41 +270,41 @@ nav .categories ul li:hover {
     box-sizing: border-box;
   }
 }
-.login-page {
+.form-page {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.login-page .form {
+.form-page .form {
   width: 40%;
 }
-.login-page .form fieldset {
+.form-page .form fieldset {
   width: 100%;
   border-radius: 1vmax;
   border: 0.2vmax solid #555555;
   box-sizing: border-box;
   padding: 1vmax 2vmax;
 }
-.login-page .form fieldset form .form-group {
+.form-page .form fieldset form .form-group {
   width: 100%;
   margin: 1.4vmax 0;
   box-sizing: border-box;
 }
-.login-page .form fieldset form .form-group:nth-child(1) {
+.form-page .form fieldset form .form-group:nth-child(1) {
   margin-top: -1vmax;
 }
-.login-page .form fieldset form .form-group label {
+.form-page .form fieldset form .form-group label {
   font-weight: 700;
   font-size: 1.2vmax;
 }
-.login-page .form fieldset form .form-group input {
+.form-page .form fieldset form .form-group input {
   width: 100%;
   padding: 0.5vmax;
   box-sizing: border-box;
   border: 0.14vmax solid #555555;
   font-size: 1.3vmax;
 }
-.login-page .form fieldset form .form-group input[type=submit] {
+.form-page .form fieldset form .form-group input[type=submit] {
   color: white;
   background-color: #FFA500;
   width: 40%;
@@ -314,12 +314,12 @@ nav .categories ul li:hover {
   padding: 0.6vmax 0;
   margin-top: 1vmax;
 }
-.login-page .form fieldset form .error {
+.form-page .form fieldset form .error {
   font-weight: 700;
   color: red;
   font-style: italic;
 }
-.login-page .form fieldset legend {
+.form-page .form fieldset legend {
   padding: 0;
   margin: 0;
   text-align: center;
