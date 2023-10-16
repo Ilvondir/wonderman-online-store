@@ -46,6 +46,10 @@
               cursor: pointer;
               padding: 0.6vmax 0;
               margin-top: 1vmax;
+
+              &:hover {
+                background-color: darken($primary-color, 3%);
+              }
             }
           }
         }
@@ -63,6 +67,39 @@
         text-align: center;
         color: $primary-color;
         font-size: 7vmax;
+      }
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .form-page {
+    .form {
+      width: 100%;
+
+      fieldset {
+        legend {
+          font-size: 13vmax;
+        }
+
+        form {
+          .form-group {
+            margin: 2.5vmax 0;
+
+            label {
+              font-size: 2.2vmax;
+            }
+
+            input {
+              font-size: 2.5vmax;
+              padding: 1vmax;
+
+              &[type="submit"] {
+                padding: 1.2vmax 0;
+              }
+            }
+          }
+        }
       }
     }
   }

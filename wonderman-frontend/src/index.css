@@ -107,6 +107,9 @@ body::-webkit-scrollbar {
 }
 
 @media screen and (orientation: portrait) {
+  .footer {
+    padding-top: 3vmax;
+  }
   .footer .footer-section {
     width: 100%;
     float: left;
@@ -314,6 +317,9 @@ nav .categories ul li:hover {
   padding: 0.6vmax 0;
   margin-top: 1vmax;
 }
+.form-page .form fieldset form .form-group input[type=submit]:hover {
+  background-color: #f09b00;
+}
 .form-page .form fieldset form .error {
   font-weight: 700;
   color: red;
@@ -327,6 +333,27 @@ nav .categories ul li:hover {
   font-size: 7vmax;
 }
 
+@media screen and (orientation: portrait) {
+  .form-page .form {
+    width: 100%;
+  }
+  .form-page .form fieldset legend {
+    font-size: 13vmax;
+  }
+  .form-page .form fieldset form .form-group {
+    margin: 2.5vmax 0;
+  }
+  .form-page .form fieldset form .form-group label {
+    font-size: 2.2vmax;
+  }
+  .form-page .form fieldset form .form-group input {
+    font-size: 2.5vmax;
+    padding: 1vmax;
+  }
+  .form-page .form fieldset form .form-group input[type=submit] {
+    padding: 1.2vmax 0;
+  }
+}
 .container {
   width: 100vw;
   margin: auto;

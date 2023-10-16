@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import {headers} from "../../axios/commons";
 
 const Register = () => {
     const [first_name, setFirstName] = useState("");
@@ -13,8 +12,9 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
-    const [password_repeated, setPasswordRepeated] = useState("");
-    const [file, setFile] = useState(new FormData());
+    const [password_confirmation, setPasswordConfirmation] = useState("");
+
+    const formData = new FormData();
 
     const [submitted, setSubmitted] = useState(false);
     const user = useSelector((state: any) => state.user);
@@ -28,17 +28,27 @@ const Register = () => {
     const submit = (e: SyntheticEvent) => {
         e.preventDefault();
 
-        if (first_name && last_name && login && email && password && password_repeated) {
+        if (first_name && last_name && login && email && password && password_confirmation) {
 
-            axios.post("auth/register", {
-                first_name,
-                last_name,
-                email,
-                login,
-                password,
-                password_repeated,
-                avatar: file
-            }, {headers: headers()}).then(response => navigate("/login"));
+            setSubmitted(true);
+
+            formData.append("first_name", first_name);
+            formData.append("last_name", last_name);
+            formData.append("email", email);
+            formData.append("login", login);
+            formData.append("password", password);
+            formData.append("password_confirmation", password_confirmation);
+
+            axios.post("auth/register", formData, {
+                headers: {"Content-Type": "multipart/form-data"}
+            }).then(response => {
+                navigate("/login");
+            })
+                .catch(error => {
+                    setSubmitted(false);
+                    const errors = error.response.data.message;
+                    setError(errors);
+                });
         }
     }
 
@@ -50,7 +60,7 @@ const Register = () => {
                     <fieldset>
                         <legend><FontAwesomeIcon icon={faUserPlus}/></legend>
 
-                        <div className={submitted ? " spinner-wrapper" : " spinner-wrapper hide"}>
+                        <div className={submitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
                             <div className="spinner"></div>
                         </div>
 
@@ -88,18 +98,18 @@ const Register = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="password_repeated" className="label">Repeat your password:</label><br/>
-                                <input type="password" id="password_repeated" placeholder="Repeat password"
-                                       onChange={(e) => setPasswordRepeated(e.target.value)} required/>
+                                <label htmlFor="password_repeated" className="label">Confirm your password:</label><br/>
+                                <input type="password" id="password_repeated" placeholder="Confirm password"
+                                       onChange={(e) => setPasswordConfirmation(e.target.value)} required/>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="avatar" className="label">Select your avatar
-                                    (optionally):</label><br/>
-                                <input type="file" id="avatar" accept=".jpg,.png,.jpeg" onChange={(e) => {
-                                    if (e.target.files == null) return;
-                                    setFile(new FormData());
-                                    file.append("avatar", e.target.files[0])
+                                    (optionally, no more than 300 pixels in width or height):</label><br/>
+                                <input type="file" id="avatar" accept=".jpg,.png,.jpeg" onChange={(event) => {
+                                    if (event.target.files == null) return;
+                                    const file = event.target.files[0];
+                                    formData.append("avatar", file, "1212");
                                 }
                                 }/>
                             </div>

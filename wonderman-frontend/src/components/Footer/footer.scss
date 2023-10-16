@@ -50,26 +50,30 @@
 }
 
 @media screen and (orientation: portrait) {
-  .footer .footer-section {
-    width: 100%;
-    float: left;
-    font-size: 2.4vmax;
-    margin-bottom: 4vmax;
+  .footer {
+    padding-top: 3vmax;
 
-    h1 {
-      text-align: left;
-    }
+    .footer-section {
+      width: 100%;
+      float: left;
+      font-size: 2.4vmax;
+      margin-bottom: 4vmax;
 
-    p {
-      text-align: justify;
-    }
+      h1 {
+        text-align: left;
+      }
 
-    .footer-container {
-      font-size: 3vmax;
-    }
+      p {
+        text-align: justify;
+      }
 
-    &:nth-child(2) {
-      margin-bottom: 0;
+      .footer-container {
+        font-size: 3vmax;
+      }
+
+      &:nth-child(2) {
+        margin-bottom: 0;
+      }
     }
   }
 }
