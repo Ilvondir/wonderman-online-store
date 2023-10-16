@@ -58,7 +58,11 @@ class AuthController extends Controller
         $user = Auth::user();
         $jwt = $user->createToken("token")->plainTextToken;
 
-        return response(["jwt" => $jwt], Response::HTTP_OK);
+        $res = new UserResource($user->load('role'));
+        $resArray = $res->toArray($request);
+        $resArray['jwt'] = $jwt;
+
+        return response()->json($resArray, Response::HTTP_OK);
     }
 
     public function user(Request $request)

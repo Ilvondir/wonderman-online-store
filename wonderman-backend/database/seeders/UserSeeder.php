@@ -24,8 +24,10 @@ class UserSeeder extends Seeder
         $filename2 = strtolower(Str::random(15)) . ".png";
         $file1 = $generator->create("Michael Connor")->setBackground("#7f00ff")->toBase64();
         $file2 = $generator->create("Agatha Jenkins")->setBackground("#7f00ff")->toBase64();
-        $url1 = Storage::putFileAs("public/img/avatars", $file1, $filename1);
-        $url2 = Storage::putFileAs("public/img/avatars", $file2, $filename2);
+        Storage::putFileAs("public/img/avatars", $file1, $filename1);
+        Storage::putFileAs("public/img/avatars", $file2, $filename2);
+        $url1 = env("APP_URL") . ":8000/storage/img/avatars/" . $filename1;
+        $url2 = env("APP_URL") . ":8000/storage/img/avatars/" . $filename2;
 
         User::insert([
             [

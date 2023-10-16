@@ -73,7 +73,8 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
-        $url = Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
+        Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
+        $url = env("APP_URL") . ":8000/storage/img/products/" . $filename;
 
         $product = Product::create([
                 "photo" => $url,
