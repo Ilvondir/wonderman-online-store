@@ -7,6 +7,8 @@ import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Category from "./pages/category/Category";
+import Guard from "./components/Guard/Guard";
+import Unauthorized from "./pages/problems/401/Unauthorized";
 
 function App() {
     return (
@@ -17,9 +19,14 @@ function App() {
                     <Route path={"/home"} element={<Home/>}/>
                     <Route path={"/login"} element={<Login/>}/>
                     <Route path={"/register"} element={<Register/>}/>
-                    <Route path={"/profile"} element={<Profile/>}/>
+                    <Route path={"/profile"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <Profile/>
+                        </Guard>
+                    }/>
                     <Route path={"/category/:name"} element={<Category/>}/>
 
+                    <Route path={"/401"} element={<Unauthorized/>}/>
                     <Route path={"*"} element={<NotFound/>}/>
                 </Routes>
             </BrowserRouter>

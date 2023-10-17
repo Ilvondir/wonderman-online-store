@@ -14,7 +14,7 @@ const hide = {
 };
 
 const show = {
-    maxHeight: '500px',
+    maxHeight: '1000px',
     transition: '500ms'
 };
 

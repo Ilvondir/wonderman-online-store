@@ -1,5 +1,5 @@
 @font-face {
-  src: url("fonts/Manrope.ttf");
+  src: url("scss/fonts/Manrope.ttf");
   font-family: "Manrope";
 }
 body {
@@ -310,7 +310,7 @@ nav .categories ul li:hover {
 .form-page .form fieldset form .form-group input[type=submit] {
   color: white;
   background-color: #FFA500;
-  min-width: 40%;
+  width: 40%;
   border-radius: 0.2vmax;
   border: 0;
   cursor: pointer;
@@ -420,7 +420,7 @@ nav .categories ul li:hover {
 .profile-page .profile-section form .form-group input[type=submit] {
   color: white;
   background-color: #FFA500;
-  min-width: 40%;
+  width: 40%;
   border-radius: 0.2vmax;
   border: 0;
   cursor: pointer;
@@ -453,6 +453,27 @@ nav .categories ul li:hover {
   .profile-page .profile-section form .form-group input[type=submit], .profile-page .profile-section form .form-group input[type=button] {
     padding: 1.2vmax 0;
     width: 100%;
+  }
+}
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.error-page .communicate {
+  text-align: center;
+}
+.error-page .communicate h1 {
+  font-size: 10vmax;
+  margin: 0;
+}
+
+@media screen and (orientation: portrait) {
+  .error-page .communicate {
+    font-size: 3vmax;
+  }
+  .error-page .communicate h1 {
+    font-size: 15vmax;
   }
 }
 .container {

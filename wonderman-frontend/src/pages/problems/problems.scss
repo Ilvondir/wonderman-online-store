@@ -1,0 +1,26 @@
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .communicate {
+    text-align: center;
+
+    h1 {
+      font-size: 10vmax;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .error-page {
+    .communicate {
+      font-size: 3vmax;
+
+      h1 {
+        font-size: 15vmax;
+      }
+    }
+  }
+}

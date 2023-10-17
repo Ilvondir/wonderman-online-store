@@ -1,7 +1,7 @@
 @import "scss/commons";
 
 @font-face {
-  src: url("fonts/Manrope.ttf");
+  src: url("scss/fonts/Manrope.ttf");
   font-family: "Manrope";
 }
 
@@ -25,6 +25,7 @@ body::-webkit-scrollbar {
 @import "components/Wrapper/wrapper";
 @import "pages/login/forms";
 @import "pages/profile/profile";
+@import "pages/problems/problems";
 
 .container {
   width: 100vw;
