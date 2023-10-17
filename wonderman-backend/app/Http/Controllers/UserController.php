@@ -62,7 +62,7 @@ class UserController extends Controller
             return response(["message" => "success"], Response::HTTP_ACCEPTED);
         }
 
-        return response(["error" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
+        return response(["message" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
     }
 
     public function changeData(ChangeDataRequest $request)
