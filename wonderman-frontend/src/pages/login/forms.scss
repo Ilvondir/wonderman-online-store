@@ -40,7 +40,7 @@
             &[type="submit"] {
               color: white;
               background-color: $primary-color;
-              width: 40%;
+              min-width: 40%;
               border-radius: 0.2vmax;
               border: 0;
               cursor: pointer;
@@ -96,6 +96,7 @@
 
               &[type="submit"] {
                 padding: 1.2vmax 0;
+                width: 100%;
               }
             }
           }

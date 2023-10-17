@@ -310,7 +310,7 @@ nav .categories ul li:hover {
 .form-page .form fieldset form .form-group input[type=submit] {
   color: white;
   background-color: #FFA500;
-  width: 40%;
+  min-width: 40%;
   border-radius: 0.2vmax;
   border: 0;
   cursor: pointer;
@@ -352,6 +352,107 @@ nav .categories ul li:hover {
   }
   .form-page .form fieldset form .form-group input[type=submit] {
     padding: 1.2vmax 0;
+    width: 100%;
+  }
+}
+.profile-page {
+  width: 100%;
+}
+.profile-page hr {
+  border: 0.07vmax solid #555555;
+  margin: 0.5vmax 2vmax;
+}
+.profile-page .profile-section {
+  padding: 2vmax;
+  box-sizing: border-box;
+}
+.profile-page .profile-section h2 {
+  margin: 0 0 2vmax 0;
+  text-align: center;
+}
+.profile-page .profile-section:nth-child(1) {
+  text-align: center;
+}
+.profile-page .profile-section:nth-child(1) .img-avatar img {
+  width: 12vmax;
+  max-width: 100%;
+}
+.profile-page .profile-section:nth-child(1) .img-title h1 {
+  margin-top: 0.6vmax;
+  margin-bottom: 0;
+}
+.profile-page .profile-section form {
+  width: 50%;
+}
+.profile-page .profile-section form .form-group {
+  width: 100%;
+  margin: 1.4vmax 0;
+  box-sizing: border-box;
+}
+.profile-page .profile-section form .form-group:nth-child(1) {
+  margin-top: -1vmax;
+}
+.profile-page .profile-section form .form-group label {
+  font-weight: 700;
+  font-size: 1.2vmax;
+}
+.profile-page .profile-section form .form-group input {
+  width: 100%;
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  border: 0.14vmax solid #555555;
+  font-size: 1.3vmax;
+}
+.profile-page .profile-section form .form-group input[type=button] {
+  color: white;
+  background-color: #FFA500;
+  width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+  margin-right: 1vmax;
+}
+.profile-page .profile-section form .form-group input[type=button]:hover {
+  background-color: #f09b00;
+}
+.profile-page .profile-section form .form-group input[type=submit] {
+  color: white;
+  background-color: #FFA500;
+  min-width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+}
+.profile-page .profile-section form .form-group input[type=submit]:hover {
+  background-color: #f09b00;
+}
+.profile-page .profile-section form .error {
+  font-weight: 700;
+  color: red;
+  font-style: italic;
+}
+
+@media screen and (orientation: portrait) {
+  .profile-page .profile-section form {
+    width: 100%;
+  }
+  .profile-page .profile-section form .form-group {
+    margin: 2.5vmax 0;
+  }
+  .profile-page .profile-section form .form-group label {
+    font-size: 2.2vmax;
+  }
+  .profile-page .profile-section form .form-group input {
+    font-size: 2.5vmax;
+    padding: 1vmax;
+  }
+  .profile-page .profile-section form .form-group input[type=submit], .profile-page .profile-section form .form-group input[type=button] {
+    padding: 1.2vmax 0;
+    width: 100%;
   }
 }
 .container {

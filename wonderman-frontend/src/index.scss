@@ -23,7 +23,8 @@ body::-webkit-scrollbar {
 @import "components/Header/header";
 @import "components/CategoryMenu/categoryMenu";
 @import "components/Wrapper/wrapper";
-@import "pages/login/login";
+@import "pages/login/forms";
+@import "pages/profile/profile";
 
 .container {
   width: 100vw;

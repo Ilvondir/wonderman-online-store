@@ -46,8 +46,7 @@ const Register = () => {
             })
                 .catch(error => {
                     setSubmitted(false);
-                    const errors = error.response.data.message;
-                    setError(errors);
+                    console.log(error);
                 });
         }
     }
@@ -109,7 +108,7 @@ const Register = () => {
                                 <input type="file" id="avatar" accept=".jpg,.png,.jpeg" onChange={(event) => {
                                     if (event.target.files == null) return;
                                     const file = event.target.files[0];
-                                    formData.append("avatar", file, "1212");
+                                    formData.append("avatar", file);
                                 }
                                 }/>
                             </div>
