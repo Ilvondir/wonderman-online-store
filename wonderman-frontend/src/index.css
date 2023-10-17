@@ -273,6 +273,47 @@ nav .categories ul li:hover {
     box-sizing: border-box;
   }
 }
+.swiper {
+  background-color: #FBFEF9;
+  width: 100%;
+  overflow: hidden;
+}
+.swiper .swiper-slide img {
+  width: 100%;
+}
+.swiper .swiper-slide .rectangle {
+  position: absolute;
+  bottom: 3px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  padding: 1.5vmax;
+}
+.swiper .swiper-slide .rectangle h2 {
+  margin-top: 0;
+}
+
+@media screen and (orientation: portrait) {
+  .swiper .swiper-slide .rectangle {
+    padding: 1vmax;
+  }
+  .swiper .swiper-slide .rectangle h2 {
+    margin-bottom: 0;
+  }
+  .swiper .swiper-slide .rectangle p {
+    margin: 0.3vmax 0;
+  }
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #FFA500;
+  opacity: 1;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  opacity: 1;
+  color: #FFA500;
+}
+
 .form-page {
   display: flex;
   align-items: center;

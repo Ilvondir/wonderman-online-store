@@ -1,10 +1,14 @@
 import React from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
+import Carousel from "../../components/Carousel/Carousel";
 
 const Home = () => {
     return (
         <Wrapper>
-            Home
+            <div className="home-page">
+                <Carousel/>
+
+            </div>
         </Wrapper>
     );
 };

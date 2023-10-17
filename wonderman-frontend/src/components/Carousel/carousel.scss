@@ -1,0 +1,53 @@
+.swiper {
+  background-color: $background;
+  width: 100%;
+  overflow: hidden;
+
+  .swiper-slide {
+
+    img {
+      width: 100%;
+    }
+
+    .rectangle {
+      position: absolute;
+      bottom: 3px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      box-sizing: border-box;
+      padding: 1.5vmax;
+
+      h2 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .swiper {
+    .swiper-slide {
+      .rectangle {
+        padding: 1vmax;
+
+        h2 {
+          margin-bottom: 0;
+        }
+
+        p {
+          margin: 0.3vmax 0;
+        }
+      }
+    }
+  }
+}
+
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: $primary-color;
+  opacity: 1;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  opacity: 1;
+  color: $primary-color;
+}

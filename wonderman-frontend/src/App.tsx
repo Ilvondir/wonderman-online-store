@@ -9,6 +9,7 @@ import Register from "./pages/register/Register";
 import Category from "./pages/category/Category";
 import Guard from "./components/Guard/Guard";
 import Unauthorized from "./pages/problems/401/Unauthorized";
+import Carousel from "./components/Carousel/Carousel";
 
 function App() {
     return (
