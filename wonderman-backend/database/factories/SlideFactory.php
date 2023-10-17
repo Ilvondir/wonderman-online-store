@@ -19,7 +19,7 @@ class SlideFactory extends Factory
         return [
             "title" => fake()->words(3, true),
             "description" => fake()->text(200),
-            "image" => fake()->imageUrl(),
+            "image" => fake()->imageUrl(600, 300, 'animals', true, 'cats')
         ];
     }
 }

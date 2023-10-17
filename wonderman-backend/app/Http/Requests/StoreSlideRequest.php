@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rule;
 
 class StoreSlideRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class StoreSlideRequest extends FormRequest
         return [
             "title" => ["required", "min:5", "max:50", "string"],
             "description" => ["required", "min:20", "max:200", "string"],
-            "image" => ["required", File::image()],
+            "image" => ["required", File::image()->dimensions(Rule::dimensions()->ratio(2))],
         ];
     }
 }
