@@ -11,6 +11,58 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
+.spinner-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1vmax 0 3vmax 0;
+}
+.spinner-wrapper .spinner {
+  width: 5vmax;
+  height: 5vmax;
+  border-radius: 50%;
+  border: 9px solid #ffa500;
+  animation: spinner-bulqg1 0.8s infinite linear alternate, spinner-oaa3wk 1.6s infinite linear;
+}
+@keyframes spinner-bulqg1 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+  }
+  12.5% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  62.5% {
+    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+  }
+}
+@keyframes spinner-oaa3wk {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+  }
+  49.99% {
+    transform: scaleY(1) rotate(135deg);
+  }
+  50% {
+    transform: scaleY(-1) rotate(0deg);
+  }
+  100% {
+    transform: scaleY(-1) rotate(-135deg);
+  }
+}
+
 .footer {
   background: #555555;
   box-sizing: border-box;
@@ -55,6 +107,9 @@ body::-webkit-scrollbar {
 }
 
 @media screen and (orientation: portrait) {
+  .footer {
+    padding-top: 3vmax;
+  }
   .footer .footer-section {
     width: 100%;
     float: left;
@@ -87,6 +142,17 @@ body::-webkit-scrollbar {
   text-decoration: none;
   font-size: 1.5vmax;
   box-sizing: border-box;
+  cursor: pointer;
+}
+.header .menu-profile-section {
+  float: left;
+  padding: 0;
+  margin: 0;
+  height: 2.05vmax;
+}
+.header .menu-profile-section img {
+  height: 100%;
+  margin-right: 0.8vmax;
 }
 .header a:hover {
   background-color: #000;
@@ -102,6 +168,14 @@ body::-webkit-scrollbar {
     display: block;
     font-size: 2.4vmax;
     width: 100%;
+    cursor: pointer;
+  }
+  .header .menu-profile-section {
+    height: 3.15vmax;
+  }
+  .header .menu-profile-section img {
+    height: 100%;
+    margin-right: 1.4vmax;
   }
 }
 nav {
@@ -169,6 +243,7 @@ nav .categories ul li:hover {
 .main {
   width: 100%;
   box-sizing: border-box;
+  font-size: 1.5vmax;
 }
 .main .main-left {
   width: 20%;
@@ -198,6 +273,188 @@ nav .categories ul li:hover {
     box-sizing: border-box;
   }
 }
+.form-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-page .form {
+  width: 40%;
+}
+.form-page .form fieldset {
+  width: 100%;
+  border-radius: 1vmax;
+  border: 0.2vmax solid #555555;
+  box-sizing: border-box;
+  padding: 1vmax 2vmax;
+}
+.form-page .form fieldset form .form-group {
+  width: 100%;
+  margin: 1.4vmax 0;
+  box-sizing: border-box;
+}
+.form-page .form fieldset form .form-group:nth-child(1) {
+  margin-top: -1vmax;
+}
+.form-page .form fieldset form .form-group label {
+  font-weight: 700;
+  font-size: 1.2vmax;
+}
+.form-page .form fieldset form .form-group input {
+  width: 100%;
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  border: 0.14vmax solid #555555;
+  font-size: 1.3vmax;
+}
+.form-page .form fieldset form .form-group input[type=submit] {
+  color: white;
+  background-color: #FFA500;
+  min-width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+}
+.form-page .form fieldset form .form-group input[type=submit]:hover {
+  background-color: #f09b00;
+}
+.form-page .form fieldset form .error {
+  font-weight: 700;
+  color: red;
+  font-style: italic;
+}
+.form-page .form fieldset legend {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: #FFA500;
+  font-size: 7vmax;
+}
+
+@media screen and (orientation: portrait) {
+  .form-page .form {
+    width: 100%;
+  }
+  .form-page .form fieldset legend {
+    font-size: 13vmax;
+  }
+  .form-page .form fieldset form .form-group {
+    margin: 2.5vmax 0;
+  }
+  .form-page .form fieldset form .form-group label {
+    font-size: 2.2vmax;
+  }
+  .form-page .form fieldset form .form-group input {
+    font-size: 2.5vmax;
+    padding: 1vmax;
+  }
+  .form-page .form fieldset form .form-group input[type=submit] {
+    padding: 1.2vmax 0;
+    width: 100%;
+  }
+}
+.profile-page {
+  width: 100%;
+}
+.profile-page hr {
+  border: 0.07vmax solid #555555;
+  margin: 0.5vmax 2vmax;
+}
+.profile-page .profile-section {
+  padding: 2vmax;
+  box-sizing: border-box;
+}
+.profile-page .profile-section h2 {
+  margin: 0 0 2vmax 0;
+  text-align: center;
+}
+.profile-page .profile-section:nth-child(1) {
+  text-align: center;
+}
+.profile-page .profile-section:nth-child(1) .img-avatar img {
+  width: 12vmax;
+  max-width: 100%;
+}
+.profile-page .profile-section:nth-child(1) .img-title h1 {
+  margin-top: 0.6vmax;
+  margin-bottom: 0;
+}
+.profile-page .profile-section form {
+  width: 50%;
+}
+.profile-page .profile-section form .form-group {
+  width: 100%;
+  margin: 1.4vmax 0;
+  box-sizing: border-box;
+}
+.profile-page .profile-section form .form-group:nth-child(1) {
+  margin-top: -1vmax;
+}
+.profile-page .profile-section form .form-group label {
+  font-weight: 700;
+  font-size: 1.2vmax;
+}
+.profile-page .profile-section form .form-group input {
+  width: 100%;
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  border: 0.14vmax solid #555555;
+  font-size: 1.3vmax;
+}
+.profile-page .profile-section form .form-group input[type=button] {
+  color: white;
+  background-color: #FFA500;
+  width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+  margin-right: 1vmax;
+}
+.profile-page .profile-section form .form-group input[type=button]:hover {
+  background-color: #f09b00;
+}
+.profile-page .profile-section form .form-group input[type=submit] {
+  color: white;
+  background-color: #FFA500;
+  min-width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+}
+.profile-page .profile-section form .form-group input[type=submit]:hover {
+  background-color: #f09b00;
+}
+.profile-page .profile-section form .error {
+  font-weight: 700;
+  color: red;
+  font-style: italic;
+}
+
+@media screen and (orientation: portrait) {
+  .profile-page .profile-section form {
+    width: 100%;
+  }
+  .profile-page .profile-section form .form-group {
+    margin: 2.5vmax 0;
+  }
+  .profile-page .profile-section form .form-group label {
+    font-size: 2.2vmax;
+  }
+  .profile-page .profile-section form .form-group input {
+    font-size: 2.5vmax;
+    padding: 1vmax;
+  }
+  .profile-page .profile-section form .form-group input[type=submit], .profile-page .profile-section form .form-group input[type=button] {
+    padding: 1.2vmax 0;
+    width: 100%;
+  }
+}
 .container {
   width: 100vw;
   margin: auto;
@@ -209,110 +466,12 @@ nav .categories ul li:hover {
   text-align: right;
 }
 
-.row {
-  width: 100%;
+.text-align-center {
+  text-align: center;
 }
 
-.col-0 {
-  width: 0%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-1 {
-  width: 8.3333333333%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-2 {
-  width: 16.6666666667%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-3 {
-  width: 25%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-4 {
-  width: 33.3333333333%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-5 {
-  width: 41.6666666667%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-6 {
-  width: 50%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-7 {
-  width: 58.3333333333%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-8 {
-  width: 66.6666666667%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-9 {
-  width: 75%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-10 {
-  width: 83.3333333333%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-11 {
-  width: 91.6666666667%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.col-12 {
-  width: 100%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.padding-0 {
-  padding: 0vmax;
-}
-
-.padding-right-0 {
-  padding-right: 0vmax;
-}
-
-.padding-top-0 {
-  padding-top: 0vmax;
-}
-
-.padding-bottom-0 {
-  padding-bottom: 0vmax;
-}
-
-.padding-left-0 {
-  padding-left: 0vmax;
-}
-
-.font-size-0 {
-  font-size: 0vmax;
+.hide {
+  display: none;
 }
 
 .margin-0 {
@@ -335,30 +494,6 @@ nav .categories ul li:hover {
   margin-bottom: 0vmax;
 }
 
-.padding-1 {
-  padding: 1vmax;
-}
-
-.padding-right-1 {
-  padding-right: 1vmax;
-}
-
-.padding-top-1 {
-  padding-top: 1vmax;
-}
-
-.padding-bottom-1 {
-  padding-bottom: 1vmax;
-}
-
-.padding-left-1 {
-  padding-left: 1vmax;
-}
-
-.font-size-1 {
-  font-size: 1vmax;
-}
-
 .margin-1 {
   margin: 1vmax;
 }
@@ -377,30 +512,6 @@ nav .categories ul li:hover {
 
 .margin-bottom-1 {
   margin-bottom: 1vmax;
-}
-
-.padding-2 {
-  padding: 2vmax;
-}
-
-.padding-right-2 {
-  padding-right: 2vmax;
-}
-
-.padding-top-2 {
-  padding-top: 2vmax;
-}
-
-.padding-bottom-2 {
-  padding-bottom: 2vmax;
-}
-
-.padding-left-2 {
-  padding-left: 2vmax;
-}
-
-.font-size-2 {
-  font-size: 2vmax;
 }
 
 .margin-2 {
@@ -423,30 +534,6 @@ nav .categories ul li:hover {
   margin-bottom: 2vmax;
 }
 
-.padding-3 {
-  padding: 3vmax;
-}
-
-.padding-right-3 {
-  padding-right: 3vmax;
-}
-
-.padding-top-3 {
-  padding-top: 3vmax;
-}
-
-.padding-bottom-3 {
-  padding-bottom: 3vmax;
-}
-
-.padding-left-3 {
-  padding-left: 3vmax;
-}
-
-.font-size-3 {
-  font-size: 3vmax;
-}
-
 .margin-3 {
   margin: 3vmax;
 }
@@ -467,30 +554,6 @@ nav .categories ul li:hover {
   margin-bottom: 3vmax;
 }
 
-.padding-4 {
-  padding: 4vmax;
-}
-
-.padding-right-4 {
-  padding-right: 4vmax;
-}
-
-.padding-top-4 {
-  padding-top: 4vmax;
-}
-
-.padding-bottom-4 {
-  padding-bottom: 4vmax;
-}
-
-.padding-left-4 {
-  padding-left: 4vmax;
-}
-
-.font-size-4 {
-  font-size: 4vmax;
-}
-
 .margin-4 {
   margin: 4vmax;
 }
@@ -509,30 +572,6 @@ nav .categories ul li:hover {
 
 .margin-bottom-4 {
   margin-bottom: 4vmax;
-}
-
-.padding-5 {
-  padding: 5vmax;
-}
-
-.padding-right-5 {
-  padding-right: 5vmax;
-}
-
-.padding-top-5 {
-  padding-top: 5vmax;
-}
-
-.padding-bottom-5 {
-  padding-bottom: 5vmax;
-}
-
-.padding-left-5 {
-  padding-left: 5vmax;
-}
-
-.font-size-5 {
-  font-size: 5vmax;
 }
 
 .margin-5 {

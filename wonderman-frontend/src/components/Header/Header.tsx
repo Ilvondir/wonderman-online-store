@@ -1,13 +1,37 @@
-import React from 'react';
+import React, {SyntheticEvent, useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome, faUser, faSignOut, faSignIn, faAddressCard} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faUser, faSignOut, faSignIn} from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
+import {clearUser, setUser} from '../../store/actions/user';
+import {headers} from "../../axios/commons";
 
 
 const Header = () => {
 
-    const user = useSelector((state: any) => state.user);
+    const [handleUser, setHandleUser] = useState(useSelector((state: any) => state.user));
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     axios.post("auth/login", {
+    //         login: "user",
+    //         password: "user"
+    //     }, {}).then(response => {
+    //         setHandleUser(response.data);
+    //         dispatch(setUser(response.data));
+    //     })
+    // }, []);
+
+    const logout = (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        axios.delete("/auth/logout", {headers: headers()})
+            .then(() => {
+                setHandleUser(null);
+                dispatch(clearUser())
+            });
+    }
 
     return (
         <header>
@@ -16,7 +40,7 @@ const Header = () => {
                     <FontAwesomeIcon icon={faHome}/> Home
                 </NavLink>
 
-                {!user &&
+                {!handleUser &&
                     <>
                         <NavLink to={"/register"}>
                             <FontAwesomeIcon icon={faUser}/> Register
@@ -29,17 +53,25 @@ const Header = () => {
                     </>
                 }
 
-                {user &&
+                {handleUser &&
                     <>
                         <NavLink to={"/profile"}>
-                            <FontAwesomeIcon icon={faAddressCard}/> {user.first_name} {user.last_name}
+
+                            <div className="menu-profile-section">
+                                <img src={handleUser.avatar} alt="Avatar."/>
+                            </div>
+
+                            <div className="menu-profile-section">
+                                {handleUser.first_name} {handleUser.last_name}
+                            </div>
+
                         </NavLink>
-                        <NavLink to={"/logout"}>
+
+                        <a onClick={(e) => logout(e)}>
                             <FontAwesomeIcon icon={faSignOut}/> Logout
-                        </NavLink>
+                        </a>
                     </>
                 }
-
 
             </div>
         </header>

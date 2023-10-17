@@ -15,7 +15,7 @@ const Wrapper = ({children}: any) => {
                 </div>
 
                 <div className="main-right">
-                    <main className="col-12">
+                    <main>
                         {children}
                     </main>
                 </div>

@@ -62,7 +62,7 @@ class UserController extends Controller
             return response(["message" => "success"], Response::HTTP_ACCEPTED);
         }
 
-        return response(["error" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
+        return response(["message" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
     }
 
     public function changeData(ChangeDataRequest $request)
@@ -81,7 +81,8 @@ class UserController extends Controller
 
         $filename = strtolower(Str::random(15)) . "." . $file->extension();
 
-        $new_path = Storage::putFileAs("public/img/avatars", $file, $filename);
+        Storage::putFileAs("public/img/avatars", $file, $filename);
+        $new_path = env("APP_URL") . ":8000/storage/img/avatars/" . $filename;
         Storage::delete($user->avatar);
         $user->update(["avatar" => $new_path]);
 
@@ -97,7 +98,8 @@ class UserController extends Controller
         $generator = new Avatar();
         $newname = strtolower(Str::random(15)) . ".png";
         $avatar = $generator->create($user->first_name . " " . $user->last_name)->setBackground("#7f00ff")->toBase64();
-        $new_path = Storage::putFileAs("public/img/avatars", $avatar, $newname);
+        Storage::putFileAs("public/img/avatars", $avatar, $newname);
+        $new_path = env("APP_URL") . ":8000/storage/img/avatars/" . $newname;
 
         $user->update(["avatar" => $new_path]);
 

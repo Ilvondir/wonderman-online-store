@@ -8,7 +8,8 @@ export class User {
         public email = "",
         public avatar = "",
         public created = "",
-        public role = new Role()
+        public role = new Role(),
+        public jwt = ""
     ) {
     }
 }

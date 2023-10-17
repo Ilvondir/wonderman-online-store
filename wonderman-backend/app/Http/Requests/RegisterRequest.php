@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
 
 class RegisterRequest extends FormRequest
@@ -29,7 +31,7 @@ class RegisterRequest extends FormRequest
             "email" => ["required", "email", "min:3", "max:50", "unique:users"],
             "password" => ["required", Password::min(8)->mixedCase()->numbers(), "confirmed"],
             "password_confirmation " => [],
-            "avatar" => ["file", "nullable", "mimes:jpg,png,jpeg"]
+            "avatar" => ["nullable", File::image()->dimensions(Rule::dimensions()->maxWidth(300)->maxHeight(300))]
         ];
     }
 }
