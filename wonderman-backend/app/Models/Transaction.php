@@ -24,6 +24,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
  * @property-read \App\Models\Product|null $product
  * @property-read \App\Models\User|null $user
+ * @property string $created
+ * @property int $payed
+ * @property string|null $payment_date
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCreated($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePayed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction wherePaymentDate($value)
  * @mixin \Eloquent
  */
 class Transaction extends Model
