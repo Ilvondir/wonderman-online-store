@@ -15,7 +15,6 @@ const spinner = {
 const CarouselPage = () => {
     const carouselRef = useRef();
     const user = useSelector((state: any) => state.user);
-    const navigate = useNavigate();
     const [slides, setSlides] = useState([]);
     const [deleting, setDeleting] = useState(false);
 
@@ -66,6 +65,12 @@ const CarouselPage = () => {
                     setError("Slide created successfully.");
                     // @ts-ignore
                     setSlides([...slides, response.data]);
+                    setTitle("");
+                    setDescription("");
+                })
+                .catch(error => {
+                    setSubmitted(false);
+                    setError(error.response.data.message)
                 })
         }
     }
@@ -115,12 +120,18 @@ const CarouselPage = () => {
 
                     <h2>Add slide</h2>
 
-                    <form onSubmit={(e) => submit(e)}>
+                    <div className={submitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
+                        <div className="spinner"></div>
+                    </div>
+
+                    <form onSubmit={(e) => submit(e)}
+                          className={submitted ? "hide" : ""}>
 
                         <div className="form-group">
                             <label htmlFor="title">Enter title:</label><br/>
                             <input type="text" placeholder="Title"
                                    onChange={(e) => setTitle(e.target.value)}
+                                   value={title}
                                    id="title" required/>
                         </div>
 
@@ -129,6 +140,7 @@ const CarouselPage = () => {
                             <textarea placeholder="Description"
                                       onChange={(e) => setDescription(e.target.value)}
                                       rows={5}
+                                      value={description}
                                       id="description" required></textarea>
                         </div>
 
