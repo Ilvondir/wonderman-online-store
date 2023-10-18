@@ -18,6 +18,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    public function getAdmins()
+    {
+        return response(UserResource::collection(User::where("role_id", "=", 1)->get()), Response::HTTP_OK);
+    }
+
     public function createAdmin(RegisterRequest $request)
     {
         $this->authorize("is_admin", $request->user());
@@ -25,19 +30,11 @@ class UserController extends Controller
         $first_name = $request->validated(["first_name"]);
         $last_name = $request->validated(["last_name"]);
 
-        if ($request->exists("avatar")) {
-
-            $filename = strtolower(Str::random(15)) . "." . $request->file("avatar")->extension();
-            $url = Storage::putFileAs("public/img/avatars", $request->validated("avatar"), $filename);
-
-        } else {
-
-            $filename = strtolower(Str::random(15)) . ".png";
-            $generator = new Avatar();
-            $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
-            $url = Storage::putFileAs("public/img/avatars", $file, $filename);
-
-        }
+        $filename = strtolower(Str::random(15)) . ".png";
+        $generator = new Avatar();
+        $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
+        $url = env("APP_URL") . ":8000/storage/img/avatars/" . $filename;
+        Storage::putFileAs("public/img/avatars", $file, $filename);
 
         $user = User::create([
             "first_name" => $first_name,

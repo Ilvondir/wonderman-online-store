@@ -33,8 +33,9 @@ Route::get("/slides", [SlideController::class, "index"]);
 
 Route::middleware("auth:sanctum")->group(function () {
     Route::get("/auth/user", [AuthController::class, "user"]);
-    Route::post("/auth/admin", [UserController::class, "createAdmin"]);
-    Route::delete("/user/{id}", [UserController::class, "destroy"]);
+    Route::post("/auth/admins", [UserController::class, "createAdmin"]);
+    Route::get("/auth/admins", [UserController::class, "getAdmins"]);
+    Route::delete("/users/{id}", [UserController::class, "destroy"]);
     Route::delete("/auth/logout", [AuthController::class, "logout"]);
     Route::put("/auth/password", [UserController::class, "changePassword"]);
     Route::put("/auth/profile", [UserController::class, "changeData"]);
