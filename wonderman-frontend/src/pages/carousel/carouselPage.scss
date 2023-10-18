@@ -8,40 +8,6 @@
       text-align: center;
     }
 
-    table {
-      width: 100%;
-      border: 0.1vmax solid $secondary-color;
-      border-collapse: collapse;
-
-      tr {
-
-        td, th {
-          border: 0.1vmax solid $secondary-color;
-          box-sizing: border-box;
-          padding: 0.3vmax;
-
-          img {
-            width: 100%
-          }
-
-          input[type="button"] {
-            color: white;
-            background-color: $primary-color;
-            width: 100%;
-            border-radius: 0.2vmax;
-            border: 0;
-            cursor: pointer;
-            font-size: 1.3vmax;
-            padding: 0.6vmax;
-
-            &:hover {
-              background-color: darken($primary-color, 3%);
-            }
-          }
-        }
-      }
-    }
-
     form {
       width: 50%;
 
@@ -110,6 +76,40 @@
   }
 }
 
+table {
+  width: 100%;
+  border: 0.1vmax solid $secondary-color;
+  border-collapse: collapse;
+
+  tr {
+
+    td, th {
+      border: 0.1vmax solid $secondary-color;
+      box-sizing: border-box;
+      padding: 0.3vmax;
+
+      img {
+        width: 100%
+      }
+
+      input[type="button"] {
+        color: white;
+        background-color: $primary-color;
+        width: 100%;
+        border-radius: 0.2vmax;
+        border: 0;
+        cursor: pointer;
+        font-size: 1.3vmax;
+        padding: 0.6vmax;
+
+        &:hover {
+          background-color: darken($primary-color, 3%);
+        }
+      }
+    }
+  }
+}
+
 @media screen and (orientation: portrait) {
   .carousel-page {
     .carousel-section {
@@ -135,14 +135,14 @@
           }
         }
       }
+    }
+  }
 
-      table {
-        tr {
-          td, th {
-            input[type="button"] {
-              font-size: 2.5vmax;
-            }
-          }
+  table {
+    tr {
+      td, th {
+        input[type="button"] {
+          font-size: 2.5vmax;
         }
       }
     }

@@ -320,36 +320,45 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   align-items: center;
   justify-content: center;
 }
-.form-page .form {
+
+.form {
   width: 40%;
 }
-.form-page .form fieldset {
+.form fieldset {
   width: 100%;
   border-radius: 1vmax;
   border: 0.2vmax solid #555555;
   box-sizing: border-box;
   padding: 1vmax 2vmax;
 }
-.form-page .form fieldset form .form-group {
+.form fieldset legend {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: #FFA500;
+  font-size: 7vmax;
+}
+
+form .form-group {
   width: 100%;
   margin: 1.4vmax 0;
   box-sizing: border-box;
 }
-.form-page .form fieldset form .form-group:nth-child(1) {
+form .form-group:nth-child(1) {
   margin-top: -1vmax;
 }
-.form-page .form fieldset form .form-group label {
+form .form-group label {
   font-weight: 700;
   font-size: 1.2vmax;
 }
-.form-page .form fieldset form .form-group input {
+form .form-group input {
   width: 100%;
   padding: 0.5vmax;
   box-sizing: border-box;
   border: 0.14vmax solid #555555;
   font-size: 1.3vmax;
 }
-.form-page .form fieldset form .form-group input[type=submit] {
+form .form-group input[type=submit] {
   color: white;
   background-color: #FFA500;
   width: 40%;
@@ -359,93 +368,45 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   padding: 0.6vmax 0;
   margin-top: 1vmax;
 }
-.form-page .form fieldset form .form-group input[type=submit]:hover {
+form .form-group input[type=submit]:hover {
   background-color: #f09b00;
 }
-.form-page .form fieldset form .error {
+form .error {
   font-weight: 700;
   color: red;
   font-style: italic;
 }
-.form-page .form fieldset legend {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  color: #FFA500;
-  font-size: 7vmax;
-}
 
 @media screen and (orientation: portrait) {
-  .form-page .form {
+  .form {
     width: 100%;
   }
-  .form-page .form fieldset legend {
+  .form fieldset legend {
     font-size: 13vmax;
   }
-  .form-page .form fieldset form .form-group {
+  form .form-group {
     margin: 2.5vmax 0;
   }
-  .form-page .form fieldset form .form-group label {
+  form .form-group label {
     font-size: 2.2vmax;
   }
-  .form-page .form fieldset form .form-group input {
+  form .form-group input {
     font-size: 2.5vmax;
     padding: 1vmax;
   }
-  .form-page .form fieldset form .form-group input[type=submit] {
+  form .form-group input[type=submit] {
     padding: 1.2vmax 0;
     width: 100%;
   }
 }
-.profile-page {
+.profile-page .profile-section .img-avatar, .profile-page .profile-section .img-title {
   width: 100%;
-}
-.profile-page hr {
-  border: 0.07vmax solid #555555;
-  margin: 0.5vmax 2vmax;
-}
-.profile-page .profile-section {
-  padding: 2vmax;
-  box-sizing: border-box;
-}
-.profile-page .profile-section h2 {
-  margin: 0 0 2vmax 0;
   text-align: center;
 }
-.profile-page .profile-section:nth-child(1) {
-  text-align: center;
-}
-.profile-page .profile-section:nth-child(1) .img-avatar img {
-  width: 12vmax;
-  max-width: 100%;
-}
-.profile-page .profile-section:nth-child(1) .img-title h1 {
-  margin-top: 0.6vmax;
-  margin-bottom: 0;
-}
-.profile-page .profile-section form {
+.profile-page form {
   width: 50%;
 }
-.profile-page .profile-section form .form-group {
-  width: 100%;
-  margin: 1.4vmax 0;
-  box-sizing: border-box;
-}
-.profile-page .profile-section form .form-group:nth-child(1) {
-  margin-top: -1vmax;
-}
-.profile-page .profile-section form .form-group label {
-  font-weight: 700;
-  font-size: 1.2vmax;
-}
-.profile-page .profile-section form .form-group input {
-  width: 100%;
-  padding: 0.5vmax;
-  box-sizing: border-box;
-  border: 0.14vmax solid #555555;
-  font-size: 1.3vmax;
-}
-.profile-page .profile-section form .form-group input[type=button] {
+.profile-page form input[type=button] {
   color: white;
   background-color: #FFA500;
   width: 40%;
@@ -456,45 +417,18 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   margin-top: 1vmax;
   margin-right: 1vmax;
 }
-.profile-page .profile-section form .form-group input[type=button]:hover {
+.profile-page form input[type=button]:hover {
   background-color: #f09b00;
-}
-.profile-page .profile-section form .form-group input[type=submit] {
-  color: white;
-  background-color: #FFA500;
-  width: 40%;
-  border-radius: 0.2vmax;
-  border: 0;
-  cursor: pointer;
-  padding: 0.6vmax 0;
-  margin-top: 1vmax;
-}
-.profile-page .profile-section form .form-group input[type=submit]:hover {
-  background-color: #f09b00;
-}
-.profile-page .profile-section form .error {
-  font-weight: 700;
-  color: red;
-  font-style: italic;
 }
 
 @media screen and (orientation: portrait) {
-  .profile-page .profile-section form {
+  .profile-page form {
     width: 100%;
   }
-  .profile-page .profile-section form .form-group {
-    margin: 2.5vmax 0;
-  }
-  .profile-page .profile-section form .form-group label {
-    font-size: 2.2vmax;
-  }
-  .profile-page .profile-section form .form-group input {
-    font-size: 2.5vmax;
-    padding: 1vmax;
-  }
-  .profile-page .profile-section form .form-group input[type=submit], .profile-page .profile-section form .form-group input[type=button] {
+  .profile-page form input[type=submit], .profile-page form input[type=button] {
     padding: 1.2vmax 0;
     width: 100%;
+    border: 0;
   }
 }
 .error-page {
@@ -524,32 +458,6 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 .carousel-page .carousel-section h2 {
   margin: 1.7vmax 0;
   text-align: center;
-}
-.carousel-page .carousel-section table {
-  width: 100%;
-  border: 0.1vmax solid #555555;
-  border-collapse: collapse;
-}
-.carousel-page .carousel-section table tr td, .carousel-page .carousel-section table tr th {
-  border: 0.1vmax solid #555555;
-  box-sizing: border-box;
-  padding: 0.3vmax;
-}
-.carousel-page .carousel-section table tr td img, .carousel-page .carousel-section table tr th img {
-  width: 100%;
-}
-.carousel-page .carousel-section table tr td input[type=button], .carousel-page .carousel-section table tr th input[type=button] {
-  color: white;
-  background-color: #FFA500;
-  width: 100%;
-  border-radius: 0.2vmax;
-  border: 0;
-  cursor: pointer;
-  font-size: 1.3vmax;
-  padding: 0.6vmax;
-}
-.carousel-page .carousel-section table tr td input[type=button]:hover, .carousel-page .carousel-section table tr th input[type=button]:hover {
-  background-color: #f09b00;
 }
 .carousel-page .carousel-section form {
   width: 50%;
@@ -606,6 +514,33 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   font-style: italic;
 }
 
+table {
+  width: 100%;
+  border: 0.1vmax solid #555555;
+  border-collapse: collapse;
+}
+table tr td, table tr th {
+  border: 0.1vmax solid #555555;
+  box-sizing: border-box;
+  padding: 0.3vmax;
+}
+table tr td img, table tr th img {
+  width: 100%;
+}
+table tr td input[type=button], table tr th input[type=button] {
+  color: white;
+  background-color: #FFA500;
+  width: 100%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.3vmax;
+  padding: 0.6vmax;
+}
+table tr td input[type=button]:hover, table tr th input[type=button]:hover {
+  background-color: #f09b00;
+}
+
 @media screen and (orientation: portrait) {
   .carousel-page .carousel-section form {
     width: 100%;
@@ -624,10 +559,17 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
     padding: 1.2vmax 0;
     width: 100%;
   }
-  .carousel-page .carousel-section table tr td input[type=button], .carousel-page .carousel-section table tr th input[type=button] {
+  table tr td input[type=button], table tr th input[type=button] {
     font-size: 2.5vmax;
   }
 }
+.admins-page h2 {
+  text-align: center;
+}
+.admins-page .smaller {
+  width: 5vmax;
+}
+
 .container {
   width: 100vw;
   margin: auto;

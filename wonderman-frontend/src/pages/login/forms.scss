@@ -2,104 +2,102 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  .form {
-    width: 40%;
+.form {
+  width: 40%;
 
-    fieldset {
-      width: 100%;
-      border-radius: 1vmax;
-      border: 0.2vmax solid $secondary-color;
-      box-sizing: border-box;
-      padding: 1vmax 2vmax;
+  fieldset {
+    width: 100%;
+    border-radius: 1vmax;
+    border: 0.2vmax solid $secondary-color;
+    box-sizing: border-box;
+    padding: 1vmax 2vmax;
 
-      form {
-
-        .form-group {
-          width: 100%;
-          margin: 1.4vmax 0;
-          box-sizing: border-box;
-
-          &:nth-child(1) {
-            margin-top: -1vmax;
-          }
-
-          label {
-            font-weight: 700;
-            font-size: 1.2vmax;
-          }
-
-          input {
-            width: 100%;
-            padding: 0.5vmax;
-            box-sizing: border-box;
-            border: 0.14vmax solid $secondary-color;
-            font-size: 1.3vmax;
-
-
-            &[type="submit"] {
-              color: white;
-              background-color: $primary-color;
-              width: 40%;
-              border-radius: 0.2vmax;
-              border: 0;
-              cursor: pointer;
-              padding: 0.6vmax 0;
-              margin-top: 1vmax;
-
-              &:hover {
-                background-color: darken($primary-color, 3%);
-              }
-            }
-          }
-        }
-
-        .error {
-          font-weight: 700;
-          color: red;
-          font-style: italic;
-        }
-      }
-
-      legend {
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        color: $primary-color;
-        font-size: 7vmax;
-      }
+    legend {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      color: $primary-color;
+      font-size: 7vmax;
     }
   }
 }
 
-@media screen and (orientation: portrait) {
-  .form-page {
-    .form {
+form {
+
+  .form-group {
+    width: 100%;
+    margin: 1.4vmax 0;
+    box-sizing: border-box;
+
+    &:nth-child(1) {
+      margin-top: -1vmax;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 1.2vmax;
+    }
+
+    input {
       width: 100%;
+      padding: 0.5vmax;
+      box-sizing: border-box;
+      border: 0.14vmax solid $secondary-color;
+      font-size: 1.3vmax;
 
-      fieldset {
-        legend {
-          font-size: 13vmax;
+
+      &[type="submit"] {
+        color: white;
+        background-color: $primary-color;
+        width: 40%;
+        border-radius: 0.2vmax;
+        border: 0;
+        cursor: pointer;
+        padding: 0.6vmax 0;
+        margin-top: 1vmax;
+
+        &:hover {
+          background-color: darken($primary-color, 3%);
         }
+      }
+    }
+  }
 
-        form {
-          .form-group {
-            margin: 2.5vmax 0;
+  .error {
+    font-weight: 700;
+    color: red;
+    font-style: italic;
+  }
+}
 
-            label {
-              font-size: 2.2vmax;
-            }
+@media screen and (orientation: portrait) {
+  .form {
+    width: 100%;
 
-            input {
-              font-size: 2.5vmax;
-              padding: 1vmax;
+    fieldset {
+      legend {
+        font-size: 13vmax;
+      }
+    }
+  }
 
-              &[type="submit"] {
-                padding: 1.2vmax 0;
-                width: 100%;
-              }
-            }
-          }
+  form {
+    .form-group {
+      margin: 2.5vmax 0;
+
+      label {
+        font-size: 2.2vmax;
+      }
+
+      input {
+        font-size: 2.5vmax;
+        padding: 1vmax;
+
+        &[type="submit"] {
+          padding: 1.2vmax 0;
+          width: 100%;
         }
       }
     }

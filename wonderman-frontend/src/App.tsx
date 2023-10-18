@@ -10,6 +10,7 @@ import Category from "./pages/category/Category";
 import Guard from "./components/Guard/Guard";
 import Unauthorized from "./pages/problems/401/Unauthorized";
 import CarouselPage from "./pages/carousel/CarouselPage";
+import Admins from "./pages/admins/Admins";
 
 function App() {
     return (
@@ -31,6 +32,12 @@ function App() {
                     <Route path={"/carousel"} element={
                         <Guard roles={["Admin"]}>
                             <CarouselPage/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"/admins"} element={
+                        <Guard roles={["Admin"]}>
+                            <Admins/>
                         </Guard>
                     }/>
 

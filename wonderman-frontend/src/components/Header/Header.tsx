@@ -2,7 +2,7 @@ import React, {SyntheticEvent, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome, faUser, faSignOut, faSignIn, faChalkboard} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faUser, faSignOut, faSignIn, faChalkboard, faGear} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import {clearUser} from '../../store/actions/user';
 import {headers} from "../../axios/commons";
@@ -46,9 +46,15 @@ const Header = () => {
                 {handleUser &&
                     <>
                         {handleUser.role.name === "Admin" &&
-                            <NavLink to={"/carousel"}>
-                                <FontAwesomeIcon icon={faChalkboard}/> Carousel
-                            </NavLink>
+                            <>
+                                <NavLink to={"/carousel"}>
+                                    <FontAwesomeIcon icon={faChalkboard}/> Carousel
+                                </NavLink>
+
+                                <NavLink to={"/admins"}>
+                                    <FontAwesomeIcon icon={faGear}/> Admins
+                                </NavLink>
+                            </>
                         }
 
 
