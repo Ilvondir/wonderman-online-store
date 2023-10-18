@@ -11,6 +11,7 @@ import Guard from "./components/Guard/Guard";
 import Unauthorized from "./pages/problems/401/Unauthorized";
 import CarouselPage from "./pages/carousel/CarouselPage";
 import Admins from "./pages/admins/Admins";
+import ProductPage from "./pages/product/ProductPage";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     <Route path={"/login"} element={<Login/>}/>
                     <Route path={"/register"} element={<Register/>}/>
                     <Route path={"/category/:name"} element={<Category/>}/>
+                    <Route path={"/products/:id"} element={<ProductPage/>}/>
 
                     <Route path={"/profile"} element={
                         <Guard roles={["User", "Admin"]}>
