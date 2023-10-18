@@ -10,11 +10,12 @@
     }
 
     .rectangle {
+      width: 100%;
+      box-sizing: border-box;
       position: absolute;
       bottom: 3px;
       color: white;
       background-color: rgba(0, 0, 0, 0.7);
-      box-sizing: border-box;
       padding: 1.5vmax;
 
       h2 {

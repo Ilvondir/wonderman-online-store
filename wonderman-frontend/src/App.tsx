@@ -9,7 +9,7 @@ import Register from "./pages/register/Register";
 import Category from "./pages/category/Category";
 import Guard from "./components/Guard/Guard";
 import Unauthorized from "./pages/problems/401/Unauthorized";
-import Carousel from "./components/Carousel/Carousel";
+import CarouselPage from "./pages/carousel/CarouselPage";
 
 function App() {
     return (
@@ -20,12 +20,19 @@ function App() {
                     <Route path={"/home"} element={<Home/>}/>
                     <Route path={"/login"} element={<Login/>}/>
                     <Route path={"/register"} element={<Register/>}/>
+                    <Route path={"/category/:name"} element={<Category/>}/>
+
                     <Route path={"/profile"} element={
                         <Guard roles={["User", "Admin"]}>
                             <Profile/>
                         </Guard>
                     }/>
-                    <Route path={"/category/:name"} element={<Category/>}/>
+
+                    <Route path={"/carousel"} element={
+                        <Guard roles={["Admin"]}>
+                            <CarouselPage/>
+                        </Guard>
+                    }/>
 
                     <Route path={"/401"} element={<Unauthorized/>}/>
                     <Route path={"*"} element={<NotFound/>}/>

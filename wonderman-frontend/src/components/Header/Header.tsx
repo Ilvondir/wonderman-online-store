@@ -1,10 +1,10 @@
-import React, {SyntheticEvent, useEffect, useState} from 'react';
+import React, {SyntheticEvent, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome, faUser, faSignOut, faSignIn} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faUser, faSignOut, faSignIn, faChalkboard} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
-import {clearUser, setUser} from '../../store/actions/user';
+import {clearUser} from '../../store/actions/user';
 import {headers} from "../../axios/commons";
 
 
@@ -12,16 +12,6 @@ const Header = () => {
 
     const [handleUser, setHandleUser] = useState(useSelector((state: any) => state.user));
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     axios.post("auth/login", {
-    //         login: "user",
-    //         password: "user"
-    //     }, {}).then(response => {
-    //         setHandleUser(response.data);
-    //         dispatch(setUser(response.data));
-    //     })
-    // }, []);
 
     const logout = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -55,6 +45,13 @@ const Header = () => {
 
                 {handleUser &&
                     <>
+                        {handleUser.role.name === "Admin" &&
+                            <NavLink to={"/carousel"}>
+                                <FontAwesomeIcon icon={faChalkboard}/> Carousel
+                            </NavLink>
+                        }
+
+
                         <NavLink to={"/profile"}>
 
                             <div className="menu-profile-section">

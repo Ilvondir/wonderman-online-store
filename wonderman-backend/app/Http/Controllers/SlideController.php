@@ -25,6 +25,7 @@ class SlideController extends Controller
      */
     public function store(StoreSlideRequest $request)
     {
+	$this->authorize("is_admin", $request->user());
         $filename = strtolower(Str::random(15)) . "." . $request->file("image")->extension();
         Storage::putFileAs("public/img/slides", $request->validated("image"), $filename);
         $url = env("APP_URL") . ":8000/storage/img/slides/" . $filename;
@@ -42,8 +43,9 @@ class SlideController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $slide)
+    public function destroy(int $slide, Request $request)
     {
+	$this->authorize("is_admin", $request->user());
         $f = Slide::find($slide)->image;
         $index = strrpos($f, "/");
         $name = substr($f, $index + 1);

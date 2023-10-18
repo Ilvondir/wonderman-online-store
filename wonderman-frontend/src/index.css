@@ -282,11 +282,12 @@ nav .categories ul li:hover {
   width: 100%;
 }
 .swiper .swiper-slide .rectangle {
+  width: 100%;
+  box-sizing: border-box;
   position: absolute;
   bottom: 3px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
-  box-sizing: border-box;
   padding: 1.5vmax;
 }
 .swiper .swiper-slide .rectangle h2 {
@@ -515,6 +516,116 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   }
   .error-page .communicate h1 {
     font-size: 15vmax;
+  }
+}
+.carousel-page {
+  width: 100%;
+}
+.carousel-page .carousel-section h2 {
+  margin: 1.7vmax 0;
+  text-align: center;
+}
+.carousel-page .carousel-section table {
+  width: 100%;
+  border: 0.1vmax solid #555555;
+  border-collapse: collapse;
+}
+.carousel-page .carousel-section table tr td, .carousel-page .carousel-section table tr th {
+  border: 0.1vmax solid #555555;
+  box-sizing: border-box;
+  padding: 0.3vmax;
+}
+.carousel-page .carousel-section table tr td img, .carousel-page .carousel-section table tr th img {
+  width: 100%;
+}
+.carousel-page .carousel-section table tr td input[type=button], .carousel-page .carousel-section table tr th input[type=button] {
+  color: white;
+  background-color: #FFA500;
+  width: 100%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.3vmax;
+  padding: 0.6vmax;
+}
+.carousel-page .carousel-section table tr td input[type=button]:hover, .carousel-page .carousel-section table tr th input[type=button]:hover {
+  background-color: #f09b00;
+}
+.carousel-page .carousel-section form {
+  width: 50%;
+}
+.carousel-page .carousel-section form .form-group {
+  width: 100%;
+  margin: 1.4vmax 0;
+  box-sizing: border-box;
+}
+.carousel-page .carousel-section form .form-group:nth-child(1) {
+  margin-top: -1vmax;
+}
+.carousel-page .carousel-section form .form-group label {
+  font-weight: 700;
+  font-size: 1.2vmax;
+}
+.carousel-page .carousel-section form .form-group input, .carousel-page .carousel-section form .form-group textarea {
+  width: 100%;
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  border: 0.14vmax solid #555555;
+  font-size: 1.3vmax;
+}
+.carousel-page .carousel-section form .form-group input[type=button], .carousel-page .carousel-section form .form-group textarea[type=button] {
+  color: white;
+  background-color: #FFA500;
+  width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+  margin-right: 1vmax;
+}
+.carousel-page .carousel-section form .form-group input[type=button]:hover, .carousel-page .carousel-section form .form-group textarea[type=button]:hover {
+  background-color: #f09b00;
+}
+.carousel-page .carousel-section form .form-group input[type=submit], .carousel-page .carousel-section form .form-group textarea[type=submit] {
+  color: white;
+  background-color: #FFA500;
+  width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+}
+.carousel-page .carousel-section form .form-group input[type=submit]:hover, .carousel-page .carousel-section form .form-group textarea[type=submit]:hover {
+  background-color: #f09b00;
+}
+.carousel-page .carousel-section form .error {
+  font-weight: 700;
+  color: red;
+  font-style: italic;
+}
+
+@media screen and (orientation: portrait) {
+  .carousel-page .carousel-section form {
+    width: 100%;
+  }
+  .carousel-page .carousel-section form .form-group {
+    margin: 2.5vmax 0;
+  }
+  .carousel-page .carousel-section form .form-group label {
+    font-size: 2.2vmax;
+  }
+  .carousel-page .carousel-section form .form-group input, .carousel-page .carousel-section form .form-group textarea {
+    font-size: 2.5vmax;
+    padding: 1vmax;
+  }
+  .carousel-page .carousel-section form .form-group input[type=submit], .carousel-page .carousel-section form .form-group input[type=button], .carousel-page .carousel-section form .form-group textarea[type=submit], .carousel-page .carousel-section form .form-group textarea[type=button] {
+    padding: 1.2vmax 0;
+    width: 100%;
+  }
+  .carousel-page .carousel-section table tr td input[type=button], .carousel-page .carousel-section table tr th input[type=button] {
+    font-size: 2.5vmax;
   }
 }
 .container {
