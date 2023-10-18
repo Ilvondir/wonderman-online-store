@@ -8,14 +8,15 @@ import {Link} from "react-router-dom";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
+    const [wait, setWait] = useState(true);
 
     useEffect(() => {
         axios.get("products/bests", {headers: headers()})
             .then(response => {
                 setProducts(response.data);
+                setWait(false);
             })
     }, []);
-
 
     return (
         <Wrapper>
@@ -23,6 +24,12 @@ const Home = () => {
                 <Carousel/>
 
                 <h2>Our bestsellers</h2>
+
+                <div className={wait ? "spinner-wrapper" : "spinner-wrapper hide"}>
+                    <div className="spinner"></div>
+                </div>
+
+
                 <div className="products">
 
                     {products?.map((product: Product) => {
