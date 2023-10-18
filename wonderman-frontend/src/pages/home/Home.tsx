@@ -44,7 +44,8 @@ const Home = () => {
 
                                     <div className="info">
                                         <h2>{product.name}</h2>
-                                        <div className="info-section"><strong>{product.netto} $</strong></div>
+                                        <div className="info-section">
+                                            <strong>{Number(product.netto).toFixed(2)} $</strong></div>
                                         <div className="info-section">{product.description.slice(0, 100)}...</div>
                                     </div>
 
