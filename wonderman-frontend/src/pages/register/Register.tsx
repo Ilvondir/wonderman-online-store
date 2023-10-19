@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Register = () => {
     const [first_name, setFirstName] = useState("");
@@ -46,7 +47,7 @@ const Register = () => {
             })
                 .catch(error => {
                     setSubmitted(false);
-                    console.log(error);
+                    setError(error.response.data.message);
                 });
         }
     }
@@ -59,10 +60,7 @@ const Register = () => {
                     <fieldset>
                         <legend><FontAwesomeIcon icon={faUserPlus}/></legend>
 
-                        <div className={submitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                            <div className="spinner"></div>
-                        </div>
-
+                        <Spinner show={submitted} customStyle={false}/>
 
                         <form onSubmit={(e) => submit(e)} className={submitted ? "hide" : ""}>
 

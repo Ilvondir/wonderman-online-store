@@ -5,16 +5,13 @@ import {faGear} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {headers} from "../../axios/commons";
 import {User} from "../../models/User";
-
-const spinner = {
-    marginBottom: "auto",
-    marginTop: "auto"
-}
+import Spinner from "../../components/Spinner/Spinner";
 
 const Admins = () => {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
     const [deleting, setDeleting] = useState(false);
+    const [wait, setWait] = useState(true);
 
     const [admins, setAdmins] = useState([]);
 
@@ -29,6 +26,7 @@ const Admins = () => {
         axios.get("/auth/admins", {headers: headers()})
             .then(response => {
                 setAdmins(response.data);
+                setWait(false);
             })
     }, []);
 
@@ -95,7 +93,7 @@ const Admins = () => {
                     {admins.map((user: User) => {
                         return (
                             <tr key={user.id}>
-                                <td>{user.id}</td>
+                                <td><strong>{user.id}</strong></td>
                                 <td className="text-align-center"><img src={user.avatar} alt="Avatar."
                                                                        className="smaller"/></td>
                                 <td>{user.first_name} {user.last_name}</td>
@@ -103,10 +101,8 @@ const Admins = () => {
                                 <td>{user.email}</td>
                                 <td>{user.created}</td>
                                 <td>
-                                    <div className={deleting ? "spinner-wrapper" : "spinner-wrapper hide"}
-                                         style={spinner}>
-                                        <div className="spinner"></div>
-                                    </div>
+
+                                    <Spinner show={deleting} customStyle={true}/>
 
                                     <input type="button"
                                            onClick={(e) => remove(e, user.id)}
@@ -118,6 +114,8 @@ const Admins = () => {
                     })}
                     </tbody>
                 </table>
+
+                <Spinner show={wait} customStyle={false}/>
 
                 <h2>Add new admin</h2>
                 <div className="form-page">
@@ -173,7 +171,7 @@ const Admins = () => {
                                 </div>
 
                                 <div className="form-group text-align-center">
-                                    <input type="submit" value="Register"/>
+                                    <input type="submit" value="Create admin"/>
                                 </div>
 
                                 {error &&

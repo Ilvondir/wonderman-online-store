@@ -7,6 +7,7 @@ import {Slide} from "../../models/Slide";
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import Spinner from "../Spinner/Spinner";
 
 const Carousel = forwardRef((props: any, ref) => {
     const [wait, setWait] = useState(true);
@@ -29,10 +30,7 @@ const Carousel = forwardRef((props: any, ref) => {
     return (
         <div>
 
-            <div className={wait ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                <div className="spinner"></div>
-            </div>
-
+            <Spinner show={wait} customStyle={false}/>
 
             <Swiper
                 modules={[Autoplay, Pagination, Navigation]}

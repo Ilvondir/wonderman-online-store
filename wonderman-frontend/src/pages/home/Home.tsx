@@ -5,6 +5,7 @@ import axios from "axios";
 import {headers} from "../../axios/commons";
 import {Product} from "../../models/Product";
 import {Link} from "react-router-dom";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -25,32 +26,38 @@ const Home = () => {
 
                 <h2>Our bestsellers</h2>
 
-                <div className={wait ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                    <div className="spinner"></div>
-                </div>
-
+                <Spinner show={wait} customStyle={false}/>
 
                 <div className="products">
 
-                    {products?.map((product: Product) => {
+                    {products?.map((product: Product, i: number) => {
+                        i++;
                         return (
-                            <Link to={"/products/" + product.id}>
-                                <div className="product-card">
+                            <>
+                                <Link to={"/products/" + product.id}>
+                                    <div className="product-card">
 
-                                    <div className="img">
-                                        <img src={product.photo} alt="Photo."/>
+                                        <div className="img">
+                                            <img src={product.photo} alt="Photo."/>
+                                        </div>
+
+
+                                        <div className="info">
+                                            <h2>{product.name}</h2>
+                                            <div className="info-section">
+                                                <strong>{Number(product.brutto).toFixed(2)} $</strong>
+                                            </div>
+
+                                            <div className="info-section">{product.description.slice(0, 100)}...</div>
+                                        </div>
+
                                     </div>
 
+                                </Link>
 
-                                    <div className="info">
-                                        <h2>{product.name}</h2>
-                                        <div className="info-section">
-                                            <strong>{Number(product.netto).toFixed(2)} $</strong></div>
-                                        <div className="info-section">{product.description.slice(0, 100)}...</div>
-                                    </div>
+                                {i % 3 === 0 && <div className="row"/>}
 
-                                </div>
-                            </Link>
+                            </>
                         )
                     })}
 

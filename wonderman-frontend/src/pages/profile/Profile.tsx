@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {headers} from "../../axios/commons";
 import {clearUser, setUser} from "../../store/actions/user";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Profile = () => {
     const user = useSelector((state: any) => state.user);
@@ -140,9 +141,7 @@ const Profile = () => {
                 <div className="profile-section">
                     <h2>Change your data</h2>
 
-                    <div className={dataSubmitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={dataSubmitted} customStyle={false}/>
 
                     <form onSubmit={(e) => changeData(e)} className={dataSubmitted ? "hide" : ""}>
 
@@ -196,9 +195,7 @@ const Profile = () => {
                 <div className="profile-section">
                     <h2>Change your password</h2>
 
-                    <div className={passwordSubmitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={passwordSubmitted} customStyle={false}/>
 
                     <form onSubmit={(e) => changePassword(e)} className={passwordSubmitted ? "hide" : ""}>
 
@@ -239,9 +236,7 @@ const Profile = () => {
                 <div className="profile-section">
                     <h2>Change your avatar</h2>
 
-                    <div className={avatarSubmitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={avatarSubmitted} customStyle={false}/>
 
                     <form onSubmit={(e) => changeAvatar(e)} className={avatarSubmitted ? "hide" : ""}>
 

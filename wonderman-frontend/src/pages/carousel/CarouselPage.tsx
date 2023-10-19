@@ -6,6 +6,7 @@ import axios from "axios";
 import {headers} from "../../axios/commons";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import Spinner from "../../components/Spinner/Spinner";
 
 const spinner = {
     marginBottom: "auto",
@@ -17,6 +18,7 @@ const CarouselPage = () => {
     const user = useSelector((state: any) => state.user);
     const [slides, setSlides] = useState([]);
     const [deleting, setDeleting] = useState(false);
+    const [wait, setWait] = useState(true);
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -30,6 +32,7 @@ const CarouselPage = () => {
         setTimeout(() => {
             // @ts-ignore
             setSlides(carouselRef.current?.sendSlides());
+            setWait(false);
         }, 2000);
     }, []);
 
@@ -102,10 +105,8 @@ const CarouselPage = () => {
                                     <td>{slide.title}</td>
                                     <td>{slide.description}</td>
                                     <td>
-                                        <div className={deleting ? "spinner-wrapper" : "spinner-wrapper hide"}
-                                             style={spinner}>
-                                            <div className="spinner"></div>
-                                        </div>
+
+                                        <Spinner show={deleting} customStyle={true}/>
 
                                         <input type="button"
                                                onClick={(e) => removeSlide(e, slide.id)}
@@ -118,11 +119,11 @@ const CarouselPage = () => {
                         </tbody>
                     </table>
 
+                    <Spinner show={wait} customStyle={false}/>
+
                     <h2>Add slide</h2>
 
-                    <div className={submitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={submitted} customStyle={false}/>
 
                     <form onSubmit={(e) => submit(e)}
                           className={submitted ? "hide" : ""}>

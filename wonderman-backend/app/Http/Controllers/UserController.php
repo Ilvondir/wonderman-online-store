@@ -20,7 +20,7 @@ class UserController extends Controller
 {
     public function getAdmins()
     {
-        return response(UserResource::collection(User::where("role_id", "=", 1)->get()), Response::HTTP_OK);
+        return response(UserResource::collection(User::where("role_id", "=", 1)->orderByDesc("created")->get()), Response::HTTP_OK);
     }
 
     public function createAdmin(RegisterRequest $request)
