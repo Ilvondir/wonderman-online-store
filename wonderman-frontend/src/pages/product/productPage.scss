@@ -42,6 +42,7 @@ button {
   cursor: pointer;
   padding: 1.6vmax 0;
   margin-top: 1vmax;
+  margin-bottom: 1vmax;
 
   &:hover {
     background-color: darken($primary-color, 3%);

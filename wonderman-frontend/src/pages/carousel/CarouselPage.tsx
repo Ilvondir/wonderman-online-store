@@ -25,8 +25,9 @@ const CarouselPage = () => {
 
     const [error, setError] = useState("");
     const [submitted, setSubmitted] = useState(false);
+    const fileInput = useRef(null);
 
-    const formData = new FormData();
+    let formData = new FormData();
 
     useEffect(() => {
         setTimeout(() => {
@@ -51,7 +52,7 @@ const CarouselPage = () => {
     const submit = (e: SyntheticEvent) => {
         e.preventDefault();
 
-        if (title && description) {
+        if (title && description && formData.has("image")) {
             setSubmitted(true)
 
             formData.append("title", title);
@@ -70,10 +71,16 @@ const CarouselPage = () => {
                     setSlides([...slides, response.data]);
                     setTitle("");
                     setDescription("");
+                    // @ts-ignore
+                    fileInput.current.value = null;
+                    formData = new FormData();
                 })
                 .catch(error => {
                     setSubmitted(false);
-                    setError(error.response.data.message)
+                    setError(error.response.data.message);
+                    // @ts-ignore
+                    fileInput.current.value = null;
+                    formData = new FormData();
                 })
         }
     }
@@ -149,6 +156,7 @@ const CarouselPage = () => {
                             <label htmlFor="file">Enter image (ratio must be 2:1):</label><br/>
                             <input type="file"
                                    id="file"
+                                   ref={fileInput}
                                    required
                                    onChange={(e) => {
                                        if (e.target.files == null) return;

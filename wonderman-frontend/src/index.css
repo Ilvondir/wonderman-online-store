@@ -351,14 +351,14 @@ form .form-group label {
   font-weight: 700;
   font-size: 1.2vmax;
 }
-form .form-group input, form .form-group textarea {
+form .form-group input, form .form-group textarea, form .form-group select {
   width: 100%;
   padding: 0.5vmax;
   box-sizing: border-box;
   border: 0.14vmax solid #555555;
   font-size: 1.3vmax;
 }
-form .form-group input[type=submit], form .form-group textarea[type=submit] {
+form .form-group input[type=submit], form .form-group textarea[type=submit], form .form-group select[type=submit] {
   color: white;
   background-color: #FFA500;
   width: 40%;
@@ -368,7 +368,7 @@ form .form-group input[type=submit], form .form-group textarea[type=submit] {
   padding: 0.6vmax 0;
   margin-top: 1vmax;
 }
-form .form-group input[type=submit]:hover, form .form-group textarea[type=submit]:hover {
+form .form-group input[type=submit]:hover, form .form-group textarea[type=submit]:hover, form .form-group select[type=submit]:hover {
   background-color: #f09b00;
 }
 form .error {
@@ -390,11 +390,11 @@ form .error {
   form .form-group label {
     font-size: 2.2vmax;
   }
-  form .form-group input, form .form-group textarea {
+  form .form-group input, form .form-group textarea, form .form-group select {
     font-size: 2.5vmax;
     padding: 1vmax;
   }
-  form .form-group input[type=submit], form .form-group textarea[type=submit] {
+  form .form-group input[type=submit], form .form-group textarea[type=submit], form .form-group select[type=submit] {
     padding: 1.2vmax 0;
     width: 100%;
   }
@@ -601,6 +601,7 @@ button {
   cursor: pointer;
   padding: 1.6vmax 0;
   margin-top: 1vmax;
+  margin-bottom: 1vmax;
 }
 button:hover {
   background-color: #f09b00;

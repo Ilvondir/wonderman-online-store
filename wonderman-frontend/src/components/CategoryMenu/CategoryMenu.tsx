@@ -10,12 +10,12 @@ import {setMenuState} from "../../store/actions/menuState";
 
 const hide = {
     maxHeight: 0,
-    transition: '500ms'
+    transition: '800ms'
 };
 
 const show = {
     maxHeight: '1000px',
-    transition: '500ms'
+    transition: '800ms'
 };
 
 const CategoryMenu = () => {

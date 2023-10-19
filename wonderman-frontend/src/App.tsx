@@ -13,6 +13,7 @@ import CarouselPage from "./pages/carousel/CarouselPage";
 import Admins from "./pages/admins/Admins";
 import ProductPage from "./pages/product/ProductPage";
 import PurchasePage from "./pages/purchase/PurchasePage";
+import AddProductsPage from "./pages/addProducts/AddProductsPage";
 
 function App() {
     return (
@@ -29,6 +30,12 @@ function App() {
                     <Route path={"/profile"} element={
                         <Guard roles={["User", "Admin"]}>
                             <Profile/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"add/products"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <AddProductsPage/>
                         </Guard>
                     }/>
 
