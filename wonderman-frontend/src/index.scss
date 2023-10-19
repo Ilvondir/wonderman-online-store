@@ -18,7 +18,7 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
-@import "scss/spinner";
+@import "components/Spinner/spinner";
 @import "components/Footer/footer";
 @import "components/Header/header";
 @import "components/CategoryMenu/categoryMenu";
