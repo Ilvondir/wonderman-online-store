@@ -14,6 +14,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
+    public function getUserProducts(Request $request)
+    {
+        //SELECT products.*
+        //FROM products
+        //INNER JOIN users
+        //ON users.id=products.author_id
+        //WHERE users.id=4
+        //ORDER BY products.added DESC;
+
+        $products = Product::query()
+            ->join("users", "users.id", "=", "products.author_id")
+            ->selectRaw("products.*")
+            ->where("users.id", "=", $request->user()->id)
+            ->orderByDesc("products.added")
+            ->paginate(32);
+
+        return response(ProductResource::collection($products), Response::HTTP_OK);
+    }
+
     public function getProductsByCategory(string $category)
     {
 
@@ -27,7 +46,7 @@ class ProductController extends Controller
         $products = Product::query()
             ->join("categories", "categories.id", "=", "products.category_id")
             ->select([
-		"products.id",
+                "products.id",
                 "products.name AS name",
                 "price",
                 "products.description AS description",
