@@ -1,0 +1,70 @@
+.product-page {
+  h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .p-half {
+    box-sizing: border-box;
+    padding-right: 1vmax;
+    width: 50%;
+    float: left;
+
+    &:nth-child(3) {
+      width: 60%;
+    }
+
+    &:nth-child(4) {
+      width: 40%;
+    }
+
+    img {
+      width: 100%;
+    }
+
+
+  }
+
+  .description {
+    clear: both;
+    padding-top: 3vmax;
+    text-align: justify;
+  }
+}
+
+button {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.7vmax;
+  color: white;
+  background-color: $primary-color;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 1.6vmax 0;
+  margin-top: 1vmax;
+
+  &:hover {
+    background-color: darken($primary-color, 3%);
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .product-page {
+    .p-half {
+      width: 100%;
+
+      &:nth-child(3) {
+        width: 100%;
+      }
+
+      &:nth-child(4) {
+        width: 100%;
+      }
+
+    }
+  }
+
+  button {
+    font-size: 3vmax;
+  }
+}

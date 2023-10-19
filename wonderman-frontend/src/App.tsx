@@ -6,12 +6,13 @@ import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import Category from "./pages/category/Category";
+import CategoryPage from "./pages/category/CategoryPage";
 import Guard from "./components/Guard/Guard";
 import Unauthorized from "./pages/problems/401/Unauthorized";
 import CarouselPage from "./pages/carousel/CarouselPage";
 import Admins from "./pages/admins/Admins";
 import ProductPage from "./pages/product/ProductPage";
+import PurchasePage from "./pages/purchase/PurchasePage";
 
 function App() {
     return (
@@ -22,12 +23,18 @@ function App() {
                     <Route path={"/home"} element={<Home/>}/>
                     <Route path={"/login"} element={<Login/>}/>
                     <Route path={"/register"} element={<Register/>}/>
-                    <Route path={"/category/:name"} element={<Category/>}/>
+                    <Route path={"/category/:name"} element={<CategoryPage/>}/>
                     <Route path={"/products/:id"} element={<ProductPage/>}/>
 
                     <Route path={"/profile"} element={
                         <Guard roles={["User", "Admin"]}>
                             <Profile/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"/products/:id/purchase"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <PurchasePage/>
                         </Guard>
                     }/>
 

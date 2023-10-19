@@ -5,11 +5,14 @@ import axios from "axios";
 import {headers} from "../../axios/commons";
 import {Product} from "../../models/Product";
 import Spinner from "../../components/Spinner/Spinner";
+import {useSelector} from "react-redux";
+import {Category} from "../../models/Category";
 
-const Category = () => {
+const CategoryPage = () => {
     const {name} = useParams();
     const [wait, setWait] = useState(false);
-
+    const [category, setCategory] = useState(new Category());
+    const cats = useSelector((state: any) => state.categories);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -18,6 +21,7 @@ const Category = () => {
             .then(response => {
                 setProducts(response.data);
                 setWait(false);
+                setCategory(cats.filter((c: Category) => c.name === name)[0]);
             })
     }, [name]);
 
@@ -29,6 +33,9 @@ const Category = () => {
 
                 <div className={wait ? "products hide" : "products"}>
 
+                    <h2 style={{marginTop: "0"}}>{category?.name}</h2>
+                    <p>{category?.description}</p>
+
                     {products?.map((product: Product, i: number) => {
                         i++;
                         return (
@@ -37,7 +44,7 @@ const Category = () => {
                                     <div className="product-card">
 
                                         <div className="img">
-                                            <img src={product.photo} alt="Photo."/>
+                                            <img src={product.photo} alt={"Photo" + i + "."}/>
                                         </div>
 
 
@@ -67,4 +74,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default CategoryPage;
