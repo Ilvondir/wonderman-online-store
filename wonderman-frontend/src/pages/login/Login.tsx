@@ -7,6 +7,7 @@ import {headers} from "../../axios/commons";
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../store/actions/user";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Login = () => {
     const [submitted, setSubmitted] = useState(false);
@@ -49,10 +50,7 @@ const Login = () => {
                     <fieldset>
                         <legend><FontAwesomeIcon icon={faUserCircle}/></legend>
 
-                        <div className={submitted ? " spinner-wrapper" : " spinner-wrapper hide"}>
-                            <div className="spinner"></div>
-                        </div>
-
+                        <Spinner show={submitted} customStyle={false}/>
 
                         <form onSubmit={(e) => submit(e)} className={submitted ? "hide" : ""}>
 

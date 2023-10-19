@@ -1,7 +1,7 @@
 @import "scss/commons";
 
 @font-face {
-  src: url("fonts/Manrope.ttf");
+  src: url("scss/fonts/Manrope.ttf");
   font-family: "Manrope";
 }
 
@@ -18,13 +18,19 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
-@import "scss/spinner";
+@import "components/Spinner/spinner";
 @import "components/Footer/footer";
 @import "components/Header/header";
 @import "components/CategoryMenu/categoryMenu";
 @import "components/Wrapper/wrapper";
+@import "components/Carousel/carousel";
 @import "pages/login/forms";
 @import "pages/profile/profile";
+@import "pages/problems/problems";
+@import "pages/carousel/carouselPage";
+@import "pages/admins/admins";
+@import "pages/home/home";
+@import "pages/product/productPage";
 
 .container {
   width: 100vw;

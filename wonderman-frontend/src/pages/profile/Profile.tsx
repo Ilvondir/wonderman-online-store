@@ -1,9 +1,11 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {SyntheticEvent, useRef, useState} from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {headers} from "../../axios/commons";
 import {clearUser, setUser} from "../../store/actions/user";
+import Spinner from "../../components/Spinner/Spinner";
+import {Link} from "react-router-dom";
 
 const Profile = () => {
     const user = useSelector((state: any) => state.user);
@@ -23,8 +25,9 @@ const Profile = () => {
     const [dataError, setDataError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [avatarError, setAvatarError] = useState("");
+    const fileInput = useRef(null);
 
-    const formData = new FormData();
+    let formData = new FormData();
 
     const dispatch = useDispatch();
 
@@ -78,27 +81,36 @@ const Profile = () => {
     const changeAvatar = (e: SyntheticEvent) => {
         e.preventDefault();
 
-        setAvatarSubmitted(true);
+        if (formData.has("avatar")) {
 
-        axios.post("auth/avatar/change", formData,
-            {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    "Authorization": "Bearer " + user?.jwt
-                }
-            })
-            .then(response => {
-                setAvatarSubmitted(false);
-                const jwt = user?.jwt;
-                const res = response.data;
-                res["jwt"] = jwt;
-                dispatch(setUser(response.data));
-                setAvatarError("Avatar changed successfully.");
-            })
-            .catch(error => {
-                setAvatarSubmitted(false);
-                setAvatarError(error.response.data.message);
-            })
+            setAvatarSubmitted(true);
+
+            axios.post("auth/avatar/change", formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        "Authorization": "Bearer " + user?.jwt
+                    }
+                })
+                .then(response => {
+                    setAvatarSubmitted(false);
+                    const jwt = user?.jwt;
+                    const res = response.data;
+                    res["jwt"] = jwt;
+                    dispatch(setUser(response.data));
+                    setAvatarError("Avatar changed successfully.");
+                    // @ts-ignore
+                    fileInput.current.value = null;
+                    formData = new FormData();
+                })
+                .catch(error => {
+                    setAvatarSubmitted(false);
+                    setAvatarError(error.response.data.message);
+                    // @ts-ignore
+                    fileInput.current.value = null;
+                    formData = new FormData();
+                })
+        }
     }
 
     const removeAvatar = (e: SyntheticEvent) => {
@@ -138,11 +150,23 @@ const Profile = () => {
                 <hr/>
 
                 <div className="profile-section">
+                    <Link to={"/added/products"}>
+                        <button>Your products</button>
+                    </Link>
+                    <Link to={"/transactions"}>
+                        <button>Your transactions</button>
+                    </Link>
+                    <Link to={"/add/products"}>
+                        <button>Add product</button>
+                    </Link>
+                </div>
+
+                <hr/>
+
+                <div className="profile-section">
                     <h2>Change your data</h2>
 
-                    <div className={dataSubmitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={dataSubmitted} customStyle={false}/>
 
                     <form onSubmit={(e) => changeData(e)} className={dataSubmitted ? "hide" : ""}>
 
@@ -196,9 +220,7 @@ const Profile = () => {
                 <div className="profile-section">
                     <h2>Change your password</h2>
 
-                    <div className={passwordSubmitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={passwordSubmitted} customStyle={false}/>
 
                     <form onSubmit={(e) => changePassword(e)} className={passwordSubmitted ? "hide" : ""}>
 
@@ -239,9 +261,7 @@ const Profile = () => {
                 <div className="profile-section">
                     <h2>Change your avatar</h2>
 
-                    <div className={avatarSubmitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                        <div className="spinner"></div>
-                    </div>
+                    <Spinner show={avatarSubmitted} customStyle={false}/>
 
                     <form onSubmit={(e) => changeAvatar(e)} className={avatarSubmitted ? "hide" : ""}>
 
@@ -249,13 +269,13 @@ const Profile = () => {
                             <label htmlFor="avatar" className="label">Select your new avatar:</label><br/>
                             <input type="file"
                                    id="avatar"
+                                   ref={fileInput}
                                    accept=".jpg,.png,.jpeg"
                                    onChange={(event) => {
                                        if (event.target.files == null) return;
                                        const file = event.target.files[0];
                                        formData.append("avatar", file);
-                                   }
-                                   }
+                                   }}
                                    required/>
                         </div>
 

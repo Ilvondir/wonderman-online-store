@@ -27,11 +27,13 @@ class ProductController extends Controller
         $products = Product::query()
             ->join("categories", "categories.id", "=", "products.category_id")
             ->select([
+		"products.id",
                 "products.name AS name",
                 "price",
                 "products.description AS description",
                 "photo",
-                "added"
+                "added",
+                "tax"
             ])
             ->orderByDesc("products.id")
             ->where("categories.name", "=", $category)
@@ -51,7 +53,7 @@ class ProductController extends Controller
 
         $products = Product::query()
             ->join("transactions", "transactions.product_id", "=", "products.id")
-            ->selectRaw("name, products.price AS price, description, added, photo, COUNT(transactions.id) AS freq")
+            ->selectRaw("products.id, name, products.price AS price, description, added, photo, COUNT(transactions.id) AS freq, tax")
             ->groupBy("transactions.product_id")
             ->orderByDesc("freq")
             ->paginate(12);

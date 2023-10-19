@@ -1,34 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
-import Carousel from "../../components/Carousel/Carousel";
+import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import {headers} from "../../axios/commons";
 import {Product} from "../../models/Product";
-import {Link} from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
+import {useSelector} from "react-redux";
+import {Category} from "../../models/Category";
 
-const Home = () => {
+const CategoryPage = () => {
+    const {name} = useParams();
+    const [wait, setWait] = useState(false);
+    const [category, setCategory] = useState(new Category());
+    const cats = useSelector((state: any) => state.categories);
     const [products, setProducts] = useState([]);
-    const [wait, setWait] = useState(true);
 
     useEffect(() => {
-        axios.get("products/bests", {headers: headers()})
+        setWait(true);
+        axios.get("category/" + name, {headers: headers()})
             .then(response => {
                 setProducts(response.data);
                 setWait(false);
+                setCategory(cats.filter((c: Category) => c.name === name)[0]);
             })
-    }, []);
+    }, [name]);
 
     return (
         <Wrapper>
-            <div className="home-page">
-                <Carousel/>
-
-                <h2>Our bestsellers</h2>
+            <div className="category-page">
 
                 <Spinner show={wait} customStyle={false}/>
 
-                <div className="products">
+                <div className={wait ? "products hide" : "products"}>
+
+                    <h2 style={{marginTop: "0"}}>{category?.name}</h2>
+                    <p>{category?.description}</p>
 
                     {products?.map((product: Product, i: number) => {
                         i++;
@@ -38,7 +44,7 @@ const Home = () => {
                                     <div className="product-card">
 
                                         <div className="img">
-                                            <img src={product.photo} alt="Photo."/>
+                                            <img src={product.photo} alt={"Photo" + i + "."}/>
                                         </div>
 
 
@@ -68,4 +74,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default CategoryPage;

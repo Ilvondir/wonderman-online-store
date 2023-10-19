@@ -1,10 +1,11 @@
-import React, {SyntheticEvent, useEffect, useState} from 'react';
+import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Register = () => {
     const [first_name, setFirstName] = useState("");
@@ -14,12 +15,13 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [password_confirmation, setPasswordConfirmation] = useState("");
 
-    const formData = new FormData();
+    let formData = new FormData();
 
     const [submitted, setSubmitted] = useState(false);
     const user = useSelector((state: any) => state.user);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const fileInput = useRef(null);
 
     useEffect(() => {
         if (user) navigate("/profile");
@@ -28,7 +30,7 @@ const Register = () => {
     const submit = (e: SyntheticEvent) => {
         e.preventDefault();
 
-        if (first_name && last_name && login && email && password && password_confirmation) {
+        if (first_name && last_name && login && email && password && password_confirmation && formData.has("avatar")) {
 
             setSubmitted(true);
 
@@ -46,7 +48,10 @@ const Register = () => {
             })
                 .catch(error => {
                     setSubmitted(false);
-                    console.log(error);
+                    setError(error.response.data.message);
+                    // @ts-ignore
+                    fileInput.current.value = null;
+                    formData = new FormData();
                 });
         }
     }
@@ -59,10 +64,7 @@ const Register = () => {
                     <fieldset>
                         <legend><FontAwesomeIcon icon={faUserPlus}/></legend>
 
-                        <div className={submitted ? "spinner-wrapper" : "spinner-wrapper hide"}>
-                            <div className="spinner"></div>
-                        </div>
-
+                        <Spinner show={submitted} customStyle={false}/>
 
                         <form onSubmit={(e) => submit(e)} className={submitted ? "hide" : ""}>
 
@@ -105,12 +107,13 @@ const Register = () => {
                             <div className="form-group">
                                 <label htmlFor="avatar" className="label">Select your avatar
                                     (optionally, no more than 300 pixels in width or height):</label><br/>
-                                <input type="file" id="avatar" accept=".jpg,.png,.jpeg" onChange={(event) => {
-                                    if (event.target.files == null) return;
-                                    const file = event.target.files[0];
-                                    formData.append("avatar", file);
-                                }
-                                }/>
+                                <input type="file" id="avatar" ref={fileInput} accept=".jpg,.png,.jpeg"
+                                       onChange={(event) => {
+                                           if (event.target.files == null) return;
+                                           const file = event.target.files[0];
+                                           formData.append("avatar", file);
+                                       }
+                                       }/>
                             </div>
 
                             <div className="form-group text-align-center">

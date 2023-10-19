@@ -1,5 +1,5 @@
 @font-face {
-  src: url("fonts/Manrope.ttf");
+  src: url("scss/fonts/Manrope.ttf");
   font-family: "Manrope";
 }
 body {
@@ -273,59 +273,65 @@ nav .categories ul li:hover {
     box-sizing: border-box;
   }
 }
+.swiper {
+  background-color: #FBFEF9;
+  width: 100%;
+  overflow: hidden;
+}
+.swiper .swiper-slide img {
+  width: 100%;
+}
+.swiper .swiper-slide .rectangle {
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 3px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1.5vmax;
+}
+.swiper .swiper-slide .rectangle h2 {
+  margin-top: 0;
+}
+
+@media screen and (orientation: portrait) {
+  .swiper .swiper-slide .rectangle {
+    padding: 1vmax;
+  }
+  .swiper .swiper-slide .rectangle h2 {
+    margin-bottom: 0;
+  }
+  .swiper .swiper-slide .rectangle p {
+    margin: 0.3vmax 0;
+  }
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #FFA500;
+  opacity: 1;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  opacity: 1;
+  color: #FFA500;
+}
+
 .form-page {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.form-page .form {
+
+.form {
   width: 40%;
 }
-.form-page .form fieldset {
+.form fieldset {
   width: 100%;
   border-radius: 1vmax;
   border: 0.2vmax solid #555555;
   box-sizing: border-box;
   padding: 1vmax 2vmax;
 }
-.form-page .form fieldset form .form-group {
-  width: 100%;
-  margin: 1.4vmax 0;
-  box-sizing: border-box;
-}
-.form-page .form fieldset form .form-group:nth-child(1) {
-  margin-top: -1vmax;
-}
-.form-page .form fieldset form .form-group label {
-  font-weight: 700;
-  font-size: 1.2vmax;
-}
-.form-page .form fieldset form .form-group input {
-  width: 100%;
-  padding: 0.5vmax;
-  box-sizing: border-box;
-  border: 0.14vmax solid #555555;
-  font-size: 1.3vmax;
-}
-.form-page .form fieldset form .form-group input[type=submit] {
-  color: white;
-  background-color: #FFA500;
-  min-width: 40%;
-  border-radius: 0.2vmax;
-  border: 0;
-  cursor: pointer;
-  padding: 0.6vmax 0;
-  margin-top: 1vmax;
-}
-.form-page .form fieldset form .form-group input[type=submit]:hover {
-  background-color: #f09b00;
-}
-.form-page .form fieldset form .error {
-  font-weight: 700;
-  color: red;
-  font-style: italic;
-}
-.form-page .form fieldset legend {
+.form fieldset legend {
   padding: 0;
   margin: 0;
   text-align: center;
@@ -333,77 +339,74 @@ nav .categories ul li:hover {
   font-size: 7vmax;
 }
 
-@media screen and (orientation: portrait) {
-  .form-page .form {
-    width: 100%;
-  }
-  .form-page .form fieldset legend {
-    font-size: 13vmax;
-  }
-  .form-page .form fieldset form .form-group {
-    margin: 2.5vmax 0;
-  }
-  .form-page .form fieldset form .form-group label {
-    font-size: 2.2vmax;
-  }
-  .form-page .form fieldset form .form-group input {
-    font-size: 2.5vmax;
-    padding: 1vmax;
-  }
-  .form-page .form fieldset form .form-group input[type=submit] {
-    padding: 1.2vmax 0;
-    width: 100%;
-  }
-}
-.profile-page {
-  width: 100%;
-}
-.profile-page hr {
-  border: 0.07vmax solid #555555;
-  margin: 0.5vmax 2vmax;
-}
-.profile-page .profile-section {
-  padding: 2vmax;
-  box-sizing: border-box;
-}
-.profile-page .profile-section h2 {
-  margin: 0 0 2vmax 0;
-  text-align: center;
-}
-.profile-page .profile-section:nth-child(1) {
-  text-align: center;
-}
-.profile-page .profile-section:nth-child(1) .img-avatar img {
-  width: 12vmax;
-  max-width: 100%;
-}
-.profile-page .profile-section:nth-child(1) .img-title h1 {
-  margin-top: 0.6vmax;
-  margin-bottom: 0;
-}
-.profile-page .profile-section form {
-  width: 50%;
-}
-.profile-page .profile-section form .form-group {
+form .form-group {
   width: 100%;
   margin: 1.4vmax 0;
   box-sizing: border-box;
 }
-.profile-page .profile-section form .form-group:nth-child(1) {
+form .form-group:nth-child(1) {
   margin-top: -1vmax;
 }
-.profile-page .profile-section form .form-group label {
+form .form-group label {
   font-weight: 700;
   font-size: 1.2vmax;
 }
-.profile-page .profile-section form .form-group input {
+form .form-group input, form .form-group textarea, form .form-group select {
   width: 100%;
   padding: 0.5vmax;
   box-sizing: border-box;
   border: 0.14vmax solid #555555;
   font-size: 1.3vmax;
 }
-.profile-page .profile-section form .form-group input[type=button] {
+form .form-group input[type=submit], form .form-group textarea[type=submit], form .form-group select[type=submit] {
+  color: white;
+  background-color: #FFA500;
+  width: 40%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6vmax 0;
+  margin-top: 1vmax;
+}
+form .form-group input[type=submit]:hover, form .form-group textarea[type=submit]:hover, form .form-group select[type=submit]:hover {
+  background-color: #f09b00;
+}
+form .error {
+  font-weight: 700;
+  color: red;
+  font-style: italic;
+}
+
+@media screen and (orientation: portrait) {
+  .form {
+    width: 100%;
+  }
+  .form fieldset legend {
+    font-size: 13vmax;
+  }
+  form .form-group {
+    margin: 2.5vmax 0;
+  }
+  form .form-group label {
+    font-size: 2.2vmax;
+  }
+  form .form-group input, form .form-group textarea, form .form-group select {
+    font-size: 2.5vmax;
+    padding: 1vmax;
+  }
+  form .form-group input[type=submit], form .form-group textarea[type=submit], form .form-group select[type=submit] {
+    padding: 1.2vmax 0;
+    width: 100%;
+  }
+}
+.profile-page .profile-section .img-avatar, .profile-page .profile-section .img-title {
+  width: 100%;
+  text-align: center;
+}
+.profile-page form {
+  width: 50%;
+}
+.profile-page form input[type=button] {
   color: white;
   background-color: #FFA500;
   width: 40%;
@@ -414,45 +417,208 @@ nav .categories ul li:hover {
   margin-top: 1vmax;
   margin-right: 1vmax;
 }
-.profile-page .profile-section form .form-group input[type=button]:hover {
+.profile-page form input[type=button]:hover {
   background-color: #f09b00;
-}
-.profile-page .profile-section form .form-group input[type=submit] {
-  color: white;
-  background-color: #FFA500;
-  min-width: 40%;
-  border-radius: 0.2vmax;
-  border: 0;
-  cursor: pointer;
-  padding: 0.6vmax 0;
-  margin-top: 1vmax;
-}
-.profile-page .profile-section form .form-group input[type=submit]:hover {
-  background-color: #f09b00;
-}
-.profile-page .profile-section form .error {
-  font-weight: 700;
-  color: red;
-  font-style: italic;
 }
 
 @media screen and (orientation: portrait) {
-  .profile-page .profile-section form {
+  .profile-page form {
     width: 100%;
   }
-  .profile-page .profile-section form .form-group {
-    margin: 2.5vmax 0;
-  }
-  .profile-page .profile-section form .form-group label {
-    font-size: 2.2vmax;
-  }
-  .profile-page .profile-section form .form-group input {
-    font-size: 2.5vmax;
-    padding: 1vmax;
-  }
-  .profile-page .profile-section form .form-group input[type=submit], .profile-page .profile-section form .form-group input[type=button] {
+  .profile-page form input[type=submit], .profile-page form input[type=button] {
     padding: 1.2vmax 0;
     width: 100%;
+    border: 0;
+  }
+}
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.error-page .communicate {
+  text-align: center;
+}
+.error-page .communicate h1 {
+  font-size: 10vmax;
+  margin: 0;
+}
+
+@media screen and (orientation: portrait) {
+  .error-page .communicate {
+    font-size: 3vmax;
+  }
+  .error-page .communicate h1 {
+    font-size: 15vmax;
+  }
+}
+.carousel-page {
+  width: 100%;
+}
+.carousel-page .carousel-section h2 {
+  margin: 1.7vmax 0;
+  text-align: center;
+}
+.carousel-page .carousel-section form {
+  width: 50%;
+}
+
+table {
+  width: 100%;
+  border: 0.1vmax solid #555555;
+  border-collapse: collapse;
+}
+table tr td, table tr th {
+  border: 0.1vmax solid #555555;
+  box-sizing: border-box;
+  padding: 0.3vmax;
+}
+table tr td img, table tr th img {
+  width: 100%;
+}
+table tr td input[type=button], table tr th input[type=button] {
+  color: white;
+  background-color: #FFA500;
+  width: 100%;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.3vmax;
+  padding: 0.6vmax;
+}
+table tr td input[type=button]:hover, table tr th input[type=button]:hover {
+  background-color: #f09b00;
+}
+
+@media screen and (orientation: portrait) {
+  .carousel-page .carousel-section {
+    max-width: 100%;
+    overflow: scroll;
+  }
+  table tr td input[type=button], table tr th input[type=button] {
+    font-size: 2.5vmax;
+  }
+}
+.admins-page h2 {
+  text-align: center;
+}
+.admins-page .smaller {
+  width: 5vmax;
+}
+
+.products a .product-card {
+  width: 30.7%;
+  box-sizing: border-box;
+  float: left;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 2vmax;
+  margin-left: 1.25%;
+  margin-right: 1.25%;
+}
+.products a .product-card:hover {
+  border-color: #FFA500;
+  background-color: #f5fdf0;
+}
+.products a .product-card:hover .info {
+  border-color: #FFA500;
+}
+.products a .product-card .info {
+  border-right: 0.15vmax solid #555555;
+  border-left: 0.15vmax solid #555555;
+  border-bottom: 0.15vmax solid #555555;
+  text-align: center;
+  color: black;
+  padding: 1vmax;
+}
+.products a .product-card .info h2 {
+  margin: 0 0 1vmax 0;
+}
+.products a .product-card .info .info-section:nth-child(2) {
+  margin-bottom: 1vmax;
+}
+.products a .product-card .img {
+  width: 100%;
+  height: 100%;
+  margin-bottom: -0.6vmax;
+}
+.products a .product-card .img img {
+  width: 100%;
+}
+.products .row {
+  width: 100%;
+  clear: both;
+}
+
+@media screen and (orientation: portrait) {
+  .products a .product-card {
+    width: 100%;
+    margin: 0 0 3vmax 0;
+  }
+  .products a .product-card .info {
+    border-width: 0.3vmax;
+  }
+  .products a .product-card .info .info-section {
+    margin: 3vmax 0 0 0.5vmax;
+  }
+  .products a .product-card .img {
+    margin-bottom: -0.8vmax;
+  }
+}
+.product-page h2:nth-child(2) {
+  margin-top: 0;
+}
+.product-page .p-half {
+  box-sizing: border-box;
+  padding-right: 1vmax;
+  width: 50%;
+  float: left;
+}
+.product-page .p-half:nth-child(3) {
+  width: 60%;
+}
+.product-page .p-half:nth-child(4) {
+  width: 40%;
+}
+.product-page .p-half img {
+  width: 100%;
+}
+.product-page .description {
+  clear: both;
+  padding-top: 3vmax;
+  text-align: justify;
+}
+
+button {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.7vmax;
+  color: white;
+  background-color: #FFA500;
+  border-radius: 0.2vmax;
+  border: 0;
+  cursor: pointer;
+  padding: 1.6vmax 0;
+  margin-top: 1vmax;
+  margin-bottom: 1vmax;
+}
+button:hover {
+  background-color: #f09b00;
+}
+
+@media screen and (orientation: portrait) {
+  .product-page .p-half {
+    width: 100%;
+  }
+  .product-page .p-half:nth-child(3) {
+    width: 100%;
+  }
+  .product-page .p-half:nth-child(4) {
+    width: 100%;
+  }
+  button {
+    font-size: 3vmax;
   }
 }
 .container {

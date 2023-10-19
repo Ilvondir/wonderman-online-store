@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,9 +29,13 @@ Route::get("/category/{category}", [ProductController::class, "getProductsByCate
 Route::get("/products/bests", [ProductController::class, "getBestProducts"]);
 Route::get("/products/{id}", [ProductController::class, "show"]);
 
+Route::get("/slides", [SlideController::class, "index"]);
+
 Route::middleware("auth:sanctum")->group(function () {
     Route::get("/auth/user", [AuthController::class, "user"]);
-    Route::post("/auth/admin", [UserController::class, "createAdmin"]);
+    Route::post("/auth/admins", [UserController::class, "createAdmin"]);
+    Route::get("/auth/admins", [UserController::class, "getAdmins"]);
+    Route::delete("/users/{id}", [UserController::class, "destroy"]);
     Route::delete("/auth/logout", [AuthController::class, "logout"]);
     Route::put("/auth/password", [UserController::class, "changePassword"]);
     Route::put("/auth/profile", [UserController::class, "changeData"]);
@@ -46,5 +51,8 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::delete("/transactions/{id}", [TransactionController::class, "destroy"]);
     Route::get("/transactions/{id}", [TransactionController::class, "show"]);
     Route::post("/transactions/{id}", [TransactionController::class, "pay"]);
+
+    Route::post("/slides", [SlideController::class, "store"]);
+    Route::delete("/slides/{id}", [SlideController::class, "destroy"]);
 });
 

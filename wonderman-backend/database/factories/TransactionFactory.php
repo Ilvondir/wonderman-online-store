@@ -18,7 +18,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
 
-        $pid = fake()->numberBetween(1, 35);
+        $pid = fake()->numberBetween(1, 60);
 
         $payed = fake()->numberBetween(0, 1);
 

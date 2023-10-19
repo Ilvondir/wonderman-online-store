@@ -1,128 +1,41 @@
 .profile-page {
-  width: 100%;
-
-  hr {
-    border: 0.07vmax solid $secondary-color;
-    margin: 0.5vmax 2vmax;
+  .profile-section {
+    .img-avatar, .img-title {
+      width: 100%;
+      text-align: center;
+    }
   }
 
-  .profile-section {
-    padding: 2vmax;
-    box-sizing: border-box;
+  form {
+    width: 50%;
 
-    h2 {
-      margin: 0 0 2vmax 0;
-      text-align: center;
-    }
+    input[type="button"] {
+      color: white;
+      background-color: $primary-color;
+      width: 40%;
+      border-radius: 0.2vmax;
+      border: 0;
+      cursor: pointer;
+      padding: 0.6vmax 0;
+      margin-top: 1vmax;
+      margin-right: 1vmax;
 
-    &:nth-child(1) {
-      text-align: center;
-
-      .img-avatar {
-        img {
-          width: 12vmax;
-          max-width: 100%;
-        }
-      }
-
-      .img-title {
-        h1 {
-          margin-top: 0.6vmax;
-          margin-bottom: 0;
-        }
-      }
-    }
-
-    form {
-      width: 50%;
-
-      .form-group {
-        width: 100%;
-        margin: 1.4vmax 0;
-        box-sizing: border-box;
-
-        &:nth-child(1) {
-          margin-top: -1vmax;
-        }
-
-        label {
-          font-weight: 700;
-          font-size: 1.2vmax;
-        }
-
-        input {
-          width: 100%;
-          padding: 0.5vmax;
-          box-sizing: border-box;
-          border: 0.14vmax solid $secondary-color;
-          font-size: 1.3vmax;
-
-          &[type="button"] {
-            color: white;
-            background-color: $primary-color;
-            width: 40%;
-            border-radius: 0.2vmax;
-            border: 0;
-            cursor: pointer;
-            padding: 0.6vmax 0;
-            margin-top: 1vmax;
-            margin-right: 1vmax;
-
-            &:hover {
-              background-color: darken($primary-color, 3%);
-            }
-          }
-
-          &[type="submit"] {
-            color: white;
-            background-color: $primary-color;
-            min-width: 40%;
-            border-radius: 0.2vmax;
-            border: 0;
-            cursor: pointer;
-            padding: 0.6vmax 0;
-            margin-top: 1vmax;
-
-            &:hover {
-              background-color: darken($primary-color, 3%);
-            }
-          }
-        }
-      }
-
-      .error {
-        font-weight: 700;
-        color: red;
-        font-style: italic;
+      &:hover {
+        background-color: darken($primary-color, 3%);
       }
     }
   }
 }
 
+
 @media screen and (orientation: portrait) {
-  .profile-page {
-    .profile-section {
-      form {
-        width: 100%;
+  .profile-page form {
+    width: 100%;
 
-        .form-group {
-          margin: 2.5vmax 0;
-
-          label {
-            font-size: 2.2vmax;
-          }
-
-          input {
-            font-size: 2.5vmax;
-            padding: 1vmax;
-
-            &[type="submit"], &[type="button"] {
-              padding: 1.2vmax 0;
-              width: 100%;
-            }
-          }
-        }
-      }
+    input[type="submit"], input[type="button"] {
+      padding: 1.2vmax 0;
+      width: 100%;
+      border: 0;
     }
   }
 }
