@@ -34,11 +34,13 @@ class TransactionController extends Controller
         //INNER JOIN users
         //ON transactions.user_id = users.id
         //WHERE users.id= ...
+        //ORDER BY transactions.created DESC
 
         $transactions = Transaction::query()
             ->join("users", "transactions.user_id", "=", "users.id")
             ->selectRaw("transactions.*")
             ->where("users.id", "=", $user->id)
+            ->orderByDesc("transactions.created")
             ->get();
 
         return response(TransactionResource::collection($transactions), Response::HTTP_OK);
@@ -81,10 +83,13 @@ class TransactionController extends Controller
         return response(new TransactionResource($transaction->load("user")), Response::HTTP_ACCEPTED);
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id, Request $request)
     {
-        Transaction::destroy($id);
+        $tr = Transaction::find($id);
+        if ($tr->payed == 0 && $request->user()->id == $tr->user->id) {
+            Transaction::destroy($id);
+            return response(null, Response::HTTP_NO_CONTENT);
+        } else return response(["message" => "You cannot destroy this resource."], Response::HTTP_PRECONDITION_FAILED);
 
-        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
