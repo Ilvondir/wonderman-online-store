@@ -26,7 +26,7 @@ class UserFactory extends Factory
         $generator = new Avatar();
         $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
         Storage::putFileAs("public/img/avatars", $file, $filename);
-        $url = env("APP_URL") . ":8000/storage/img/avatars/" . $filename;
+        $url = "/storage/img/avatars/" . $filename;
 
         return [
             'first_name' => $first_name,

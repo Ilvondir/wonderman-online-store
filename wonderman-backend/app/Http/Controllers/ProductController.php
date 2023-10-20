@@ -88,7 +88,7 @@ class ProductController extends Controller
     {
         $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
         Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
-        $url = env("APP_URL") . ":8000/storage/img/products/" . $filename;
+        $url = "/storage/img/products/" . $filename;
 
         $product = Product::create([
                 "photo" => $url,
@@ -124,7 +124,7 @@ class ProductController extends Controller
 
             $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
             Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
-            $url = env("APP_URL") . ":8000/storage/img/products/" . $filename;
+            $url = "/storage/img/products/" . $filename;
             $product->update(["photo" => $url]);
         }
 
