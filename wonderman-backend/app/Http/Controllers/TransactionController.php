@@ -7,7 +7,8 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Laravel\Cashier\Cashier;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 use Symfony\Component\HttpFoundation\Response;
 
 class TransactionController extends Controller
@@ -72,26 +73,43 @@ class TransactionController extends Controller
 
     public function create_checkout(Request $request, int $id)
     {
-        /** @var User $user */
-        $user = $request->user();
         $tr = Transaction::find($id);
-        return $user->checkoutCharge($tr->price * 100, $tr->product->name, 1, [
+
+        Stripe::setApiKey(env("STRIPE_SECRET"));
+        $checkout = Session::create([
             'payment_method_types' => ['card', 'p24'],
-            'success_url' => "http://" . $request->input("hostname") . ":3000/transactions/" . $id . "/success",
+            "line_items" => [[
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $tr->product->name,
+                    ],
+                    'unit_amount' => $tr->price * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => "http://" . $request->input("hostname") . ":3000/transactions/" . $id . "/pay",
             'cancel_url' => "http://" . $request->input("hostname") . ":3000/transactions/" . $id,
-        ])->jsonSerialize();
+        ]);
+
+        return response()->json(["id" => $checkout->id, "url" => $checkout->url], Response::HTTP_OK);
     }
 
     public function pay(Request $request, int $id)
     {
-        //TODO:Paying
-
         $transaction = Transaction::find($id);
+        $tr_id = $request->input("transaction_id");
 
-        $transaction->update([
-            "payed" => 1,
-            "payment_date" => date("Y-m-d")
-        ]);
+        Stripe::setApiKey(env("STRIPE_SECRET"));
+        $res = Session::retrieve($tr_id);
+
+        if ($res["payment_status"] == "paid") {
+            $transaction->update([
+                "payed" => 1,
+                "payment_date" => date("Y-m-d")
+            ]);
+        }
 
         return response(new TransactionResource($transaction->load("user")), Response::HTTP_ACCEPTED);
     }

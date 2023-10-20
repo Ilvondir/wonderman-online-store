@@ -52,11 +52,11 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::post("/products/{id}", [TransactionController::class, "store"]);
     Route::delete("/transactions/{id}", [TransactionController::class, "destroy"]);
     Route::get("/transactions/{id}", [TransactionController::class, "show"]);
-    Route::post("/transactions/{id}", [TransactionController::class, "pay"]);
+    Route::put("/transactions/{id}/pay", [TransactionController::class, "pay"]);
+    Route::post('/transactions/{id}/checkout', [TransactionController::class, "create_checkout"]);
 
     Route::post("/slides", [SlideController::class, "store"]);
     Route::delete("/slides/{id}", [SlideController::class, "destroy"]);
 
-    Route::post('/transactions/{id}/checkout', [TransactionController::class, "create_checkout"]);
 });
 
