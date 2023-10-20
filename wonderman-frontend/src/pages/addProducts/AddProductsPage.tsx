@@ -20,6 +20,7 @@ const AddProductsPage = () => {
     const [description, setDescription] = useState("");
     const [category_id, setCategoryId] = useState(0);
     const fileInput = useRef(null);
+    const brutto = Number(1.18 * price).toFixed(2);
 
     let formData = new FormData();
 
@@ -93,7 +94,8 @@ const AddProductsPage = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="price" className="label">Enter price:</label><br/>
+                                <label htmlFor="price" className="label">Enter price (you enter netto price, brutto with
+                                    tax with be equal {brutto}):</label><br/>
                                 <input type="number" id="price" placeholder="Price" min={0} step={0.01}
                                        onChange={(e) => setPrice(Number(e.target.value))} required/>
                             </div>

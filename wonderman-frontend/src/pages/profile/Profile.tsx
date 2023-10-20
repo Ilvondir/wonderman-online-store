@@ -150,14 +150,14 @@ const Profile = () => {
                 <hr/>
 
                 <div className="profile-section">
+                    <Link to={"/add/products"}>
+                        <button>Add product</button>
+                    </Link>
                     <Link to={"/added/products"}>
                         <button>Your products</button>
                     </Link>
                     <Link to={"/transactions"}>
                         <button>Your transactions</button>
-                    </Link>
-                    <Link to={"/add/products"}>
-                        <button>Add product</button>
                     </Link>
                 </div>
 

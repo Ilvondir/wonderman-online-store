@@ -14,6 +14,9 @@ import Admins from "./pages/admins/Admins";
 import ProductPage from "./pages/product/ProductPage";
 import PurchasePage from "./pages/purchase/PurchasePage";
 import AddProductsPage from "./pages/addProducts/AddProductsPage";
+import AddedProducts from "./pages/addedProducts/AddedProducts";
+import Transactions from "./pages/transactions/Transactions";
+import TransactionPage from "./pages/transaction/TransactionPage";
 
 function App() {
     return (
@@ -30,6 +33,24 @@ function App() {
                     <Route path={"/profile"} element={
                         <Guard roles={["User", "Admin"]}>
                             <Profile/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"/transactions/:id"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <TransactionPage/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"/transactions"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <Transactions/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"/added/products"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <AddedProducts/>
                         </Guard>
                     }/>
 

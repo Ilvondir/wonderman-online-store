@@ -1,0 +1,17 @@
+/* Error: Undefined variable.
+ *    ,
+ * 12 |     background-image: linear-gradient($background 20%, lighten(green, 60%));
+ *    |                                       ^^^^^^^^^^^
+ *    '
+ *   transactions.scss 12:39  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 12 \2502      background-image: linear-gradient($background 20%, lighten(green, 60%));\d\a    \2502                                        ^^^^^^^^^^^\a    \2575 \a   transactions.scss 12:39  root stylesheet";
+}

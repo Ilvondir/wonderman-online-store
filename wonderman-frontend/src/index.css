@@ -621,6 +621,36 @@ button:hover {
     font-size: 3vmax;
   }
 }
+.transaction {
+  width: 100%;
+  clear: both;
+  border-radius: 1vmax;
+  float: left;
+  padding: 0.8vmax;
+  box-sizing: border-box;
+  margin-bottom: 1vmax;
+  color: black;
+}
+.transaction.payed {
+  background-image: linear-gradient(#FBFEF9 20%, #b3ffb3);
+}
+.transaction.not-payed {
+  background-image: linear-gradient(#FBFEF9 20%, #ffcccc);
+}
+.transaction .t-half {
+  width: 33.33%;
+  box-sizing: border-box;
+  float: left;
+}
+.transaction .t-half:nth-child(3) {
+  text-align: right;
+}
+
+@media screen and (orientation: portrait) {
+  .transaction {
+    padding: 2vmax;
+  }
+}
 .container {
   width: 100vw;
   margin: auto;
