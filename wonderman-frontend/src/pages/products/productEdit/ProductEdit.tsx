@@ -24,6 +24,9 @@ const ProductEdit = () => {
     const brutto = 1.18 * price;
     const [description, setDescription] = useState("");
     const [category_id, setCategoryId] = useState(0);
+    const fileInput = useRef(null);
+
+    let formData = new FormData();
 
     useEffect(() => {
         axios.get("/products/" + id, {headers: headers()})
@@ -45,16 +48,25 @@ const ProductEdit = () => {
         if (category_id && name && price && description) {
             setSubmitted(true);
 
-            axios.put("/products/" + id, {
-                price,
-                name,
-                category_id,
-                description
-            }, {headers: headers()})
+            formData.append("name", name);
+            formData.append("category_id", String(category_id));
+            formData.append("price", String(price));
+            formData.append("description", description);
+
+            axios.post("/products/" + id + "/update", formData,
+                {
+                    headers: {
+                        "Authorization": "Bearer " + user.jwt,
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
                 .then(response => navigate("/products/" + id))
                 .catch(error => {
                     setSubmitted(false);
                     setError(error.response.data.message);
+                    // @ts-ignore
+                    fileInput.current.value = null;
+                    formData = new FormData();
                 })
         }
     }
@@ -114,6 +126,16 @@ const ProductEdit = () => {
                                 <label htmlFor="description" className="label">Enter description:</label><br/>
                                 <textarea id="description" placeholder="Description" rows={9} value={description}
                                           onChange={(e) => setDescription(e.target.value)} required/>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="photo" className="label">Enter photo of product:</label><br/>
+                                <input type="file" id="photo" ref={fileInput}
+                                       onChange={(event) => {
+                                           if (event.target.files == null) return;
+                                           const file = event.target.files[0];
+                                           formData.append("photo", file);
+                                       }}/>
                             </div>
 
                             <div className="form-group text-align-center">

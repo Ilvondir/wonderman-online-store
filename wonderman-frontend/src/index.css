@@ -493,7 +493,6 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
 @media screen and (orientation: portrait) {
   .carousel-page .carousel-section {
     max-width: 100%;
-    overflow: scroll;
   }
   table tr td input[type=button], table tr th input[type=button] {
     font-size: 2.5vmax;
@@ -504,6 +503,9 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
 }
 .admins-page .smaller {
   width: 5vmax;
+}
+.admins-page table {
+  overflow: scroll;
 }
 
 .products a .product-card {
@@ -531,6 +533,7 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
   text-align: center;
   color: black;
   padding: 1vmax;
+  overflow-wrap: anywhere;
 }
 .products a .product-card .info h2 {
   margin: 0 0 1vmax 0;
@@ -788,6 +791,10 @@ button:hover {
 
 .margin-bottom-5 {
   margin-bottom: 5vmax;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -34,7 +34,7 @@ const CarouselPage = () => {
             // @ts-ignore
             setSlides(carouselRef.current?.sendSlides());
             setWait(false);
-        }, 2000);
+        }, 3000);
     }, []);
 
     const removeSlide = (e: SyntheticEvent, id: any) => {
