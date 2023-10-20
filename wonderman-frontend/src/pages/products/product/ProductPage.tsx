@@ -38,7 +38,7 @@ const ProductPage = () => {
                     Added: <strong>{new Date(product.added).toLocaleDateString()}</strong><br/>
                     Contact: <strong>{product.author.email}</strong><br/>
 
-                    <h2>{Number(product.brutto).toFixed(2)} $</h2>
+                    <h2>{Number(product.brutto).toFixed(2)} €</h2>
 
                     {user && user.id !== product.author.id &&
                         <Link to={"/products/" + id + "/purchase"}>

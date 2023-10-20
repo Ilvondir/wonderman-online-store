@@ -38,7 +38,7 @@ const Transactions = () => {
                                     <p>Created: {new Date(tr.created).toLocaleDateString()}</p>
                                 </div>
                                 <div className="t-half">
-                                    <h2>{Number(tr.price).toFixed(2)} $</h2>
+                                    <h2>{Number(tr.price).toFixed(2)} €</h2>
                                 </div>
                                 <div className="t-half">
                                     {tr.payed ? (

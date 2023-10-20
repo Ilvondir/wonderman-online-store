@@ -59,9 +59,9 @@ const PurchasePage = () => {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{Number(product.netto).toFixed(2)} $</td>
+                        <td>{Number(product.netto).toFixed(2)} €</td>
                         <td>{product.tax}%</td>
-                        <td><strong>{Number(product.brutto).toFixed(2)} $</strong></td>
+                        <td><strong>{Number(product.brutto).toFixed(2)} €</strong></td>
                     </tr>
                     </tbody>
                 </table>

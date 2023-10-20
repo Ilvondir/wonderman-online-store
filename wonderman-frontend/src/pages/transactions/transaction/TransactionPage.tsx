@@ -94,14 +94,14 @@ const TransactionPage = () => {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{Number(transaction.product.netto).toFixed(2)} $</td>
+                        <td>{Number(transaction.product.netto).toFixed(2)} €</td>
                         <td>{transaction.product.tax}%</td>
-                        <td><strong>{Number(transaction.product.brutto).toFixed(2)} $</strong></td>
+                        <td><strong>{Number(transaction.product.brutto).toFixed(2)} €</strong></td>
                     </tr>
                     </tbody>
                 </table>
                 {!transaction.payed &&
-                    <button>Pay {transaction.price} $</button>
+                    <button>Pay {transaction.price} €</button>
                 }
 
             </div>
