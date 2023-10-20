@@ -6,12 +6,14 @@ import axios from "axios";
 import {headers} from "../../axios/commons";
 import {User} from "../../models/User";
 import Spinner from "../../components/Spinner/Spinner";
+import {useSelector} from "react-redux";
 
 const Admins = () => {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
     const [deleting, setDeleting] = useState(false);
     const [wait, setWait] = useState(true);
+    const loggedUser = useSelector((state: any) => state.user);
 
     const [admins, setAdmins] = useState([]);
 
@@ -77,7 +79,7 @@ const Admins = () => {
             <div className="admins-page">
                 <h2>Admins</h2>
 
-                <div className="evrflow-wrap">
+                <div className="overflow-scroll">
                     <table>
                         <thead>
                         <tr>
@@ -92,7 +94,7 @@ const Admins = () => {
                         </thead>
                         <tbody>
                         {admins.map((user: User) => {
-                            return (
+                            if (user.id !== loggedUser.id) return (
                                 <tr key={user.id}>
                                     <td><strong>{user.id}</strong></td>
                                     <td className="text-align-center"><img src={user.avatar} alt="Avatar."

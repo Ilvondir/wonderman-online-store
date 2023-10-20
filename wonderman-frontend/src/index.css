@@ -504,9 +504,6 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
 .admins-page .smaller {
   width: 5vmax;
 }
-.admins-page table {
-  overflow: scroll;
-}
 
 .products a .product-card {
   width: 30.7%;
@@ -794,7 +791,11 @@ button:hover {
 }
 
 .overflow-scroll {
-  overflow: scroll;
+  overflow-y: scroll;
+}
+.overflow-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /*# sourceMappingURL=index.css.map */

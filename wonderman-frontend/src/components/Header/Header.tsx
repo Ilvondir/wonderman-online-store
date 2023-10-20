@@ -1,5 +1,5 @@
 import React, {SyntheticEvent, useState} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faUser, faSignOut, faSignIn, faChalkboard, faGear} from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,7 @@ const Header = () => {
 
     const [handleUser, setHandleUser] = useState(useSelector((state: any) => state.user));
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const logout = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -20,7 +21,10 @@ const Header = () => {
             .then(() => {
                 setHandleUser(null);
                 dispatch(clearUser())
-            });
+            })
+            .catch(error => {
+                dispatch(clearUser());
+            })
     }
 
     return (
