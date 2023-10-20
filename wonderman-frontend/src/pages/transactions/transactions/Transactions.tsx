@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Spinner from "../../components/Spinner/Spinner";
+import Wrapper from "../../../components/Wrapper/Wrapper";
+import Spinner from "../../../components/Spinner/Spinner";
 import axios from "axios";
-import {headers} from "../../axios/commons";
-import {Transaction} from "../../models/Transaction";
+import {headers} from "../../../axios/commons";
+import {Transaction} from "../../../models/Transaction";
 import {Link, useNavigate} from "react-router-dom";
 
 const Transactions = () => {

@@ -1,10 +1,10 @@
 import React, {SyntheticEvent, useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Spinner from "../../components/Spinner/Spinner";
+import Wrapper from "../../../components/Wrapper/Wrapper";
+import Spinner from "../../../components/Spinner/Spinner";
 import axios from "axios";
-import {headers} from "../../axios/commons";
-import {Product} from "../../models/Product";
+import {headers} from "../../../axios/commons";
+import {Product} from "../../../models/Product";
 
 const PurchasePage = () => {
     const {id} = useParams();

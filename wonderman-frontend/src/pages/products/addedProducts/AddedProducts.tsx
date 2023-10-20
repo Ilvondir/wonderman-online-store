@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Spinner from "../../components/Spinner/Spinner";
+import Wrapper from "../../../components/Wrapper/Wrapper";
+import Spinner from "../../../components/Spinner/Spinner";
 import axios from "axios";
-import {headers} from "../../axios/commons";
-import {Product} from "../../models/Product";
+import {headers} from "../../../axios/commons";
+import {Product} from "../../../models/Product";
 import {Link} from "react-router-dom";
 
 const AddedProducts = () => {

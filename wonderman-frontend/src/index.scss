@@ -24,15 +24,14 @@ body::-webkit-scrollbar {
 @import "components/CategoryMenu/categoryMenu";
 @import "components/Wrapper/wrapper";
 @import "components/Carousel/carousel";
-@import "pages/login/forms";
+@import "pages/auth/login/forms";
 @import "pages/profile/profile";
 @import "pages/problems/problems";
 @import "pages/carousel/carouselPage";
 @import "pages/admins/admins";
 @import "pages/home/home";
-@import "pages/product/productPage";
-@import "pages/transactions/transactions";
-@import "pages/transaction/transactionPage";
+@import "pages/products/product/productPage";
+@import "pages/transactions/transactions/transactions";
 
 .container {
   width: 100vw;

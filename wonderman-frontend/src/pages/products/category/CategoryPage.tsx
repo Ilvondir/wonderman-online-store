@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
+import Wrapper from "../../../components/Wrapper/Wrapper";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
-import {headers} from "../../axios/commons";
-import {Product} from "../../models/Product";
-import Spinner from "../../components/Spinner/Spinner";
+import {headers} from "../../../axios/commons";
+import {Product} from "../../../models/Product";
+import Spinner from "../../../components/Spinner/Spinner";
 import {useSelector} from "react-redux";
-import {Category} from "../../models/Category";
+import {Category} from "../../../models/Category";
 
 const CategoryPage = () => {
     const {name} = useParams();

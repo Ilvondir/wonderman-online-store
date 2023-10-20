@@ -1,11 +1,11 @@
 import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
+import Wrapper from "../../../components/Wrapper/Wrapper";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Register = () => {
     const [first_name, setFirstName] = useState("");

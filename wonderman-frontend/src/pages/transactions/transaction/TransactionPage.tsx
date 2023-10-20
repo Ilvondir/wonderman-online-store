@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {Transaction} from "../../models/Transaction";
-import {headers} from "../../axios/commons";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Spinner from "../../components/Spinner/Spinner";
+import {Transaction} from "../../../models/Transaction";
+import {headers} from "../../../axios/commons";
+import Wrapper from "../../../components/Wrapper/Wrapper";
+import Spinner from "../../../components/Spinner/Spinner";
 import {useSelector} from "react-redux";
 import transactions from "../transactions/Transactions";
 
@@ -14,6 +14,7 @@ const TransactionPage = () => {
     const navigate = useNavigate();
     const [wait, setWait] = useState(true);
     const [transaction, setTransaction] = useState(new Transaction());
+    const [deleting, setDeleting] = useState(false);
 
     useEffect(() => {
         axios.get("/transactions/" + id, {headers: headers()})
@@ -24,6 +25,18 @@ const TransactionPage = () => {
             })
             .catch(error => navigate("/profile"));
     }, []);
+
+    const destroy = (id: any) => {
+        setDeleting(true);
+
+        axios.delete("transactions/" + transaction.id, {headers: headers()})
+            .then(response => {
+                navigate("/transactions");
+            })
+            .catch(error => {
+                setDeleting(false);
+            })
+    }
 
     return (
         <Wrapper>
@@ -38,13 +51,20 @@ const TransactionPage = () => {
                         <td>{transaction.user.first_name} {transaction.user.last_name}</td>
                         {!transaction.payed &&
                             <td rowSpan={5}>
-                                <button>Delete transaction</button>
+
+                                <Spinner show={deleting} customStyle={true}/>
+
+                                <button className={deleting ? "hide" : ""}
+                                        onClick={() => destroy(transaction.id)}>Delete transaction
+                                </button>
                             </td>
                         }
                     </tr>
                     <tr>
                         <th>Product</th>
-                        <td>{transaction.product.name}</td>
+                        <td><Link to={"/products/" + transaction.product.id}>
+                            {transaction.product.name}
+                        </Link></td>
                     </tr>
                     <tr>
                         <th>Transaction created</th>
@@ -64,6 +84,7 @@ const TransactionPage = () => {
                 </table>
 
                 <table className="text-align-center margin-top-2">
+                    <caption><strong>Price</strong></caption>
                     <thead>
                     <tr>
                         <th>Netto</th>
