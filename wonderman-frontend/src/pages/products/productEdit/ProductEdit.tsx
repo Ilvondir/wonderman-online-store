@@ -117,9 +117,12 @@ const ProductEdit = () => {
                             <div className="form-group">
                                 <label htmlFor="price" className="label">Enter price (you enter netto price, brutto with
                                     tax with be equal {Number(brutto).toFixed(2)}):</label><br/>
-                                <input type="number" id="price" placeholder="Price" min={0} step={0.01}
+                                <input type="number"
+                                       id="price"
+                                       placeholder="Price" step={0.01}
                                        value={price}
-                                       onChange={(e) => setPrice(Number(e.target.value))} required/>
+                                       onChange={(e) => setPrice(Number(e.target.value))}
+                                       required/>
                             </div>
 
                             <div className="form-group">

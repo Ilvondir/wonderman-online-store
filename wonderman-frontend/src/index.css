@@ -297,6 +297,7 @@ nav .categories ul li:hover {
 @media screen and (orientation: portrait) {
   .swiper .swiper-slide .rectangle {
     padding: 1vmax;
+    font-size: 1.8vmax;
   }
   .swiper .swiper-slide .rectangle h2 {
     margin-bottom: 0;
@@ -475,6 +476,8 @@ table tr td, table tr th {
 }
 table tr td img, table tr th img {
   width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 table tr td input[type=button], table tr th input[type=button] {
   color: white;
@@ -493,6 +496,9 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
 @media screen and (orientation: portrait) {
   .carousel-page .carousel-section {
     max-width: 100%;
+  }
+  .carousel-page .carousel-section form {
+    width: 100%;
   }
   table tr td input[type=button], table tr th input[type=button] {
     font-size: 2.5vmax;
@@ -632,10 +638,10 @@ button:hover {
   color: black;
 }
 .transaction.payed {
-  background-image: linear-gradient(#FBFEF9 20%, #b3ffb3);
+  background-image: linear-gradient(#FBFEF9 0, #b3ffb3);
 }
 .transaction.not-payed {
-  background-image: linear-gradient(#FBFEF9 20%, #ffcccc);
+  background-image: linear-gradient(#FBFEF9 0, #ffcccc);
 }
 .transaction .t-half {
   width: 33.33%;
@@ -649,6 +655,12 @@ button:hover {
 @media screen and (orientation: portrait) {
   .transaction {
     padding: 2vmax;
+  }
+  .transaction .t-half {
+    width: 100%;
+  }
+  .transaction .t-half:nth-child(3), .transaction .t-half:nth-child(2) {
+    text-align: center;
   }
 }
 .container {

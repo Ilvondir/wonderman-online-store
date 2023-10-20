@@ -27,7 +27,9 @@ table {
       padding: 0.3vmax;
 
       img {
-        width: 100%
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
       }
 
       input[type="button"] {
@@ -52,6 +54,10 @@ table {
   .carousel-page {
     .carousel-section {
       max-width: 100%;
+
+      form {
+        width: 100%;
+      }
     }
   }
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Wrapper from "../../../components/Wrapper/Wrapper";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
-import {headers} from "../../../axios/commons";
+import {headers, imgUrl} from "../../../axios/commons";
 import {Product} from "../../../models/Product";
 import Spinner from "../../../components/Spinner/Spinner";
 import {useSelector} from "react-redux";
@@ -44,7 +44,7 @@ const CategoryPage = () => {
                                     <div className="product-card">
 
                                         <div className="img">
-                                            <img src={product.photo} alt={"Photo" + i + "."}/>
+                                            <img src={imgUrl(product.photo)} alt={"Photo" + i + "."}/>
                                         </div>
 
 

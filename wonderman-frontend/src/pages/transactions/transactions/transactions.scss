@@ -9,11 +9,11 @@
   color: black;
 
   &.payed {
-    background-image: linear-gradient($background 20%, lighten(green, 60%));
+    background-image: linear-gradient($background 0, lighten(green, 60%));
   }
 
   &.not-payed {
-    background-image: linear-gradient($background 20%, lighten(red, 40%));
+    background-image: linear-gradient($background 0, lighten(red, 40%));
   }
 
   .t-half {
@@ -30,5 +30,13 @@
 @media screen and (orientation: portrait) {
   .transaction {
     padding: 2vmax;
+
+    .t-half {
+      width: 100%;
+
+      &:nth-child(3), &:nth-child(2) {
+        text-align: center;
+      }
+    }
   }
 }

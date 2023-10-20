@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
 import Carousel from "../../components/Carousel/Carousel";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers, imgUrl} from "../../axios/commons";
 import {Product} from "../../models/Product";
 import {Link} from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
@@ -38,7 +38,7 @@ const Home = () => {
                                     <div className="product-card">
 
                                         <div className="img">
-                                            <img src={product.photo} alt="Photo."/>
+                                            <img src={imgUrl(product.photo)} alt="Photo."/>
                                         </div>
 
 

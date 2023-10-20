@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import Spinner from "../../../components/Spinner/Spinner";
 import {Product} from "../../../models/Product";
 import axios from "axios";
-import {headers} from "../../../axios/commons";
+import {headers, imgUrl} from "../../../axios/commons";
 import {useSelector} from "react-redux";
 
 const ProductPage = () => {
@@ -31,7 +31,7 @@ const ProductPage = () => {
                 <h2>{product.name}</h2>
 
                 <div className="p-half">
-                    <img src={product.photo} alt={product.name}/>
+                    <img src={imgUrl(product.photo)} alt={product.name}/>
                 </div>
                 <div className="p-half">
                     Author: <strong>{product.author.first_name} {product.author.last_name}</strong><br/>
