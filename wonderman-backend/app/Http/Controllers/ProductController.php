@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -80,14 +81,6 @@ class ProductController extends Controller
         return response(ProductResource::collection($products), Response::HTTP_OK);
     }
 
-    public function getProductsForUser(Request $request)
-    {
-        $user = $request->user();
-        $products = Product::where("author_id", "=", $user->id)->get();
-
-        return response(ProductResource::collection($products), Response::HTTP_OK);
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -122,7 +115,20 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, int $id)
     {
         $product = Product::find($id);
-        $product->update($request->validated());
+
+        if ($request->exists("photo")) {
+            $f = $product->photo;
+            $index = strrpos($f, "/");
+            $name = substr($f, $index + 1);
+            Storage::delete("public/img/products/" . $name);
+
+            $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
+            Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
+            $url = env("APP_URL") . ":8000/storage/img/products/" . $filename;
+            $product->update(["photo" => $url]);
+        }
+
+        $product->update($request->only(["name", "description", "category_id", "price"]));
         return response(new ProductResource($product->load(["author", "category"])), Response::HTTP_ACCEPTED);
     }
 

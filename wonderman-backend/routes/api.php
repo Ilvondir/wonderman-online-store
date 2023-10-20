@@ -42,7 +42,7 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::put("/auth/avatar/remove", [UserController::class, "removeAvatar"]);
 
     Route::post("/products", [ProductController::class, "store"]);
-    Route::put("/products/{id}", [ProductController::class, "update"]);
+    Route::post("/products/{id}/update", [ProductController::class, "update"]);
     Route::delete("/products/{id}", [ProductController::class, "destroy"]);
     Route::get("/user/products", [ProductController::class, "getUserProducts"]);
 
