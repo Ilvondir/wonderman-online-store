@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Cashier\Cashier;
 use Symfony\Component\HttpFoundation\Response;
 
 class TransactionController extends Controller
@@ -69,6 +70,18 @@ class TransactionController extends Controller
         return response(new TransactionResource($transaction), Response::HTTP_CREATED);
     }
 
+    public function create_checkout(Request $request, int $id)
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $tr = Transaction::find($id);
+        return $user->checkoutCharge($tr->price * 100, $tr->product->name, 1, [
+            'payment_method_types' => ['card', 'p24'],
+            'success_url' => "http://" . $request->input("hostname") . ":3000/transactions/" . $id . "/success",
+            'cancel_url' => "http://" . $request->input("hostname") . ":3000/transactions/" . $id,
+        ])->jsonSerialize();
+    }
+
     public function pay(Request $request, int $id)
     {
         //TODO:Paying
@@ -90,6 +103,5 @@ class TransactionController extends Controller
             Transaction::destroy($id);
             return response(null, Response::HTTP_NO_CONTENT);
         } else return response(["message" => "You cannot destroy this resource."], Response::HTTP_PRECONDITION_FAILED);
-
     }
 }

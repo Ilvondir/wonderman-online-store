@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,5 +56,7 @@ Route::middleware("auth:sanctum")->group(function () {
 
     Route::post("/slides", [SlideController::class, "store"]);
     Route::delete("/slides/{id}", [SlideController::class, "destroy"]);
+
+    Route::post('/transactions/{id}/checkout', [TransactionController::class, "create_checkout"]);
 });
 
