@@ -18,6 +18,7 @@ import AddedProducts from "./pages/products/addedProducts/AddedProducts";
 import Transactions from "./pages/transactions/transactions/Transactions";
 import TransactionPage from "./pages/transactions/transaction/TransactionPage";
 import ProductEdit from "./pages/products/productEdit/ProductEdit";
+import TransactionPay from "./pages/transactions/transactionPay/TransactionPay";
 
 function App() {
     return (
@@ -40,6 +41,12 @@ function App() {
                     <Route path={"/transactions/:id"} element={
                         <Guard roles={["User", "Admin"]}>
                             <TransactionPage/>
+                        </Guard>
+                    }/>
+
+                    <Route path={"/transactions/:id/pay"} element={
+                        <Guard roles={["User", "Admin"]}>
+                            <TransactionPay/>
                         </Guard>
                     }/>
 
