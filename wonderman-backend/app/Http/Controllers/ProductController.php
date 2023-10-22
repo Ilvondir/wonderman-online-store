@@ -42,7 +42,7 @@ class ProductController extends Controller
         //INNER JOIN categories
         //ON categories.id = products.category_id
         //ORDER BY products.id DESC
-        //WHERE catgories.name = ...
+        //WHERE categories.name = ...
 
         $products = Product::query()
             ->join("categories", "categories.id", "=", "products.category_id")
@@ -68,12 +68,14 @@ class ProductController extends Controller
         //FROM products
         //INNER JOIN transactions
         //ON products.id = transactions.product_id
+        //WHERE transactions.payment = 1
         //GROUP BY transactions.product_id
         //ORDER BY freq DESC;
 
         $products = Product::query()
             ->join("transactions", "transactions.product_id", "=", "products.id")
             ->selectRaw("products.id, name, products.price AS price, description, added, photo, COUNT(transactions.id) AS freq, tax")
+            ->where("transactions.payed", "=", 1)
             ->groupBy("transactions.product_id")
             ->orderByDesc("freq")
             ->paginate(12);
