@@ -1,4 +1,4 @@
-import React, {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination, Navigation} from 'swiper/modules';
 import axios from "axios";
@@ -9,15 +9,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Spinner from "../Spinner/Spinner";
 
-const Carousel = forwardRef((props: any, ref) => {
+const Carousel = () => {
     const [wait, setWait] = useState(true);
     const [slides, setSlides] = useState([]);
-
-    useImperativeHandle(ref, () => ({
-        sendSlides() {
-            return slides;
-        }
-    }))
 
     useEffect(() => {
         axios.get("/slides", {headers: headers()})
@@ -66,6 +60,6 @@ const Carousel = forwardRef((props: any, ref) => {
             </Swiper>
         </div>
     );
-});
+}
 
 export default Carousel;

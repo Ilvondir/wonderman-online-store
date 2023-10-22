@@ -14,6 +14,8 @@ const TransactionPay = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (!transaction_id) navigate("/transactions/" + id);
+
         axios.put("/transactions/" + id + "/pay", {
             transaction_id
         }, {headers: headers()})

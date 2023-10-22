@@ -5,16 +5,9 @@ import {Slide} from "../../models/Slide";
 import axios from "axios";
 import {headers, imgUrl} from "../../axios/commons";
 import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 
-const spinner = {
-    marginBottom: "auto",
-    marginTop: "auto"
-}
-
 const CarouselPage = () => {
-    const carouselRef = useRef();
     const user = useSelector((state: any) => state.user);
     const [slides, setSlides] = useState([]);
     const [deleting, setDeleting] = useState(false);
@@ -30,11 +23,11 @@ const CarouselPage = () => {
     let formData = new FormData();
 
     useEffect(() => {
-        setTimeout(() => {
-            // @ts-ignore
-            setSlides(carouselRef.current?.sendSlides());
-            setWait(false);
-        }, 3000);
+        axios.get("/slides", {headers: headers()})
+            .then(res => {
+                setSlides(res.data);
+                setWait(false);
+            });
     }, []);
 
     const removeSlide = (e: SyntheticEvent, id: any) => {
@@ -88,7 +81,6 @@ const CarouselPage = () => {
     return (
         <Wrapper>
             <div className="carousel-page">
-                <Carousel ref={carouselRef}/>
 
                 <div className="carousel-section">
                     <h2>Manage carousel</h2>

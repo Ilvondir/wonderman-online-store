@@ -143,7 +143,8 @@ const Profile = () => {
                         <img src={imgUrl(user?.avatar)} alt="Avatar."/>
                     </div>
                     <div className="img-title">
-                        <h1>{user?.first_name} {user?.last_name}</h1>
+                        <h1 style={{marginBottom: 0}}>{user?.first_name} {user?.last_name}</h1>
+                        <p style={{marginTop: 0}}>Created: {new Date(user?.created).toLocaleDateString()}</p>
                     </div>
                 </div>
 
