@@ -43,6 +43,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRoleId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
  * @property-read int|null $transactions_count
+ * @property string|null $stripe_id
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereStripeId($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable

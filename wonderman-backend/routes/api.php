@@ -33,7 +33,6 @@ Route::get("/products/{id}", [ProductController::class, "show"]);
 Route::get("/slides", [SlideController::class, "index"]);
 
 Route::middleware("auth:sanctum")->group(function () {
-    Route::get("/auth/user", [AuthController::class, "user"]);
     Route::post("/auth/admins", [UserController::class, "createAdmin"]);
     Route::get("/auth/admins", [UserController::class, "getAdmins"]);
     Route::delete("/users/{id}", [UserController::class, "destroy"]);
@@ -57,6 +56,5 @@ Route::middleware("auth:sanctum")->group(function () {
 
     Route::post("/slides", [SlideController::class, "store"]);
     Route::delete("/slides/{id}", [SlideController::class, "destroy"]);
-
 });
 

@@ -66,11 +66,7 @@ class AuthController extends Controller
 
         return response()->json($resArray, Response::HTTP_OK);
     }
-
-    public function user(Request $request)
-    {
-        return response(new UserResource($request->user()->load("role")), Response::HTTP_OK);
-    }
+    
 
     public function logout(Request $request)
     {
