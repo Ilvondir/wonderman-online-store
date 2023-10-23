@@ -57,7 +57,7 @@ class ProductController extends Controller
             ])
             ->orderByDesc("products.id")
             ->where("categories.name", "=", $category)
-            ->paginate(2);
+            ->paginate(24);
 
         return ProductResource::collection($products);
     }
