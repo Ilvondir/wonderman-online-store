@@ -9,14 +9,24 @@ import {Link} from "react-router-dom";
 const AddedProducts = () => {
     const [wait, setWait] = useState(true);
     const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(0);
 
     useEffect(() => {
-        axios.get("user/products", {headers: headers()})
+        axios.get("user/products?page=" + page, {headers: headers()})
             .then(response => {
-                setProducts(response.data);
+                setProducts(response.data.data);
+                setMaxPage(response.data.meta.last_page);
                 setWait(false);
             })
-    }, []);
+    }, [page]);
+
+    const changePage = (change: number) => {
+        if (change > 0) {
+            if (page < maxPage) setPage(page + 1);
+        } else if (page > 1) setPage(page - 1);
+    }
+
 
     return (
         <Wrapper>
@@ -57,6 +67,14 @@ const AddedProducts = () => {
                             </>
                         )
                     })}
+
+                    <div className="paginator">
+                        <ul>
+                            <li onClick={() => changePage(-1)} className="without">Prev</li>
+                            <li className="without">{page}</li>
+                            <li onClick={() => changePage(1)}>Next</li>
+                        </ul>
+                    </div>
 
                 </div>
 

@@ -2,6 +2,10 @@
   src: url("scss/fonts/Manrope.ttf");
   font-family: "Manrope";
 }
+html {
+  scrollbar-width: none;
+}
+
 body {
   background-color: #FBFEF9;
 }
@@ -127,6 +131,33 @@ body::-webkit-scrollbar {
   }
   .footer .footer-section:nth-child(2) {
     margin-bottom: 0;
+  }
+}
+.paginator {
+  width: 100%;
+  clear: both;
+  text-align: center;
+}
+.paginator ul {
+  list-style-type: none;
+}
+.paginator ul li {
+  display: inline-block;
+  padding: 0.8vmax;
+  border: 0.15vmax solid #FFA500;
+  cursor: pointer;
+}
+.paginator ul li.without {
+  border-right: none;
+}
+.paginator ul li:hover {
+  background-color: #FFA500;
+}
+
+@media screen and (orientation: portrait) {
+  .paginator ul li {
+    padding: 1.8vmax;
+    border-width: 0.3vmax;
   }
 }
 .header {

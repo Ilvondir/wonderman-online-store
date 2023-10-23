@@ -29,9 +29,9 @@ class ProductController extends Controller
             ->selectRaw("products.*")
             ->where("users.id", "=", $request->user()->id)
             ->orderByDesc("products.added")
-            ->paginate(32);
+            ->paginate(24);
 
-        return response(ProductResource::collection($products), Response::HTTP_OK);
+        return ProductResource::collection($products);
     }
 
     public function getProductsByCategory(string $category)
@@ -57,9 +57,9 @@ class ProductController extends Controller
             ])
             ->orderByDesc("products.id")
             ->where("categories.name", "=", $category)
-            ->paginate(32);
+            ->paginate(2);
 
-        return response(ProductResource::collection($products), Response::HTTP_OK);
+        return ProductResource::collection($products);
     }
 
     public function getBestProducts()
@@ -70,7 +70,8 @@ class ProductController extends Controller
         //ON products.id = transactions.product_id
         //WHERE transactions.payment = 1
         //GROUP BY transactions.product_id
-        //ORDER BY freq DESC;
+        //ORDER BY freq DESC
+        //LIMIT 12;
 
         $products = Product::query()
             ->join("transactions", "transactions.product_id", "=", "products.id")
@@ -78,7 +79,8 @@ class ProductController extends Controller
             ->where("transactions.payed", "=", 1)
             ->groupBy("transactions.product_id")
             ->orderByDesc("freq")
-            ->paginate(12);
+            ->limit(12)
+            ->get();
 
         return response(ProductResource::collection($products), Response::HTTP_OK);
     }

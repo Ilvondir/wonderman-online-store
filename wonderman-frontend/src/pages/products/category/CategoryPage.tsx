@@ -5,25 +5,48 @@ import axios from "axios";
 import {headers, imgUrl} from "../../../axios/commons";
 import {Product} from "../../../models/Product";
 import Spinner from "../../../components/Spinner/Spinner";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Category} from "../../../models/Category";
+import {setCurrentCategory} from "../../../store/actions/currentCategory";
 
 const CategoryPage = () => {
     const {name} = useParams();
+    const oldCategory = useSelector((state: any) => state.currentCategory);
+    const dispatch = useDispatch();
     const [wait, setWait] = useState(false);
     const [category, setCategory] = useState(new Category());
     const cats = useSelector((state: any) => state.categories);
     const [products, setProducts] = useState([]);
+    const [maxPage, setMaxPage] = useState(0);
+    const [page, setPage] = useState(1);
+
 
     useEffect(() => {
+        if (oldCategory !== name) {
+            setCategory(cats.filter((c: Category) => c.name === name)[0]);
+            dispatch(setCurrentCategory(category.name));
+            if (page !== 1) {
+                setPage(1);
+                return;
+            }
+        }
+
         setWait(true);
-        axios.get("category/" + name, {headers: headers()})
+        axios.get("category/" + name + "?page=" + page, {headers: headers()})
             .then(response => {
-                setProducts(response.data);
+
+
+                setProducts(response.data.data);
+                setMaxPage(response.data.meta.last_page);
                 setWait(false);
-                setCategory(cats.filter((c: Category) => c.name === name)[0]);
             })
-    }, [name]);
+    }, [name, page]);
+
+    const changePage = (change: number) => {
+        if (change > 0) {
+            if (page < maxPage) setPage(page + 1);
+        } else if (page > 1) setPage(page - 1);
+    }
 
     return (
         <Wrapper>
@@ -66,6 +89,14 @@ const CategoryPage = () => {
                             </>
                         )
                     })}
+
+                    <div className="paginator">
+                        <ul>
+                            <li onClick={() => changePage(-1)} className="without">Prev</li>
+                            <li className="without">{page}</li>
+                            <li onClick={() => changePage(1)}>Next</li>
+                        </ul>
+                    </div>
 
                 </div>
 

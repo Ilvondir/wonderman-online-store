@@ -49,7 +49,7 @@ const CategoryMenu = () => {
                     {handleCategories?.map((category: Category) => {
                         return (
                             <NavLink to={"/category/" + category.name}>
-                                <li key={category.id}>{category.name}</li>
+                                <li key={category.id}>{category.name} ({category.number})</li>
                             </NavLink>
                         )
                     })}

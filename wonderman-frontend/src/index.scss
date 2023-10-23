@@ -9,6 +9,10 @@
 //  display: none !important
 //}
 
+html {
+  scrollbar-width: none;
+}
+
 body {
   background-color: $background;
 }
@@ -20,6 +24,7 @@ body::-webkit-scrollbar {
 
 @import "components/Spinner/spinner";
 @import "components/Footer/footer";
+@import "scss/paginator";
 @import "components/Header/header";
 @import "components/CategoryMenu/categoryMenu";
 @import "components/Wrapper/wrapper";
