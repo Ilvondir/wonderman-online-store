@@ -66,18 +66,18 @@
 
       .product-card {
         width: 100%;
-        margin: 0 0 3vmax 0;
+        margin: 0 0 5vw 0;
 
         .info {
-          border-width: 0.3vmax;
+          border-width: 0.4vw;
 
           .info-section {
-            margin: 3vmax 0 0 0.5vmax;
+            margin: 5vw 0 0 1vw;
           }
         }
 
         .img {
-          margin-bottom: -0.8vmax;
+          margin-bottom: -1.1vw;
         }
       }
     }

@@ -78,25 +78,25 @@ form {
 
     fieldset {
       legend {
-        font-size: 13vmax;
+        font-size: 30vw;
       }
     }
   }
 
   form {
     .form-group {
-      margin: 2.5vmax 0;
+      margin: 4.5vw 0;
 
       label {
-        font-size: 2.2vmax;
+        font-size: 3vw;
       }
 
       input, textarea, select {
-        font-size: 2.5vmax;
-        padding: 1vmax;
+        font-size: 3.5vw;
+        padding: 1.6vw;
 
         &[type="submit"] {
-          padding: 1.2vmax 0;
+          padding: 2.5vw 0;
           width: 100%;
         }
       }

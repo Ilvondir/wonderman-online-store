@@ -4,6 +4,18 @@
   }
 
   .smaller {
-    width: 5vmax;
+    width: 5vw;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .admins-page {
+    h2 {
+      text-align: center;
+    }
+
+    .smaller {
+      width: 11vw;
+    }
   }
 }

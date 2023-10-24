@@ -91,7 +91,7 @@ body::-webkit-scrollbar {
 .footer .footer-section .footer-container {
   width: 100%;
   float: left;
-  font-size: 2vmax;
+  font-size: 2vw;
   box-sizing: border-box;
 }
 .footer .footer-section .footer-container .half {
@@ -112,13 +112,13 @@ body::-webkit-scrollbar {
 
 @media screen and (orientation: portrait) {
   .footer {
-    padding: 3vmax;
+    padding: 5vw;
   }
   .footer .footer-section {
     width: 100%;
     float: left;
-    font-size: 2.4vmax;
-    margin-bottom: 4vmax;
+    font-size: 3.4vw;
+    margin-bottom: 6vw;
   }
   .footer .footer-section h1 {
     text-align: left;
@@ -127,7 +127,7 @@ body::-webkit-scrollbar {
     text-align: justify;
   }
   .footer .footer-section .footer-container {
-    font-size: 3vmax;
+    font-size: 5vw;
   }
   .footer .footer-section:nth-child(2) {
     margin-bottom: 0;
@@ -156,8 +156,8 @@ body::-webkit-scrollbar {
 
 @media screen and (orientation: portrait) {
   .paginator ul li {
-    padding: 1.8vmax;
-    border-width: 0.3vmax;
+    padding: 3vw;
+    border-width: 0.7vw;
   }
 }
 .header {
@@ -195,18 +195,18 @@ body::-webkit-scrollbar {
 @media screen and (orientation: portrait) {
   .header a {
     float: left;
-    padding: 1.5vmax;
+    padding: 2.5vw;
     display: block;
-    font-size: 2.4vmax;
+    font-size: 3.4vw;
     width: 100%;
     cursor: pointer;
   }
   .header .menu-profile-section {
-    height: 3.15vmax;
+    height: 4.5vw;
   }
   .header .menu-profile-section img {
     height: 100%;
-    margin-right: 1.4vmax;
+    margin-right: 2.4vw;
   }
 }
 nav {
@@ -216,7 +216,7 @@ nav .category-button {
   width: 100%;
   background-color: #555555;
   color: #FBFEF9;
-  padding: 0.6vmax;
+  padding: 0.6vw;
   box-sizing: border-box;
   cursor: pointer;
 }
@@ -237,7 +237,7 @@ nav .categories ul {
   margin: 0;
 }
 nav .categories ul li {
-  padding: 0.3vmax 10%;
+  padding: 0.3vw 10%;
 }
 nav .categories ul li:hover {
   background-color: #FFA500;
@@ -248,13 +248,13 @@ nav .categories ul li:hover {
 @media screen and (orientation: portrait) {
   nav {
     padding: 0;
-    font-size: 2.4vmax;
+    font-size: 3.9vw;
   }
   nav .category-button {
     width: 100%;
     background-color: #555555;
     color: #FBFEF9;
-    padding: 0.6vmax;
+    padding: 1.2vw;
     cursor: pointer;
   }
   nav .categories ul {
@@ -263,7 +263,7 @@ nav .categories ul li:hover {
     margin: 0;
   }
   nav .categories ul li {
-    padding: 0.3vmax 2.5vmax;
+    padding: 0.8vw 4.5vw;
   }
   nav .categories ul li:hover {
     background-color: #FFA500;
@@ -300,7 +300,7 @@ nav .categories ul li:hover {
     width: 100%;
     float: left;
     padding: 5%;
-    font-size: 2.4vmax;
+    font-size: 4vw;
     box-sizing: border-box;
   }
 }
@@ -327,14 +327,14 @@ nav .categories ul li:hover {
 
 @media screen and (orientation: portrait) {
   .swiper .swiper-slide .rectangle {
-    padding: 1vmax;
-    font-size: 1.8vmax;
+    padding: 1vw;
+    font-size: 1.8vw;
   }
   .swiper .swiper-slide .rectangle h2 {
     margin-bottom: 0;
   }
   .swiper .swiper-slide .rectangle p {
-    margin: 0.3vmax 0;
+    margin: 0.3vw 0;
   }
 }
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -414,20 +414,20 @@ form .error {
     width: 100%;
   }
   .form fieldset legend {
-    font-size: 13vmax;
+    font-size: 30vw;
   }
   form .form-group {
-    margin: 2.5vmax 0;
+    margin: 4.5vw 0;
   }
   form .form-group label {
-    font-size: 2.2vmax;
+    font-size: 3vw;
   }
   form .form-group input, form .form-group textarea, form .form-group select {
-    font-size: 2.5vmax;
-    padding: 1vmax;
+    font-size: 3.5vw;
+    padding: 1.6vw;
   }
   form .form-group input[type=submit], form .form-group textarea[type=submit], form .form-group select[type=submit] {
-    padding: 1.2vmax 0;
+    padding: 2.5vw 0;
     width: 100%;
   }
 }
@@ -458,7 +458,7 @@ form .error {
     width: 100%;
   }
   .profile-page form input[type=submit], .profile-page form input[type=button] {
-    padding: 1.2vmax 0;
+    padding: 2.5vw 0;
     width: 100%;
     border: 0;
   }
@@ -478,10 +478,10 @@ form .error {
 
 @media screen and (orientation: portrait) {
   .error-page .communicate {
-    font-size: 3vmax;
+    font-size: 5vw;
   }
   .error-page .communicate h1 {
-    font-size: 15vmax;
+    font-size: 33vw;
   }
 }
 .carousel-page {
@@ -532,16 +532,24 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
     width: 100%;
   }
   table tr td input[type=button], table tr th input[type=button] {
-    font-size: 2.5vmax;
+    font-size: 4vw;
   }
 }
 .admins-page h2 {
   text-align: center;
 }
 .admins-page .smaller {
-  width: 5vmax;
+  width: 5vw;
 }
 
+@media screen and (orientation: portrait) {
+  .admins-page h2 {
+    text-align: center;
+  }
+  .admins-page .smaller {
+    width: 11vw;
+  }
+}
 .products a .product-card {
   width: 30.7%;
   box-sizing: border-box;
@@ -591,16 +599,16 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
 @media screen and (orientation: portrait) {
   .products a .product-card {
     width: 100%;
-    margin: 0 0 3vmax 0;
+    margin: 0 0 5vw 0;
   }
   .products a .product-card .info {
-    border-width: 0.3vmax;
+    border-width: 0.4vw;
   }
   .products a .product-card .info .info-section {
-    margin: 3vmax 0 0 0.5vmax;
+    margin: 5vw 0 0 1vw;
   }
   .products a .product-card .img {
-    margin-bottom: -0.8vmax;
+    margin-bottom: -1.1vw;
   }
 }
 .product-page h2:nth-child(2) {
@@ -655,7 +663,7 @@ button:hover {
     width: 100%;
   }
   button {
-    font-size: 3vmax;
+    font-size: 5vw;
   }
 }
 .transaction {
@@ -685,7 +693,7 @@ button:hover {
 
 @media screen and (orientation: portrait) {
   .transaction {
-    padding: 2vmax;
+    padding: 4vw;
   }
   .transaction .t-half {
     width: 100%;
