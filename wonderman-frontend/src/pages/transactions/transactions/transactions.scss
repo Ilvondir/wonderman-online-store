@@ -1,0 +1,42 @@
+.transaction {
+  width: 100%;
+  clear: both;
+  border-radius: 1vmax;
+  float: left;
+  padding: 0.8vmax;
+  box-sizing: border-box;
+  margin-bottom: 1vmax;
+  color: black;
+
+  &.payed {
+    background-image: linear-gradient($background 0, lighten(green, 60%));
+  }
+
+  &.not-payed {
+    background-image: linear-gradient($background 0, lighten(red, 40%));
+  }
+
+  .t-half {
+    width: 33.33%;
+    box-sizing: border-box;
+    float: left;
+
+    &:nth-child(3) {
+      text-align: right;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .transaction {
+    padding: 4vw;
+
+    .t-half {
+      width: 100%;
+
+      &:nth-child(3), &:nth-child(2) {
+        text-align: center;
+      }
+    }
+  }
+}

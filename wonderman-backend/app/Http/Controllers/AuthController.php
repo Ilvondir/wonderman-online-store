@@ -24,14 +24,16 @@ class AuthController extends Controller
         if ($request->exists("avatar")) {
 
             $filename = strtolower(Str::random(15)) . "." . $request->file("avatar")->extension();
-            $url = Storage::putFileAs("public/img/avatars", $request->validated("avatar"), $filename);
+            Storage::putFileAs("public/img/avatars", $request->validated("avatar"), $filename);
+            $url = "/storage/img/avatars/" . $filename;
 
         } else {
 
             $filename = strtolower(Str::random(15)) . ".png";
             $generator = new Avatar();
             $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
-            $url = Storage::putFileAs("public/img/avatars", $file, $filename);
+            $url = "/storage/img/avatars/" . $filename;
+            Storage::putFileAs("public/img/avatars", $file, $filename);
 
         }
 
@@ -58,13 +60,13 @@ class AuthController extends Controller
         $user = Auth::user();
         $jwt = $user->createToken("token")->plainTextToken;
 
-        return response(["jwt" => $jwt], Response::HTTP_OK);
-    }
+        $res = new UserResource($user->load('role'));
+        $resArray = $res->toArray($request);
+        $resArray['jwt'] = $jwt;
 
-    public function user(Request $request)
-    {
-        return response(new UserResource($request->user()->load("role")), Response::HTTP_OK);
+        return response()->json($resArray, Response::HTTP_OK);
     }
+    
 
     public function logout(Request $request)
     {

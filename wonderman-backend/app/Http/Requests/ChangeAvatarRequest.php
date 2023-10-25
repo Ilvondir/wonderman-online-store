@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rule;
 
 class ChangeAvatarRequest extends FormRequest
 {
@@ -22,7 +24,7 @@ class ChangeAvatarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "avatar" => ["required", "file", "mimes:jpg,png,jpeg"]
+            "avatar" => ["required", File::image()->dimensions(Rule::dimensions()->maxWidth(300)->maxHeight(300))]
         ];
     }
 }

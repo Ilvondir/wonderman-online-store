@@ -7,6 +7,7 @@ use App\Http\Requests\ChangeDataRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Slide;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    public function getAdmins()
+    {
+        return response(UserResource::collection(User::where("role_id", "=", 1)->orderByDesc("created")->get()), Response::HTTP_OK);
+    }
+
     public function createAdmin(RegisterRequest $request)
     {
         $this->authorize("is_admin", $request->user());
@@ -24,19 +30,11 @@ class UserController extends Controller
         $first_name = $request->validated(["first_name"]);
         $last_name = $request->validated(["last_name"]);
 
-        if ($request->exists("avatar")) {
-
-            $filename = strtolower(Str::random(15)) . "." . $request->file("avatar")->extension();
-            $url = Storage::putFileAs("public/img/avatars", $request->validated("avatar"), $filename);
-
-        } else {
-
-            $filename = strtolower(Str::random(15)) . ".png";
-            $generator = new Avatar();
-            $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
-            $url = Storage::putFileAs("public/img/avatars", $file, $filename);
-
-        }
+        $filename = strtolower(Str::random(15)) . ".png";
+        $generator = new Avatar();
+        $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
+        $url = "/storage/img/avatars/" . $filename;
+        Storage::putFileAs("public/img/avatars", $file, $filename);
 
         $user = User::create([
             "first_name" => $first_name,
@@ -62,7 +60,7 @@ class UserController extends Controller
             return response(["message" => "success"], Response::HTTP_ACCEPTED);
         }
 
-        return response(["error" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
+        return response(["message" => "Old password is incorrect."], Response::HTTP_FORBIDDEN);
     }
 
     public function changeData(ChangeDataRequest $request)
@@ -79,10 +77,14 @@ class UserController extends Controller
         $user = $request->user();
         $file = $request->validated(["avatar"]);
 
-        $filename = strtolower(Str::random(15)) . "." . $file->extension();
+        $f = User::find($request->user()->id)->avatar;
+        $index = strrpos($f, "/");
+        $name = substr($f, $index + 1);
+        if (Storage::exists("public/img/avatars/" . $name)) Storage::delete("public/img/avatars/" . $name);
 
-        $new_path = Storage::putFileAs("public/img/avatars", $file, $filename);
-        Storage::delete($user->avatar);
+        $filename = strtolower(Str::random(15)) . "." . $file->extension();
+        Storage::putFileAs("public/img/avatars", $file, $filename);
+        $new_path = "/storage/img/avatars/" . $filename;
         $user->update(["avatar" => $new_path]);
 
         return response(new UserResource($user->load("role")), Response::HTTP_ACCEPTED);
@@ -92,15 +94,33 @@ class UserController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
-        Storage::delete($user->avatar);
+        $f = User::find($request->user()->id)->avatar;
+        $index = strrpos($f, "/");
+        $name = substr($f, $index + 1);
+        if (Storage::exists("public/img/avatars/" . $name)) Storage::delete("public/img/avatars/" . $name);
 
         $generator = new Avatar();
         $newname = strtolower(Str::random(15)) . ".png";
         $avatar = $generator->create($user->first_name . " " . $user->last_name)->setBackground("#7f00ff")->toBase64();
-        $new_path = Storage::putFileAs("public/img/avatars", $avatar, $newname);
+        Storage::putFileAs("public/img/avatars", $avatar, $newname);
+        $new_path = "storage/img/avatars/" . $newname;
 
         $user->update(["avatar" => $new_path]);
 
         return response(new UserResource($user->load("role")), Response::HTTP_ACCEPTED);
+    }
+
+    public function destroy(int $id, Request $request)
+    {
+        $this->authorize("is_admin", $request->user());
+
+        $f = User::find($id)->avatar;
+        $index = strrpos($f, "/");
+        $name = substr($f, $index + 1);
+        if (Storage::exists("public/img/avatars/" . $name)) Storage::delete("public/img/avatars/" . $name);
+
+        User::destroy($id);
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

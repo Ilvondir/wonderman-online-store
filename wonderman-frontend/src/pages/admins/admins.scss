@@ -1,0 +1,21 @@
+.admins-page {
+  h2 {
+    text-align: center;
+  }
+
+  .smaller {
+    width: 5vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .admins-page {
+    h2 {
+      text-align: center;
+    }
+
+    .smaller {
+      width: 11vw;
+    }
+  }
+}

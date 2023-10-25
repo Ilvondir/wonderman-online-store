@@ -1,0 +1,26 @@
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .communicate {
+    text-align: center;
+
+    h1 {
+      font-size: 10vmax;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .error-page {
+    .communicate {
+      font-size: 5vw;
+
+      h1 {
+        font-size: 33vw;
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+.form-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  width: 40%;
+
+  fieldset {
+    width: 100%;
+    border-radius: 1vw;
+    border: 0.2vw solid $secondary-color;
+    box-sizing: border-box;
+    padding: 1vw 2vw;
+
+    legend {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      color: $primary-color;
+      font-size: 7vmax;
+    }
+  }
+}
+
+form {
+
+  .form-group {
+    width: 100%;
+    margin: 1.4vw 0;
+    box-sizing: border-box;
+
+    &:nth-child(1) {
+      margin-top: -1vw;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 1.2vw;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5vw;
+      box-sizing: border-box;
+      border: 0.14vmax solid $secondary-color;
+      font-size: 1.3vw;
+
+
+      &[type="submit"] {
+        color: white;
+        background-color: $primary-color;
+        width: 40%;
+        border-radius: 0.2vw;
+        border: 0;
+        cursor: pointer;
+        padding: 0.6vw 0;
+        margin-top: 1vw;
+
+        &:hover {
+          background-color: darken($primary-color, 3%);
+        }
+      }
+    }
+  }
+
+  .error {
+    font-weight: 700;
+    color: red;
+    font-style: italic;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form {
+    width: 100%;
+
+    fieldset {
+      padding: 2vw 4vw;
+
+      legend {
+        font-size: 30vw;
+      }
+    }
+  }
+
+  form {
+    .form-group {
+      margin: 4.5vw 0;
+
+      label {
+        font-size: 3vw;
+      }
+
+      input, textarea, select {
+        font-size: 3.5vw;
+        padding: 1.6vw;
+
+        &[type="submit"] {
+          padding: 2.5vw 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

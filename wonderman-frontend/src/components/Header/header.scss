@@ -1,0 +1,59 @@
+.header {
+  width: 100%;
+  background-color: $secondary-color;
+  overflow: auto;
+  box-sizing: border-box;
+
+  a {
+    float: left;
+    padding: 1.1vw;
+    color: $background;
+    text-decoration: none;
+    font-size: 1.5vmax;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .menu-profile-section {
+    float: left;
+    padding: 0;
+    margin: 0;
+    height: 2.05vmax;
+
+    img {
+      height: 100%;
+      margin-right: 0.8vmax;
+    }
+  }
+
+  a:hover {
+    background-color: #000;
+  }
+
+  .active {
+    background-color: $primary-color;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .header {
+    a {
+      float: left;
+      padding: 2.5vw;
+      display: block;
+      font-size: 3.4vw;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .menu-profile-section {
+      height: 4.5vw;
+
+      img {
+        height: 100%;
+        margin-right: 2.4vw;
+      }
+    }
+  }
+}

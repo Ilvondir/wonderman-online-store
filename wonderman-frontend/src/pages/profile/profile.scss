@@ -1,0 +1,41 @@
+.profile-page {
+  .profile-section {
+    .img-avatar, .img-title {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  form {
+    width: 50%;
+
+    input[type="button"] {
+      color: white;
+      background-color: $primary-color;
+      width: 40%;
+      border-radius: 0.2vmax;
+      border: 0;
+      cursor: pointer;
+      padding: 0.6vmax 0;
+      margin-top: 1vmax;
+      margin-right: 1vmax;
+
+      &:hover {
+        background-color: darken($primary-color, 3%);
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .profile-page form {
+    width: 100%;
+
+    input[type="submit"], input[type="button"] {
+      padding: 2.5vw 0;
+      width: 100%;
+      border: 0;
+    }
+  }
+}
