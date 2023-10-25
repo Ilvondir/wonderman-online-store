@@ -18,7 +18,7 @@
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .main {
     .main-left {
       width: 100%;

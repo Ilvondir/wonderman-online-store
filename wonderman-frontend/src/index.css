@@ -110,7 +110,7 @@ body::-webkit-scrollbar {
   color: #FBFEF9;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .footer {
     padding: 5vw;
   }
@@ -154,7 +154,7 @@ body::-webkit-scrollbar {
   background-color: #FFA500;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .paginator ul li {
     padding: 3vw;
     border-width: 0.7vw;
@@ -192,7 +192,7 @@ body::-webkit-scrollbar {
   background-color: #FFA500;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .header a {
     float: left;
     padding: 2.5vw;
@@ -245,7 +245,7 @@ nav .categories ul li:hover {
   cursor: pointer;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   nav {
     padding: 0;
     font-size: 3.9vw;
@@ -289,7 +289,7 @@ nav .categories ul li:hover {
   box-sizing: border-box;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .main .main-left {
     width: 100%;
     float: left;
@@ -325,7 +325,7 @@ nav .categories ul li:hover {
   margin-top: 0;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .swiper .swiper-slide .rectangle {
     padding: 1vw;
     font-size: 1.8vw;
@@ -358,10 +358,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 }
 .form fieldset {
   width: 100%;
-  border-radius: 1vmax;
-  border: 0.2vmax solid #555555;
+  border-radius: 1vw;
+  border: 0.2vw solid #555555;
   box-sizing: border-box;
-  padding: 1vmax 2vmax;
+  padding: 1vw 2vw;
 }
 .form fieldset legend {
   padding: 0;
@@ -373,32 +373,32 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 
 form .form-group {
   width: 100%;
-  margin: 1.4vmax 0;
+  margin: 1.4vw 0;
   box-sizing: border-box;
 }
 form .form-group:nth-child(1) {
-  margin-top: -1vmax;
+  margin-top: -1vw;
 }
 form .form-group label {
   font-weight: 700;
-  font-size: 1.2vmax;
+  font-size: 1.2vw;
 }
 form .form-group input, form .form-group textarea, form .form-group select {
   width: 100%;
-  padding: 0.5vmax;
+  padding: 0.5vw;
   box-sizing: border-box;
   border: 0.14vmax solid #555555;
-  font-size: 1.3vmax;
+  font-size: 1.3vw;
 }
 form .form-group input[type=submit], form .form-group textarea[type=submit], form .form-group select[type=submit] {
   color: white;
   background-color: #FFA500;
   width: 40%;
-  border-radius: 0.2vmax;
+  border-radius: 0.2vw;
   border: 0;
   cursor: pointer;
-  padding: 0.6vmax 0;
-  margin-top: 1vmax;
+  padding: 0.6vw 0;
+  margin-top: 1vw;
 }
 form .form-group input[type=submit]:hover, form .form-group textarea[type=submit]:hover, form .form-group select[type=submit]:hover {
   background-color: #f09b00;
@@ -409,9 +409,12 @@ form .error {
   font-style: italic;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .form {
     width: 100%;
+  }
+  .form fieldset {
+    padding: 2vw 4vw;
   }
   .form fieldset legend {
     font-size: 30vw;
@@ -453,7 +456,7 @@ form .error {
   background-color: #f09b00;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .profile-page form {
     width: 100%;
   }
@@ -476,7 +479,7 @@ form .error {
   margin: 0;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .error-page .communicate {
     font-size: 5vw;
   }
@@ -524,7 +527,7 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
   background-color: #f09b00;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .carousel-page .carousel-section {
     max-width: 100%;
   }
@@ -542,7 +545,7 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
   width: 5vw;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .admins-page h2 {
     text-align: center;
   }
@@ -596,7 +599,7 @@ table tr td input[type=button]:hover, table tr th input[type=button]:hover {
   clear: both;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .products a .product-card {
     width: 100%;
     margin: 0 0 5vw 0;
@@ -652,7 +655,7 @@ button:hover {
   background-color: #f09b00;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .product-page .p-half {
     width: 100%;
   }
@@ -691,7 +694,7 @@ button:hover {
   text-align: right;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 500px) {
   .transaction {
     padding: 4vw;
   }

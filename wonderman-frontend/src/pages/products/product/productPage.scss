@@ -49,7 +49,7 @@ button {
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .product-page {
     .p-half {
       width: 100%;

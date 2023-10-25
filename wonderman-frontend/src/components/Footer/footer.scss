@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .footer {
     padding: 5vw;
 
