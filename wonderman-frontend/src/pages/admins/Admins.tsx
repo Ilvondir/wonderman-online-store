@@ -3,15 +3,17 @@ import Wrapper from "../../components/Wrapper/Wrapper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGear} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers, imgUrl} from "../../axios/commons";
 import {User} from "../../models/User";
 import Spinner from "../../components/Spinner/Spinner";
+import {useSelector} from "react-redux";
 
 const Admins = () => {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
     const [deleting, setDeleting] = useState(false);
     const [wait, setWait] = useState(true);
+    const loggedUser = useSelector((state: any) => state.user);
 
     const [admins, setAdmins] = useState([]);
 
@@ -77,43 +79,46 @@ const Admins = () => {
             <div className="admins-page">
                 <h2>Admins</h2>
 
-                <table>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Avatar</th>
-                        <th>Name</th>
-                        <th>Login</th>
-                        <th>Email</th>
-                        <th>Created</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {admins.map((user: User) => {
-                        return (
-                            <tr key={user.id}>
-                                <td><strong>{user.id}</strong></td>
-                                <td className="text-align-center"><img src={user.avatar} alt="Avatar."
-                                                                       className="smaller"/></td>
-                                <td>{user.first_name} {user.last_name}</td>
-                                <td>{user.login}</td>
-                                <td>{user.email}</td>
-                                <td>{user.created}</td>
-                                <td>
+                <div className="overflow-scroll">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Created</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {admins.map((user: User) => {
+                            if (user.id !== loggedUser.id) return (
+                                <tr key={user.id}>
+                                    <td><strong>{user.id}</strong></td>
+                                    <td className="text-align-center"><img src={imgUrl(user.avatar)}
+                                                                           alt="Avatar."
+                                                                           className="smaller"/></td>
+                                    <td>{user.first_name} {user.last_name}</td>
+                                    <td>{user.login}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.created}</td>
+                                    <td>
 
-                                    <Spinner show={deleting} customStyle={true}/>
+                                        <Spinner show={deleting} customStyle={true}/>
 
-                                    <input type="button"
-                                           onClick={(e) => remove(e, user.id)}
-                                           value="Delete user"
-                                           className={deleting ? "hide" : ""}/>
-                                </td>
-                            </tr>
-                        );
-                    })}
-                    </tbody>
-                </table>
+                                        <input type="button"
+                                               onClick={(e) => remove(e, user.id)}
+                                               value="Delete user"
+                                               className={deleting ? "hide" : ""}/>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                        </tbody>
+                    </table>
+                </div>
 
                 <Spinner show={wait} customStyle={false}/>
 

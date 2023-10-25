@@ -7,7 +7,8 @@ import {Provider} from "react-redux";
 import store from "./store/store";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8000/api/';
+const host = window.location.hostname;
+axios.defaults.baseURL = `http://${host}:8000/api/`;
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

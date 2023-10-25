@@ -27,7 +27,9 @@ table {
       padding: 0.3vmax;
 
       img {
-        width: 100%
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
       }
 
       input[type="button"] {
@@ -48,12 +50,14 @@ table {
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .carousel-page {
     .carousel-section {
       max-width: 100%;
-      overflow: scroll;
 
+      form {
+        width: 100%;
+      }
     }
   }
 
@@ -61,7 +65,7 @@ table {
     tr {
       td, th {
         input[type="button"] {
-          font-size: 2.5vmax;
+          font-size: 4vw;
         }
       }
     }

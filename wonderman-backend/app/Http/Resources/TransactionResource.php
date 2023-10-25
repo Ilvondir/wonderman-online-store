@@ -15,6 +15,7 @@ class TransactionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+	    "id" => $this->id,
             "product" => new ProductResource($this->product),
             "user" => new UserResource($this->whenLoaded("user")),
             "created" => $this->created,

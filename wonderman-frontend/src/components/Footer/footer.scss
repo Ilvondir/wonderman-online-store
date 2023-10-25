@@ -24,7 +24,7 @@
     .footer-container {
       width: 100%;
       float: left;
-      font-size: 2vmax;
+      font-size: 2vw;
       box-sizing: border-box;
 
       .half {
@@ -49,15 +49,15 @@
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 600px) {
   .footer {
-    padding-top: 3vmax;
+    padding: 5vw;
 
     .footer-section {
       width: 100%;
       float: left;
-      font-size: 2.4vmax;
-      margin-bottom: 4vmax;
+      font-size: 3.4vw;
+      margin-bottom: 6vw;
 
       h1 {
         text-align: left;
@@ -68,7 +68,7 @@
       }
 
       .footer-container {
-        font-size: 3vmax;
+        font-size: 5vw;
       }
 
       &:nth-child(2) {

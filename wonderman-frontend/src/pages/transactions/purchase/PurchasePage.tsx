@@ -1,10 +1,10 @@
 import React, {SyntheticEvent, useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Spinner from "../../components/Spinner/Spinner";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import Wrapper from "../../../components/Wrapper/Wrapper";
+import Spinner from "../../../components/Spinner/Spinner";
 import axios from "axios";
-import {headers} from "../../axios/commons";
-import {Product} from "../../models/Product";
+import {headers} from "../../../axios/commons";
+import {Product} from "../../../models/Product";
 
 const PurchasePage = () => {
     const {id} = useParams();
@@ -12,6 +12,7 @@ const PurchasePage = () => {
     const [product, setProduct] = useState(new Product());
     const [info, setInfo] = useState("");
     const [clicked, setClicked] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("/products/" + id, {headers: headers()})
@@ -29,7 +30,7 @@ const PurchasePage = () => {
         axios.post("/products/" + product.id, {}, {headers: headers()})
             .then(response => {
                 setClicked(false);
-                setInfo("Transaction created successfully.")
+                navigate("/transactions/" + response.data.id);
             })
             .catch(error => {
                 setClicked(false);
@@ -58,9 +59,9 @@ const PurchasePage = () => {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{Number(product.netto).toFixed(2)} $</td>
+                        <td>{Number(product.netto).toFixed(2)} €</td>
                         <td>{product.tax}%</td>
-                        <td><strong>{Number(product.brutto).toFixed(2)} $</strong></td>
+                        <td><strong>{Number(product.brutto).toFixed(2)} €</strong></td>
                     </tr>
                     </tbody>
                 </table>
@@ -68,7 +69,9 @@ const PurchasePage = () => {
                 <Spinner show={clicked} customStyle={false}/>
 
                 <div className={clicked ? "text-align-center hide" : "text-align-center"}>
-                    <button onClick={(e) => purchase(e, product.id)}>Pay {Number(product.brutto).toFixed(2)} $</button>
+                    <p>Before purchase check your transactions <Link to={"/transactions"}>here</Link>.</p>
+
+                    <button onClick={(e) => purchase(e, product.id)}>Create transaction</button>
 
                     {info}
 

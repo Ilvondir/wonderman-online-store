@@ -1,13 +1,13 @@
 import React, {SyntheticEvent, useEffect, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
+import Wrapper from "../../../components/Wrapper/Wrapper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers} from "../../../axios/commons";
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {setUser} from "../../store/actions/user";
-import Spinner from "../../components/Spinner/Spinner";
+import {setUser} from "../../../store/actions/user";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Login = () => {
     const [submitted, setSubmitted] = useState(false);

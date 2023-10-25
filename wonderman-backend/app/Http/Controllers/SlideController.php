@@ -28,7 +28,7 @@ class SlideController extends Controller
         $this->authorize("is_admin", $request->user());
         $filename = strtolower(Str::random(15)) . "." . $request->file("image")->extension();
         Storage::putFileAs("public/img/slides", $request->validated("image"), $filename);
-        $url = env("APP_URL") . ":8000/storage/img/slides/" . $filename;
+        $url = "/storage/img/slides/" . $filename;
 
         $slide = Slide::create([
             "image" => $url,

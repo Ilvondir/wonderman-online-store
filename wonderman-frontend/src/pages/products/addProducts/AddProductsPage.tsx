@@ -1,12 +1,12 @@
 import React, {SyntheticEvent, useRef, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
+import Wrapper from "../../../components/Wrapper/Wrapper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFolderPlus} from "@fortawesome/free-solid-svg-icons";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../../components/Spinner/Spinner";
 import {useSelector} from "react-redux";
-import {Category} from "../../models/Category";
+import {Category} from "../../../models/Category";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers} from "../../../axios/commons";
 import {useNavigate} from "react-router-dom";
 
 const AddProductsPage = () => {
@@ -20,6 +20,7 @@ const AddProductsPage = () => {
     const [description, setDescription] = useState("");
     const [category_id, setCategoryId] = useState(0);
     const fileInput = useRef(null);
+    const brutto = Number(1.18 * price).toFixed(2);
 
     let formData = new FormData();
 
@@ -93,7 +94,8 @@ const AddProductsPage = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="price" className="label">Enter price:</label><br/>
+                                <label htmlFor="price" className="label">Enter price (you enter netto price, brutto with
+                                    tax with be equal {Number(brutto).toFixed(2)} €):</label><br/>
                                 <input type="number" id="price" placeholder="Price" min={0} step={0.01}
                                        onChange={(e) => setPrice(Number(e.target.value))} required/>
                             </div>

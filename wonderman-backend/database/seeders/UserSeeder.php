@@ -26,8 +26,8 @@ class UserSeeder extends Seeder
         $file2 = $generator->create("Agatha Jenkins")->setBackground("#7f00ff")->toBase64();
         Storage::putFileAs("public/img/avatars", $file1, $filename1);
         Storage::putFileAs("public/img/avatars", $file2, $filename2);
-        $url1 = env("APP_URL") . ":8000/storage/img/avatars/" . $filename1;
-        $url2 = env("APP_URL") . ":8000/storage/img/avatars/" . $filename2;
+        $url1 = "/storage/img/avatars/" . $filename1;
+        $url2 = "/storage/img/avatars/" . $filename2;
 
         User::insert([
             [

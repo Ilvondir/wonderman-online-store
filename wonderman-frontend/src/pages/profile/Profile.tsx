@@ -2,7 +2,7 @@ import React, {SyntheticEvent, useRef, useState} from 'react';
 import Wrapper from "../../components/Wrapper/Wrapper";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers, imgUrl} from "../../axios/commons";
 import {clearUser, setUser} from "../../store/actions/user";
 import Spinner from "../../components/Spinner/Spinner";
 import {Link} from "react-router-dom";
@@ -140,24 +140,25 @@ const Profile = () => {
 
                 <div className="profile-section">
                     <div className="img-avatar">
-                        <img src={user?.avatar} alt="Avatar."/>
+                        <img src={imgUrl(user?.avatar)} alt="Avatar."/>
                     </div>
                     <div className="img-title">
-                        <h1>{user?.first_name} {user?.last_name}</h1>
+                        <h1 style={{marginBottom: 0}}>{user?.first_name} {user?.last_name}</h1>
+                        <p style={{marginTop: 0}}>Created: {new Date(user?.created).toLocaleDateString()}</p>
                     </div>
                 </div>
 
                 <hr/>
 
                 <div className="profile-section">
+                    <Link to={"/add/products"}>
+                        <button>Add product</button>
+                    </Link>
                     <Link to={"/added/products"}>
                         <button>Your products</button>
                     </Link>
                     <Link to={"/transactions"}>
                         <button>Your transactions</button>
-                    </Link>
-                    <Link to={"/add/products"}>
-                        <button>Add product</button>
                     </Link>
                 </div>
 

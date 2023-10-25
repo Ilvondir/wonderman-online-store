@@ -26,14 +26,14 @@ class UserFactory extends Factory
         $generator = new Avatar();
         $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
         Storage::putFileAs("public/img/avatars", $file, $filename);
-        $url = env("APP_URL") . ":8000/storage/img/avatars/" . $filename;
+        $url = "/storage/img/avatars/" . $filename;
 
         return [
             'first_name' => $first_name,
             'last_name' => $last_name,
             'login' => $first_name,
             'email' => fake()->unique()->safeEmail(),
-            'created' => fake()->date(),
+            'created' => fake()->dateTimeBetween("- 5 year", "- 10 day"),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role_id' => fake()->numberBetween(1, 2),
             'avatar' => $url

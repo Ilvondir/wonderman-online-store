@@ -1,11 +1,11 @@
 import React, {SyntheticEvent, useState} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faUser, faSignOut, faSignIn, faChalkboard, faGear} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import {clearUser} from '../../store/actions/user';
-import {headers} from "../../axios/commons";
+import {headers, imgUrl} from "../../axios/commons";
 
 
 const Header = () => {
@@ -20,7 +20,10 @@ const Header = () => {
             .then(() => {
                 setHandleUser(null);
                 dispatch(clearUser())
-            });
+            })
+            .catch(error => {
+                dispatch(clearUser());
+            })
     }
 
     return (
@@ -61,7 +64,7 @@ const Header = () => {
                         <NavLink to={"/profile"}>
 
                             <div className="menu-profile-section">
-                                <img src={handleUser.avatar} alt="Avatar."/>
+                                <img src={imgUrl(handleUser.avatar)} alt="Avatar."/>
                             </div>
 
                             <div className="menu-profile-section">

@@ -9,6 +9,10 @@
 //  display: none !important
 //}
 
+html {
+  scrollbar-width: none;
+}
+
 body {
   background-color: $background;
 }
@@ -20,17 +24,19 @@ body::-webkit-scrollbar {
 
 @import "components/Spinner/spinner";
 @import "components/Footer/footer";
+@import "scss/paginator";
 @import "components/Header/header";
 @import "components/CategoryMenu/categoryMenu";
 @import "components/Wrapper/wrapper";
 @import "components/Carousel/carousel";
-@import "pages/login/forms";
+@import "pages/auth/login/forms";
 @import "pages/profile/profile";
 @import "pages/problems/problems";
 @import "pages/carousel/carouselPage";
 @import "pages/admins/admins";
 @import "pages/home/home";
-@import "pages/product/productPage";
+@import "pages/products/product/productPage";
+@import "pages/transactions/transactions/transactions";
 
 .container {
   width: 100vw;
@@ -66,5 +72,14 @@ body::-webkit-scrollbar {
   }
   .margin-bottom-#{$i} {
     margin-bottom: #{$i}vmax;
+  }
+}
+
+.overflow-scroll {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 }

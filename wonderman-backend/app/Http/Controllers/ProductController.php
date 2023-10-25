@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -14,6 +15,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
+    public function getUserProducts(Request $request)
+    {
+        //SELECT products.*
+        //FROM products
+        //INNER JOIN users
+        //ON users.id=products.author_id
+        //WHERE users.id=4
+        //ORDER BY products.added DESC;
+
+        $products = Product::query()
+            ->join("users", "users.id", "=", "products.author_id")
+            ->selectRaw("products.*")
+            ->where("users.id", "=", $request->user()->id)
+            ->orderByDesc("products.added")
+            ->paginate(24);
+
+        return ProductResource::collection($products);
+    }
+
     public function getProductsByCategory(string $category)
     {
 
@@ -22,12 +42,12 @@ class ProductController extends Controller
         //INNER JOIN categories
         //ON categories.id = products.category_id
         //ORDER BY products.id DESC
-        //WHERE catgories.name = ...
+        //WHERE categories.name = ...
 
         $products = Product::query()
             ->join("categories", "categories.id", "=", "products.category_id")
             ->select([
-		"products.id",
+                "products.id",
                 "products.name AS name",
                 "price",
                 "products.description AS description",
@@ -37,9 +57,9 @@ class ProductController extends Controller
             ])
             ->orderByDesc("products.id")
             ->where("categories.name", "=", $category)
-            ->paginate(32);
+            ->paginate(24);
 
-        return response(ProductResource::collection($products), Response::HTTP_OK);
+        return ProductResource::collection($products);
     }
 
     public function getBestProducts()
@@ -48,23 +68,19 @@ class ProductController extends Controller
         //FROM products
         //INNER JOIN transactions
         //ON products.id = transactions.product_id
+        //WHERE transactions.payment = 1
         //GROUP BY transactions.product_id
-        //ORDER BY freq DESC;
+        //ORDER BY freq DESC
+        //LIMIT 12;
 
         $products = Product::query()
             ->join("transactions", "transactions.product_id", "=", "products.id")
             ->selectRaw("products.id, name, products.price AS price, description, added, photo, COUNT(transactions.id) AS freq, tax")
+            ->where("transactions.payed", "=", 1)
             ->groupBy("transactions.product_id")
             ->orderByDesc("freq")
-            ->paginate(12);
-
-        return response(ProductResource::collection($products), Response::HTTP_OK);
-    }
-
-    public function getProductsForUser(Request $request)
-    {
-        $user = $request->user();
-        $products = Product::where("author_id", "=", $user->id)->get();
+            ->limit(12)
+            ->get();
 
         return response(ProductResource::collection($products), Response::HTTP_OK);
     }
@@ -76,7 +92,7 @@ class ProductController extends Controller
     {
         $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
         Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
-        $url = env("APP_URL") . ":8000/storage/img/products/" . $filename;
+        $url = "/storage/img/products/" . $filename;
 
         $product = Product::create([
                 "photo" => $url,
@@ -103,7 +119,20 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, int $id)
     {
         $product = Product::find($id);
-        $product->update($request->validated());
+
+        if ($request->exists("photo")) {
+            $f = $product->photo;
+            $index = strrpos($f, "/");
+            $name = substr($f, $index + 1);
+            Storage::delete("public/img/products/" . $name);
+
+            $filename = strtolower(Str::random(15)) . "." . $request->file("photo")->extension();
+            Storage::putFileAs("public/img/products", $request->validated("photo"), $filename);
+            $url = "/storage/img/products/" . $filename;
+            $product->update(["photo" => $url]);
+        }
+
+        $product->update($request->only(["name", "description", "category_id", "price"]));
         return response(new ProductResource($product->load(["author", "category"])), Response::HTTP_ACCEPTED);
     }
 

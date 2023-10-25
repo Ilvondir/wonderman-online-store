@@ -3,18 +3,11 @@ import Wrapper from "../../components/Wrapper/Wrapper";
 import Carousel from "../../components/Carousel/Carousel";
 import {Slide} from "../../models/Slide";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers, imgUrl} from "../../axios/commons";
 import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 
-const spinner = {
-    marginBottom: "auto",
-    marginTop: "auto"
-}
-
 const CarouselPage = () => {
-    const carouselRef = useRef();
     const user = useSelector((state: any) => state.user);
     const [slides, setSlides] = useState([]);
     const [deleting, setDeleting] = useState(false);
@@ -30,11 +23,11 @@ const CarouselPage = () => {
     let formData = new FormData();
 
     useEffect(() => {
-        setTimeout(() => {
-            // @ts-ignore
-            setSlides(carouselRef.current?.sendSlides());
-            setWait(false);
-        }, 2000);
+        axios.get("/slides", {headers: headers()})
+            .then(res => {
+                setSlides(res.data);
+                setWait(false);
+            });
     }, []);
 
     const removeSlide = (e: SyntheticEvent, id: any) => {
@@ -88,43 +81,44 @@ const CarouselPage = () => {
     return (
         <Wrapper>
             <div className="carousel-page">
-                <Carousel ref={carouselRef}/>
 
                 <div className="carousel-section">
                     <h2>Manage carousel</h2>
 
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Image</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {slides?.map((slide: Slide) => {
-                            return (
-                                <tr key={slide.id}>
-                                    <td><strong>{slide.id}</strong></td>
-                                    <td><img src={slide.image} alt="Slide."/></td>
-                                    <td>{slide.title}</td>
-                                    <td>{slide.description}</td>
-                                    <td>
+                    <div className="overflow-scroll">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {slides?.map((slide: Slide) => {
+                                return (
+                                    <tr key={slide.id}>
+                                        <td><strong>{slide.id}</strong></td>
+                                        <td><img src={imgUrl(slide.image)} alt="Slide."/></td>
+                                        <td>{slide.title}</td>
+                                        <td>{slide.description}</td>
+                                        <td>
 
-                                        <Spinner show={deleting} customStyle={true}/>
+                                            <Spinner show={deleting} customStyle={true}/>
 
-                                        <input type="button"
-                                               onClick={(e) => removeSlide(e, slide.id)}
-                                               value="Delete slide"
-                                               className={deleting ? "hide" : ""}/>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                        </tbody>
-                    </table>
+                                            <input type="button"
+                                                   onClick={(e) => removeSlide(e, slide.id)}
+                                                   value="Delete slide"
+                                                   className={deleting ? "hide" : ""}/>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                            </tbody>
+                        </table>
+                    </div>
 
                     <Spinner show={wait} customStyle={false}/>
 

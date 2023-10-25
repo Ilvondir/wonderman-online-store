@@ -11,6 +11,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return response(CategoryResource::collection(Category::all()), Response::HTTP_OK);
+        $categories = Category::query()
+            ->join("products", "products.category_id", "=", "categories.id")
+            ->selectRaw("categories.*, COUNT(products.category_id) AS number")
+            ->groupBy("products.category_id")
+            ->get();
+
+        return response(CategoryResource::collection($categories), Response::HTTP_OK);
     }
 }

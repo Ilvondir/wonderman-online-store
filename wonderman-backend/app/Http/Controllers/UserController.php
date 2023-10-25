@@ -33,7 +33,7 @@ class UserController extends Controller
         $filename = strtolower(Str::random(15)) . ".png";
         $generator = new Avatar();
         $file = $generator->create($first_name . " " . $last_name)->setBackground("#7f00ff")->toBase64();
-        $url = env("APP_URL") . ":8000/storage/img/avatars/" . $filename;
+        $url = "/storage/img/avatars/" . $filename;
         Storage::putFileAs("public/img/avatars", $file, $filename);
 
         $user = User::create([
@@ -84,7 +84,7 @@ class UserController extends Controller
 
         $filename = strtolower(Str::random(15)) . "." . $file->extension();
         Storage::putFileAs("public/img/avatars", $file, $filename);
-        $new_path = env("APP_URL") . ":8000/storage/img/avatars/" . $filename;
+        $new_path = "/storage/img/avatars/" . $filename;
         $user->update(["avatar" => $new_path]);
 
         return response(new UserResource($user->load("role")), Response::HTTP_ACCEPTED);
@@ -103,7 +103,7 @@ class UserController extends Controller
         $newname = strtolower(Str::random(15)) . ".png";
         $avatar = $generator->create($user->first_name . " " . $user->last_name)->setBackground("#7f00ff")->toBase64();
         Storage::putFileAs("public/img/avatars", $avatar, $newname);
-        $new_path = env("APP_URL") . ":8000/storage/img/avatars/" . $newname;
+        $new_path = "storage/img/avatars/" . $newname;
 
         $user->update(["avatar" => $new_path]);
 

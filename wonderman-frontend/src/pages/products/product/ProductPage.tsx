@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Wrapper from "../../components/Wrapper/Wrapper";
+import Wrapper from "../../../components/Wrapper/Wrapper";
 import {Link, useParams} from "react-router-dom";
-import Spinner from "../../components/Spinner/Spinner";
-import {Product} from "../../models/Product";
+import Spinner from "../../../components/Spinner/Spinner";
+import {Product} from "../../../models/Product";
 import axios from "axios";
-import {headers} from "../../axios/commons";
+import {headers, imgUrl} from "../../../axios/commons";
 import {useSelector} from "react-redux";
 
 const ProductPage = () => {
@@ -31,23 +31,28 @@ const ProductPage = () => {
                 <h2>{product.name}</h2>
 
                 <div className="p-half">
-                    <img src={product.photo} alt={product.name}/>
+                    <img src={imgUrl(product.photo)} alt={product.name}/>
                 </div>
                 <div className="p-half">
                     Author: <strong>{product.author.first_name} {product.author.last_name}</strong><br/>
                     Added: <strong>{new Date(product.added).toLocaleDateString()}</strong><br/>
                     Contact: <strong>{product.author.email}</strong><br/>
 
-                    <h2>{Number(product.brutto).toFixed(2)} $</h2>
+                    <h2>{Number(product.brutto).toFixed(2)} €</h2>
 
                     {user && user.id !== product.author.id &&
                         <Link to={"/products/" + id + "/purchase"}>
-                            <button className="purchase-button">Go to purchase</button>
+                            <button>Go to purchase</button>
                         </Link>
                     }
 
                     {user && user.id === product.author.id &&
-                        <h2>This is your product.</h2>
+                        <>
+                            <h2 style={{marginBottom: 0}}>This is your product.</h2>
+                            <Link to={"/products/" + id + "/edit"}>
+                                <button>Edit product</button>
+                            </Link>
+                        </>
                     }
 
                 </div>
