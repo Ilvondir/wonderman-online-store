@@ -16,6 +16,7 @@ The application's frontend was built using the React framework with a TypeScript
 - Sanctum 3.3.1
 - Avatar 5.0.0
 - IDE Helper 2.13.0
+
 ### Frontend
 - HTML 5
 - SCSS 1.63.6
